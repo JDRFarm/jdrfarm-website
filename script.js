@@ -44,7 +44,7 @@ const translations = {
         features: {
             shipping: {
                 title: "Free Shipping",
-                desc: "On orders above ₹399"
+                desc: "On orders above ₹599"
             },
             value: {
                 title: "Value for Money",
@@ -147,7 +147,7 @@ const translations = {
         features: {
             shipping: {
                 title: "இலவச ஷிப்பிங்",
-                desc: "₹399 க்கு மேல் ஆர்டர்களில்"
+                desc: "₹599 க்கு மேல் ஆர்டர்களில்"
             },
             value: {
                 title: "பணத்திற்கான மதிப்பு",
