@@ -287,29 +287,55 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize language first
     switchLanguage(currentLang);
     
-    // Language button click handlers - use event delegation for better reliability
-    document.addEventListener('click', (e) => {
-        if (e.target.classList.contains('lang-btn')) {
+    // Function to handle language button clicks
+    function handleLangButtonClick(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        const lang = this.getAttribute('data-lang');
+        if (lang) {
+            console.log('Language button clicked:', lang);
+            switchLanguage(lang);
+        }
+    }
+    
+    // Add event listeners to language buttons
+    function setupLanguageButtons() {
+        const langButtons = document.querySelectorAll('.lang-btn');
+        console.log('Setting up language buttons:', langButtons.length);
+        
+        langButtons.forEach(btn => {
+            // Remove old listeners by cloning
+            const newBtn = btn.cloneNode(true);
+            if (btn.parentNode) {
+                btn.parentNode.replaceChild(newBtn, btn);
+            }
+            
+            // Add click event listener
+            newBtn.addEventListener('click', handleLangButtonClick, false);
+            newBtn.addEventListener('touchstart', handleLangButtonClick, false);
+        });
+    }
+    
+    // Setup buttons immediately
+    setupLanguageButtons();
+    
+    // Also setup after a short delay to ensure DOM is ready
+    setTimeout(setupLanguageButtons, 100);
+    setTimeout(setupLanguageButtons, 500);
+    
+    // Use event delegation as backup (capture phase)
+    document.addEventListener('click', function(e) {
+        const langBtn = e.target.closest('.lang-btn');
+        if (langBtn) {
             e.preventDefault();
             e.stopPropagation();
-            const lang = e.target.getAttribute('data-lang');
-            if (lang) {
+            const lang = langBtn.getAttribute('data-lang');
+            if (lang && lang !== currentLang) {
+                console.log('Language switch via delegation:', lang);
                 switchLanguage(lang);
             }
         }
-    });
-    
-    // Also add direct event listeners as backup
-    document.querySelectorAll('.lang-btn').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            const lang = btn.getAttribute('data-lang');
-            if (lang) {
-                switchLanguage(lang);
-            }
-        });
-    });
+    }, true);
 });
 
 // Shopping Cart
