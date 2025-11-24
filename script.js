@@ -455,16 +455,22 @@ function updateCart() {
     
     cartTotal.textContent = total.toFixed(2);
     
-    // Show/hide checkout button based on cart items
+    // Show/hide checkout button and total based on cart items
     const checkoutButton = document.getElementById('checkoutButton');
     const cartTotalSection = document.getElementById('cartTotalSection');
+    const checkoutNote = document.getElementById('checkoutNote');
+    
     if (checkoutButton && cartTotalSection) {
         if (cart.length > 0) {
             checkoutButton.style.display = 'block';
             cartTotalSection.style.display = 'block';
+            if (checkoutNote) checkoutNote.style.display = 'block';
+            // Check if form fields are filled to enable checkout
+            checkFormCompletion();
         } else {
             checkoutButton.style.display = 'none';
             cartTotalSection.style.display = 'none';
+            if (checkoutNote) checkoutNote.style.display = 'none';
         }
     }
     
@@ -478,25 +484,86 @@ function updateCart() {
     });
 }
 
+// Function to check if all required form fields are filled
+function checkFormCompletion() {
+    const checkoutButton = document.getElementById('checkoutButton');
+    if (!checkoutButton) return;
+    
+    // Get form field values
+    const name = document.getElementById('name')?.value.trim() || '';
+    const email = document.getElementById('email')?.value.trim() || '';
+    const phone = document.getElementById('phone')?.value.trim() || '';
+    const address = document.getElementById('address')?.value.trim() || '';
+    
+    // Check if all required fields are filled
+    const allFieldsFilled = name && email && phone && address;
+    
+    // Enable/disable checkout button
+    if (allFieldsFilled && cart.length > 0) {
+        checkoutButton.disabled = false;
+        checkoutButton.style.opacity = '1';
+        checkoutButton.style.cursor = 'pointer';
+        checkoutButton.title = '';
+    } else {
+        checkoutButton.disabled = true;
+        checkoutButton.style.opacity = '0.5';
+        checkoutButton.style.cursor = 'not-allowed';
+        const missingFields = [];
+        if (!name) missingFields.push('Full Name');
+        if (!email) missingFields.push('Email');
+        if (!phone) missingFields.push('Phone');
+        if (!address) missingFields.push('Delivery Address');
+        checkoutButton.title = `Please fill: ${missingFields.join(', ')}`;
+    }
+}
+
 // Checkout button functionality
 document.addEventListener('DOMContentLoaded', () => {
     const checkoutButton = document.getElementById('checkoutButton');
     if (checkoutButton) {
         checkoutButton.addEventListener('click', () => {
+            // Only proceed if button is enabled
+            if (checkoutButton.disabled) {
+                // Scroll to form to show what's missing
+                const contactSection = document.getElementById('contact');
+                if (contactSection) {
+                    contactSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+                return;
+            }
+            
             // Scroll to contact form
             const contactSection = document.getElementById('contact');
             if (contactSection) {
                 contactSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                // Focus on first form field after a short delay
+                // Focus on first empty field after a short delay
                 setTimeout(() => {
-                    const nameField = document.getElementById('name');
-                    if (nameField) {
-                        nameField.focus();
-                    }
+                    const name = document.getElementById('name');
+                    const email = document.getElementById('email');
+                    const phone = document.getElementById('phone');
+                    const address = document.getElementById('address');
+                    
+                    if (!name.value.trim()) name.focus();
+                    else if (!email.value.trim()) email.focus();
+                    else if (!phone.value.trim()) phone.focus();
+                    else if (!address.value.trim()) address.focus();
                 }, 500);
             }
         });
     }
+    
+    // Add event listeners to form fields for real-time validation
+    const formFields = ['name', 'email', 'phone', 'address'];
+    formFields.forEach(fieldId => {
+        const field = document.getElementById(fieldId);
+        if (field) {
+            field.addEventListener('input', checkFormCompletion);
+            field.addEventListener('blur', checkFormCompletion);
+        }
+    });
+    
+    // Initial check
+    checkFormCompletion();
 });
 
 // Order form handling

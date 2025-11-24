@@ -986,6 +986,25 @@ body {
     transform: translateY(0);
 }
 
+.checkout-button:disabled {
+    background: var(--text-light);
+    cursor: not-allowed !important;
+    opacity: 0.5 !important;
+}
+
+.checkout-button:disabled:hover {
+    transform: none;
+    box-shadow: none;
+}
+
+.checkout-note {
+    font-size: 0.875rem;
+    color: var(--text-light);
+    margin-top: 0.5rem;
+    text-align: center;
+    font-style: italic;
+}
+
 .empty-cart {
     color: var(--text-light);
     text-align: center;
