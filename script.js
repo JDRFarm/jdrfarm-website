@@ -339,16 +339,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }, true);
     
-    // Initialize price display for oil products
-    document.querySelectorAll('.product-quantity[data-product-type="oil"]').forEach(select => {
-        const selectedOption = select.options[select.selectedIndex];
-        const price = selectedOption.getAttribute('data-price');
-        const productCard = select.closest('.product-card');
-        const priceDisplay = productCard.querySelector('.product-price-display');
-        if (priceDisplay && price) {
-            priceDisplay.textContent = `₹${price}`;
-        }
-    });
+    // Price is shown in dropdown options, no initialization needed
 });
 
 // Shopping Cart
@@ -383,18 +374,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Update price display when quantity changes for oil products
-document.querySelectorAll('.product-quantity[data-product-type="oil"]').forEach(select => {
-    select.addEventListener('change', function() {
-        const selectedOption = this.options[this.selectedIndex];
-        const price = selectedOption.getAttribute('data-price');
-        const productCard = this.closest('.product-card');
-        const priceDisplay = productCard.querySelector('.product-price-display');
-        if (priceDisplay) {
-            priceDisplay.textContent = `₹${price}`;
-        }
-    });
-});
+// Price is shown in the dropdown options, no separate display needed
 
 // Add to cart functionality
 document.querySelectorAll('.add-to-cart:not([disabled])').forEach(button => {
