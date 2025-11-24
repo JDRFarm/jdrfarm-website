@@ -65,15 +65,17 @@
                     </div>
                     <div class="quantity-selector">
                         <label for="coconut-quantity" data-translate="products.quantity">Quantity:</label>
-                        <select id="coconut-quantity" class="product-quantity" data-product-type="oil">
-                            <option value="500ml">500ml</option>
-                            <option value="1lt">1lt</option>
+                        <select id="coconut-quantity" class="product-quantity" data-product-type="oil" data-base-price="430">
+                            <option value="500ml" data-price="215">500ml - ₹215</option>
+                            <option value="1lt" data-price="430">1lt - ₹430</option>
                         </select>
                     </div>
-                    <button class="add-to-cart" data-product="Coconut Oil" data-price="450" data-product-type="oil" data-translate="products.addToCart">Add to Cart</button>
+                    <div class="product-price-display" id="coconut-price">₹430</div>
+                    <button class="add-to-cart" data-product="Coconut Oil" data-product-type="oil" data-translate="products.addToCart">Add to Cart</button>
                 </div>
-                <div class="product-card">
+                <div class="product-card out-of-stock">
                     <div class="product-badge">Protein Rich</div>
+                    <div class="out-of-stock-badge">Out of Stock</div>
                     <div class="product-image">
                         <img src="image/download.jpg" alt="Moringa Leaf Powder" class="product-img">
                     </div>
@@ -88,17 +90,18 @@
                         <span class="stars">★★★★★</span>
                         <span class="review-count"><span class="review-number">18</span> <span data-translate="products.reviews">reviews</span></span>
                     </div>
-                    <div class="quantity-selector">
+                    <div class="quantity-selector" style="opacity: 0.5;">
                         <label for="moringa-quantity" data-translate="products.quantity">Quantity:</label>
-                        <select id="moringa-quantity" class="product-quantity" data-product-type="powder">
+                        <select id="moringa-quantity" class="product-quantity" data-product-type="powder" disabled>
                             <option value="250gram">250gram</option>
                             <option value="500gram">500gram</option>
                             <option value="1kg">1kg</option>
                         </select>
                     </div>
-                    <button class="add-to-cart" data-product="Moringa Leaf Powder" data-price="350" data-product-type="powder" data-translate="products.addToCart">Add to Cart</button>
+                    <button class="add-to-cart" disabled style="opacity: 0.5; cursor: not-allowed;" data-translate="products.outOfStock">Out of Stock</button>
                 </div>
-                <div class="product-card">
+                <div class="product-card out-of-stock">
+                    <div class="out-of-stock-badge">Out of Stock</div>
                     <div class="product-image">
                         <img src="image/1 (2).webp" alt="Mudavatangilangu" class="product-img">
                     </div>
@@ -113,15 +116,15 @@
                         <span class="stars">★★★★☆</span>
                         <span class="review-count"><span class="review-number">12</span> <span data-translate="products.reviews">reviews</span></span>
                     </div>
-                    <div class="quantity-selector">
+                    <div class="quantity-selector" style="opacity: 0.5;">
                         <label for="mudavatangilangu-quantity" data-translate="products.quantity">Quantity:</label>
-                        <select id="mudavatangilangu-quantity" class="product-quantity" data-product-type="other">
+                        <select id="mudavatangilangu-quantity" class="product-quantity" data-product-type="other" disabled>
                             <option value="250gram">250gram</option>
                             <option value="500gram">500gram</option>
                             <option value="1kg">1kg</option>
                         </select>
                     </div>
-                    <button class="add-to-cart" data-product="Mudavatangilangu" data-price="400" data-product-type="other" data-translate="products.addToCart">Add to Cart</button>
+                    <button class="add-to-cart" disabled style="opacity: 0.5; cursor: not-allowed;" data-translate="products.outOfStock">Out of Stock</button>
                 </div>
             </div>
         </div>

@@ -17,6 +17,7 @@ const translations = {
             addToCart: "Add to Cart",
             reviews: "reviews",
             quantity: "Quantity:",
+            outOfStock: "Out of Stock",
             coconut: {
                 name: "Coconut Oil",
                 subtitle: "Cold-Pressed | Organic | Pure",
@@ -140,7 +141,8 @@ const translations = {
                 benefit1: "மருத்துவ",
                 benefit2: "சிகிச்சை"
             },
-            quantity: "அளவு:"
+            quantity: "அளவு:",
+            outOfStock: "ஸ்டாக் இல்லை"
         },
         features: {
             shipping: {
@@ -336,6 +338,17 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     }, true);
+    
+    // Initialize price display for oil products
+    document.querySelectorAll('.product-quantity[data-product-type="oil"]').forEach(select => {
+        const selectedOption = select.options[select.selectedIndex];
+        const price = selectedOption.getAttribute('data-price');
+        const productCard = select.closest('.product-card');
+        const priceDisplay = productCard.querySelector('.product-price-display');
+        if (priceDisplay && price) {
+            priceDisplay.textContent = `₹${price}`;
+        }
+    });
 });
 
 // Shopping Cart
@@ -370,17 +383,53 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
+// Update price display when quantity changes for oil products
+document.querySelectorAll('.product-quantity[data-product-type="oil"]').forEach(select => {
+    select.addEventListener('change', function() {
+        const selectedOption = this.options[this.selectedIndex];
+        const price = selectedOption.getAttribute('data-price');
+        const productCard = this.closest('.product-card');
+        const priceDisplay = productCard.querySelector('.product-price-display');
+        if (priceDisplay) {
+            priceDisplay.textContent = `₹${price}`;
+        }
+    });
+});
+
 // Add to cart functionality
-document.querySelectorAll('.add-to-cart').forEach(button => {
+document.querySelectorAll('.add-to-cart:not([disabled])').forEach(button => {
     button.addEventListener('click', (e) => {
+        // Don't add if button is disabled
+        if (e.target.disabled) {
+            return;
+        }
+        
         const product = e.target.getAttribute('data-product');
-        const price = parseFloat(e.target.getAttribute('data-price'));
         const productType = e.target.getAttribute('data-product-type');
         
         // Find the quantity selector for this product
         const productCard = e.target.closest('.product-card');
         const quantitySelector = productCard.querySelector('.product-quantity');
-        const quantity = quantitySelector ? quantitySelector.value : '';
+        
+        if (!quantitySelector || quantitySelector.disabled) {
+            return;
+        }
+        
+        const selectedOption = quantitySelector.options[quantitySelector.selectedIndex];
+        const quantity = quantitySelector.value;
+        
+        // Get price from selected option for oil products, or from data attribute
+        let price;
+        if (productType === 'oil') {
+            price = parseFloat(selectedOption.getAttribute('data-price'));
+        } else {
+            price = parseFloat(e.target.getAttribute('data-price')) || 0;
+        }
+        
+        if (!price || isNaN(price)) {
+            console.error('Invalid price for product:', product);
+            return;
+        }
         
         // Add to cart with quantity
         cart.push({ product, price, quantity, productType });
