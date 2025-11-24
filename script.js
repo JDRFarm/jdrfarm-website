@@ -98,7 +98,8 @@ const translations = {
         cart: {
             title: "Your Cart",
             total: "Total: ₹",
-            empty: "Your cart is empty"
+            empty: "Your cart is empty",
+            checkout: "Proceed to Checkout"
         }
     },
     ta: {
@@ -198,7 +199,8 @@ const translations = {
         cart: {
             title: "உங்கள் கார்ட்",
             total: "மொத்தம்: ₹",
-            empty: "உங்கள் கார்ட் காலியாக உள்ளது"
+            empty: "உங்கள் கார்ட் காலியாக உள்ளது",
+            checkout: "செக்கவுட்டுக்கு செல்ல"
         }
     }
 };
@@ -453,6 +455,19 @@ function updateCart() {
     
     cartTotal.textContent = total.toFixed(2);
     
+    // Show/hide checkout button based on cart items
+    const checkoutButton = document.getElementById('checkoutButton');
+    const cartTotalSection = document.getElementById('cartTotalSection');
+    if (checkoutButton && cartTotalSection) {
+        if (cart.length > 0) {
+            checkoutButton.style.display = 'block';
+            cartTotalSection.style.display = 'block';
+        } else {
+            checkoutButton.style.display = 'none';
+            cartTotalSection.style.display = 'none';
+        }
+    }
+    
     // Add remove functionality
     document.querySelectorAll('.remove-item').forEach(button => {
         button.addEventListener('click', (e) => {
@@ -462,6 +477,27 @@ function updateCart() {
         });
     });
 }
+
+// Checkout button functionality
+document.addEventListener('DOMContentLoaded', () => {
+    const checkoutButton = document.getElementById('checkoutButton');
+    if (checkoutButton) {
+        checkoutButton.addEventListener('click', () => {
+            // Scroll to contact form
+            const contactSection = document.getElementById('contact');
+            if (contactSection) {
+                contactSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                // Focus on first form field after a short delay
+                setTimeout(() => {
+                    const nameField = document.getElementById('name');
+                    if (nameField) {
+                        nameField.focus();
+                    }
+                }, 500);
+            }
+        });
+    }
+});
 
 // Order form handling
 const contactForm = document.getElementById('contactForm');
