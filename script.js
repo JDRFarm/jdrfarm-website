@@ -55,9 +55,6 @@ const translations = {
                 desc: "Naturally Processed"
             }
         },
-        testimonials: {
-            title: "What Our Customers Say"
-        },
         about: {
             title: "About JDR Farm",
             organic: {
@@ -157,9 +154,6 @@ const translations = {
                 title: "பூஜ்ஜிய பாதுகாப்பு பொருட்கள்",
                 desc: "இயற்கையாக பதப்படுத்தப்பட்டது"
             }
-        },
-        testimonials: {
-            title: "எங்கள் வாடிக்கையாளர்கள் என்ன சொல்கிறார்கள்"
         },
         about: {
             title: "JDR பண்ணை பற்றி",
