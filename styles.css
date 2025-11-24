@@ -47,9 +47,10 @@ body {
 
 .navbar .container {
     display: grid;
-    grid-template-columns: auto 1fr auto;
+    grid-template-columns: auto 1fr auto auto;
     align-items: center;
     position: relative;
+    gap: 1rem;
 }
 
 .logo-container {
@@ -166,6 +167,53 @@ body {
     gap: 2rem;
     justify-content: flex-end;
     grid-column: 3;
+}
+
+/* Language Switcher */
+.language-switcher {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    margin-right: 1rem;
+    grid-column: 3;
+    order: 1;
+    position: relative;
+    z-index: 1001;
+}
+
+.lang-btn {
+    padding: 0.5rem 1rem;
+    border: 2px solid var(--primary-color);
+    background: var(--bg-white);
+    color: var(--primary-color);
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    min-width: 50px;
+    text-align: center;
+    position: relative;
+    z-index: 10;
+    pointer-events: auto;
+    user-select: none;
+}
+
+.lang-btn:hover {
+    background: var(--primary-color);
+    color: var(--bg-white);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(107, 114, 128, 0.3);
+}
+
+.lang-btn.active {
+    background: var(--primary-color);
+    color: var(--bg-white);
+    box-shadow: 0 2px 4px rgba(107, 114, 128, 0.2);
+}
+
+.lang-btn:active {
+    transform: translateY(0);
 }
 
 .nav-links a {
@@ -421,6 +469,43 @@ body {
     font-weight: bold;
     color: var(--primary-color);
     margin-bottom: 1rem;
+}
+
+.quantity-selector {
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.quantity-selector label {
+    font-weight: 600;
+    color: var(--text-dark);
+    font-size: 0.95rem;
+}
+
+.product-quantity {
+    padding: 0.5rem 1rem;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: inherit;
+    background: var(--bg-white);
+    color: var(--text-dark);
+    cursor: pointer;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    min-width: 120px;
+}
+
+.product-quantity:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(107, 114, 128, 0.1);
+}
+
+.product-quantity:hover {
+    border-color: var(--primary-color);
 }
 
 .add-to-cart {
@@ -1033,6 +1118,23 @@ html {
 
     .logo-img {
         height: 40px;
+    }
+
+    .language-switcher {
+        grid-column: 3;
+        order: 0;
+        margin-right: 0.5rem;
+    }
+
+    .lang-btn {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.85rem;
+        min-width: 45px;
+    }
+
+    .nav-links {
+        grid-column: 1 / -1;
+        order: 2;
     }
 
     .logo-text {

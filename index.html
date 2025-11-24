@@ -22,11 +22,15 @@
                 <span class="logo-text">JDR Farm</span>
             </a>
             <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#products">Products</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="#home" data-translate="nav.home">Home</a></li>
+                <li><a href="#products" data-translate="nav.products">Products</a></li>
+                <li><a href="#about" data-translate="nav.about">About</a></li>
+                <li><a href="#contact" data-translate="nav.contact">Contact</a></li>
             </ul>
+            <div class="language-switcher">
+                <button class="lang-btn active" data-lang="en" aria-label="English">EN</button>
+                <button class="lang-btn" data-lang="ta" aria-label="Tamil">தமிழ்</button>
+            </div>
             <button class="menu-toggle" aria-label="Toggle menu">
                 <span></span>
                 <span></span>
@@ -37,15 +41,15 @@
 
     <section id="home" class="hero">
         <div class="container">
-            <h1 class="hero-title">Promoting Health Through Sustainable Farming</h1>
-            <p class="hero-subtitle">Healthy food products and farming services with eco-friendly initiatives</p>
-            <button class="cta-button">Shop Now</button>
+            <h1 class="hero-title" data-translate="hero.title">Promoting Health Through Sustainable Farming</h1>
+            <p class="hero-subtitle" data-translate="hero.subtitle">Healthy food products and farming services with eco-friendly initiatives</p>
+            <button class="cta-button" data-translate="hero.shopNow">Shop Now</button>
         </div>
     </section>
 
     <section id="products" class="section">
         <div class="container">
-            <h2 class="section-title">Explore Our Range of Products</h2>
+            <h2 class="section-title" data-translate="products.title">Explore Our Range of Products</h2>
             <div class="products-grid">
                 <div class="product-card">
                     <div class="product-badge">Best Seller</div>
@@ -53,17 +57,24 @@
                         <img src="image/download (1).jpg" alt="Coconut Oil" class="product-img">
                     </div>
                     <div class="product-benefits">
-                        <span class="benefit-tag">Heart Health</span>
-                        <span class="benefit-tag">Skin Care</span>
+                        <span class="benefit-tag" data-translate="products.coconut.benefit1">Heart Health</span>
+                        <span class="benefit-tag" data-translate="products.coconut.benefit2">Skin Care</span>
                     </div>
-                    <h3>Coconut Oil</h3>
-                    <p class="product-subtitle">Cold-Pressed | Organic | Pure</p>
-                    <p class="product-description">Pure, cold-pressed organic coconut oil. Rich in healthy fats and nutrients, perfect for cooking and skincare. Supports heart health and natural beauty.</p>
+                    <h3 data-translate="products.coconut.name">Coconut Oil</h3>
+                    <p class="product-subtitle" data-translate="products.coconut.subtitle">Cold-Pressed | Organic | Pure</p>
+                    <p class="product-description" data-translate="products.coconut.description">Pure, cold-pressed organic coconut oil. Rich in healthy fats and nutrients, perfect for cooking and skincare. Supports heart health and natural beauty.</p>
                     <div class="product-rating">
                         <span class="stars">★★★★★</span>
-                        <span class="review-count">24 reviews</span>
+                        <span class="review-count"><span class="review-number">24</span> <span data-translate="products.reviews">reviews</span></span>
                     </div>
-                    <button class="add-to-cart" data-product="Coconut Oil" data-price="450">Add to Cart</button>
+                    <div class="quantity-selector">
+                        <label for="coconut-quantity" data-translate="products.quantity">Quantity:</label>
+                        <select id="coconut-quantity" class="product-quantity" data-product-type="oil">
+                            <option value="500ml">500ml</option>
+                            <option value="1lt">1lt</option>
+                        </select>
+                    </div>
+                    <button class="add-to-cart" data-product="Coconut Oil" data-price="450" data-product-type="oil" data-translate="products.addToCart">Add to Cart</button>
                 </div>
                 <div class="product-card">
                     <div class="product-badge">Protein Rich</div>
@@ -71,34 +82,50 @@
                         <img src="image/download.jpg" alt="Moringa Leaf Powder" class="product-img">
                     </div>
                     <div class="product-benefits">
-                        <span class="benefit-tag">Immunity Booster</span>
-                        <span class="benefit-tag">Iron Rich</span>
+                        <span class="benefit-tag" data-translate="products.moringa.benefit1">Immunity Booster</span>
+                        <span class="benefit-tag" data-translate="products.moringa.benefit2">Iron Rich</span>
                     </div>
-                    <h3>Moringa Leaf Powder</h3>
-                    <p class="product-subtitle">Premium Organic | Daily Nutrition</p>
-                    <p class="product-description">Premium organic moringa leaf powder. Packed with vitamins, minerals, and antioxidants for optimal health. Natural protein and iron source.</p>
+                    <h3 data-translate="products.moringa.name">Moringa Leaf Powder</h3>
+                    <p class="product-subtitle" data-translate="products.moringa.subtitle">Premium Organic | Daily Nutrition</p>
+                    <p class="product-description" data-translate="products.moringa.description">Premium organic moringa leaf powder. Packed with vitamins, minerals, and antioxidants for optimal health. Natural protein and iron source.</p>
                     <div class="product-rating">
                         <span class="stars">★★★★★</span>
-                        <span class="review-count">18 reviews</span>
+                        <span class="review-count"><span class="review-number">18</span> <span data-translate="products.reviews">reviews</span></span>
                     </div>
-                    <button class="add-to-cart" data-product="Moringa Leaf Powder" data-price="350">Add to Cart</button>
+                    <div class="quantity-selector">
+                        <label for="moringa-quantity" data-translate="products.quantity">Quantity:</label>
+                        <select id="moringa-quantity" class="product-quantity" data-product-type="powder">
+                            <option value="250gram">250gram</option>
+                            <option value="500gram">500gram</option>
+                            <option value="1kg">1kg</option>
+                        </select>
+                    </div>
+                    <button class="add-to-cart" data-product="Moringa Leaf Powder" data-price="350" data-product-type="powder" data-translate="products.addToCart">Add to Cart</button>
                 </div>
                 <div class="product-card">
                     <div class="product-image">
                         <img src="image/1 (2).webp" alt="Mudavatangilangu" class="product-img">
                     </div>
                     <div class="product-benefits">
-                        <span class="benefit-tag">Medicinal</span>
-                        <span class="benefit-tag">Therapeutic</span>
+                        <span class="benefit-tag" data-translate="products.mudavatangilangu.benefit1">Medicinal</span>
+                        <span class="benefit-tag" data-translate="products.mudavatangilangu.benefit2">Therapeutic</span>
                     </div>
-                    <h3>Mudavatangilangu</h3>
-                    <p class="product-subtitle">Natural Root | Traditional Medicine</p>
-                    <p class="product-description">Traditional medicinal root, naturally grown and carefully processed. Known for its therapeutic properties and traditional healing benefits.</p>
+                    <h3 data-translate="products.mudavatangilangu.name">Mudavatangilangu</h3>
+                    <p class="product-subtitle" data-translate="products.mudavatangilangu.subtitle">Natural Root | Traditional Medicine</p>
+                    <p class="product-description" data-translate="products.mudavatangilangu.description">Traditional medicinal root, naturally grown and carefully processed. Known for its therapeutic properties and traditional healing benefits.</p>
                     <div class="product-rating">
                         <span class="stars">★★★★☆</span>
-                        <span class="review-count">12 reviews</span>
+                        <span class="review-count"><span class="review-number">12</span> <span data-translate="products.reviews">reviews</span></span>
                     </div>
-                    <button class="add-to-cart" data-product="Mudavatangilangu" data-price="400">Add to Cart</button>
+                    <div class="quantity-selector">
+                        <label for="mudavatangilangu-quantity" data-translate="products.quantity">Quantity:</label>
+                        <select id="mudavatangilangu-quantity" class="product-quantity" data-product-type="other">
+                            <option value="250gram">250gram</option>
+                            <option value="500gram">500gram</option>
+                            <option value="1kg">1kg</option>
+                        </select>
+                    </div>
+                    <button class="add-to-cart" data-product="Mudavatangilangu" data-price="400" data-product-type="other" data-translate="products.addToCart">Add to Cart</button>
                 </div>
             </div>
         </div>
@@ -109,18 +136,18 @@
             <div class="features-grid">
                 <div class="feature-box">
                     <div class="feature-icon-large">🚚</div>
-                    <h3>Free Shipping</h3>
-                    <p>On orders above ₹399</p>
+                    <h3 data-translate="features.shipping.title">Free Shipping</h3>
+                    <p data-translate="features.shipping.desc">On orders above ₹399</p>
                 </div>
                 <div class="feature-box">
                     <div class="feature-icon-large">💰</div>
-                    <h3>Value for Money</h3>
-                    <p>Only Healthy. No Chemicals</p>
+                    <h3 data-translate="features.value.title">Value for Money</h3>
+                    <p data-translate="features.value.desc">Only Healthy. No Chemicals</p>
                 </div>
                 <div class="feature-box">
                     <div class="feature-icon-large">🌿</div>
-                    <h3>Zero Preservatives</h3>
-                    <p>Naturally Processed</p>
+                    <h3 data-translate="features.preservatives.title">Zero Preservatives</h3>
+                    <p data-translate="features.preservatives.desc">Naturally Processed</p>
                 </div>
             </div>
         </div>
@@ -128,7 +155,7 @@
 
     <section class="testimonials-section section">
         <div class="container">
-            <h2 class="section-title">What Our Customers Say</h2>
+            <h2 class="section-title" data-translate="testimonials.title">What Our Customers Say</h2>
             <div class="testimonials-grid">
                 <div class="testimonial-card">
                     <div class="testimonial-stars">★★★★★</div>
@@ -151,37 +178,37 @@
 
     <section id="about" class="section section-alt">
         <div class="container">
-            <h2 class="section-title">About JDR Farm</h2>
+            <h2 class="section-title" data-translate="about.title">About JDR Farm</h2>
             <div class="content-grid">
                 <div class="card">
                     <div class="card-icon">🌱</div>
-                    <h3>100% Organic</h3>
-                    <p>All our products are certified organic, grown without harmful pesticides or chemicals.</p>
+                    <h3 data-translate="about.organic.title">100% Organic</h3>
+                    <p data-translate="about.organic.desc">All our products are certified organic, grown without harmful pesticides or chemicals.</p>
                 </div>
                 <div class="card">
                     <div class="card-icon">❤️</div>
-                    <h3>Farm Fresh</h3>
-                    <p>Harvested at peak ripeness and delivered fresh to ensure maximum flavor and nutrition.</p>
+                    <h3 data-translate="about.fresh.title">Farm Fresh</h3>
+                    <p data-translate="about.fresh.desc">Harvested at peak ripeness and delivered fresh to ensure maximum flavor and nutrition.</p>
                 </div>
                 <div class="card">
                     <div class="card-icon">🌍</div>
-                    <h3>Sustainable</h3>
-                    <p>We practice sustainable farming methods that protect the environment for future generations.</p>
+                    <h3 data-translate="about.sustainable.title">Sustainable</h3>
+                    <p data-translate="about.sustainable.desc">We practice sustainable farming methods that protect the environment for future generations.</p>
                 </div>
             </div>
             <div class="about-text">
-                <p>At JDR Farm, we're dedicated to promoting health through sustainable farming practices. Our mission is to provide healthy food products and farming services while emphasizing eco-friendly initiatives and empowerment. We believe in the power of real food - food that's grown with care, harvested with respect, and delivered with pride.</p>
-                <p>Every product you purchase from us supports sustainable agriculture and helps us continue our mission of providing healthy, organic food to our community. Together, we're building a healthier future through sustainable farming practices. Thank you for choosing JDR Farm!</p>
+                <p data-translate="about.text1">At JDR Farm, we're dedicated to promoting health through sustainable farming practices. Our mission is to provide healthy food products and farming services while emphasizing eco-friendly initiatives and empowerment. We believe in the power of real food - food that's grown with care, harvested with respect, and delivered with pride.</p>
+                <p data-translate="about.text2">Every product you purchase from us supports sustainable agriculture and helps us continue our mission of providing healthy, organic food to our community. Together, we're building a healthier future through sustainable farming practices. Thank you for choosing JDR Farm!</p>
             </div>
         </div>
     </section>
 
     <section id="contact" class="section">
         <div class="container">
-            <h2 class="section-title">Contact Us & Place Your Order</h2>
+            <h2 class="section-title" data-translate="contact.title">Contact Us & Place Your Order</h2>
             <div class="contact-info-section">
                 <div class="contact-details">
-                    <h3>Get In Touch</h3>
+                    <h3 data-translate="contact.getInTouch">Get In Touch</h3>
                     <div class="contact-item">
                         <strong>📧 Email:</strong>
                         <a href="mailto:info@jdrfarm.com">info@jdrfarm.com</a>
@@ -199,44 +226,44 @@
                         <a href="https://jdrfarm.com" target="_blank">jdrfarm.com</a>
                     </div>
                     <div class="subscribe-section">
-                        <h4>Subscribe for Healthy Updates</h4>
+                        <h4 data-translate="contact.subscribe.title">Subscribe for Healthy Updates</h4>
                         <form class="subscribe-form" id="subscribeForm">
-                            <input type="email" id="subscribeEmail" placeholder="Enter your email address" required>
-                            <button type="submit" class="subscribe-button">Subscribe</button>
+                            <input type="email" id="subscribeEmail" data-translate-placeholder="contact.subscribe.placeholder" placeholder="Enter your email address" required>
+                            <button type="submit" class="subscribe-button" data-translate="contact.subscribe.button">Subscribe</button>
                         </form>
                     </div>
                 </div>
                 <div class="contact-wrapper-inner">
                     <div class="cart-summary" id="cartSummary">
-                        <h3>Your Cart</h3>
+                        <h3 data-translate="cart.title">Your Cart</h3>
                         <div id="cartItems"></div>
                         <div class="cart-total">
-                            <strong>Total: ₹<span id="cartTotal">0.00</span></strong>
+                            <strong data-translate="cart.total">Total: ₹<span id="cartTotal">0.00</span></strong>
                         </div>
                     </div>
                     <form class="contact-form" id="contactForm">
-                        <h3>Order Information</h3>
+                        <h3 data-translate="contact.orderInfo">Order Information</h3>
                         <div class="form-group">
-                            <label for="name">Full Name</label>
-                            <input type="text" id="name" name="name" required>
+                            <label for="name" data-translate="contact.form.name">Full Name</label>
+                            <input type="text" id="name" name="name" data-translate-placeholder="contact.form.namePlaceholder" placeholder="Enter your full name" required>
                         </div>
                         <div class="form-group">
-                            <label for="email">Email Address</label>
-                            <input type="email" id="email" name="email" required>
+                            <label for="email" data-translate="contact.form.email">Email Address</label>
+                            <input type="email" id="email" name="email" data-translate-placeholder="contact.form.emailPlaceholder" placeholder="Enter your email address" required>
                         </div>
                         <div class="form-group">
-                            <label for="phone">Phone Number</label>
-                            <input type="tel" id="phone" name="phone" required>
+                            <label for="phone" data-translate="contact.form.phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" data-translate-placeholder="contact.form.phonePlaceholder" placeholder="Enter your phone number" required>
                         </div>
                         <div class="form-group">
-                            <label for="address">Delivery Address</label>
-                            <textarea id="address" name="address" rows="3" required></textarea>
+                            <label for="address" data-translate="contact.form.address">Delivery Address</label>
+                            <textarea id="address" name="address" rows="3" data-translate-placeholder="contact.form.addressPlaceholder" placeholder="Enter your delivery address" required></textarea>
                         </div>
                         <div class="form-group">
-                            <label for="message">Special Instructions (Optional)</label>
-                            <textarea id="message" name="message" rows="3"></textarea>
+                            <label for="message" data-translate="contact.form.message">Special Instructions (Optional)</label>
+                            <textarea id="message" name="message" rows="3" data-translate-placeholder="contact.form.messagePlaceholder" placeholder="Any special instructions"></textarea>
                         </div>
-                        <button type="submit" class="submit-button">Place Order</button>
+                        <button type="submit" class="submit-button" data-translate="contact.form.submit">Place Order</button>
                     </form>
                 </div>
             </div>
@@ -250,10 +277,10 @@
             </div>
             <p>&copy; 2025 JDR Farm. All rights reserved. | jdrfarm.com</p>
             <p class="footer-links">
-                <a href="#home">Home</a> | 
-                <a href="#products">Products</a> | 
-                <a href="#about">About</a> | 
-                <a href="#contact">Contact</a>
+                <a href="#home" data-translate="nav.home">Home</a> | 
+                <a href="#products" data-translate="nav.products">Products</a> | 
+                <a href="#about" data-translate="nav.about">About</a> | 
+                <a href="#contact" data-translate="nav.contact">Contact</a>
             </p>
         </div>
     </footer>
