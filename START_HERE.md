@@ -8,22 +8,28 @@ Welcome! This guide will help you deploy your JDR Farm website from GitHub to yo
 
 Choose your path based on your needs:
 
-### 🎯 **Option 1: Quick & Easy (Recommended)**
+### 🎯 **Option 1: GitHub Pages (YOUR CHOICE!)** ⭐
+**What:** Deploy using GitHub Pages (100% free, automatic)
+**Time:** 15 minutes
+**File:** [`GITHUB_PAGES_SETUP.md`](GITHUB_PAGES_SETUP.md) ← **Start here!**
+**Bonus:** [`GITHUB_PAGES_DNS_REFERENCE.md`](GITHUB_PAGES_DNS_REFERENCE.md) - Quick DNS reference
+
+### ⚡ **Option 2: Netlify (Alternative)**
 **What:** Deploy using Netlify (free, automatic, fast)
 **Time:** 15 minutes
-**File:** [`QUICK_GODADDY_SETUP.md`](QUICK_GODADDY_SETUP.md) ← **Start here!**
+**File:** [`QUICK_GODADDY_SETUP.md`](QUICK_GODADDY_SETUP.md)
 
-### 📖 **Option 2: Detailed Guide**
+### 📖 **Option 3: Detailed Guide**
 **What:** Complete guide with all deployment options
 **Time:** 30 minutes
 **File:** [`GODADDY_DEPLOYMENT_GUIDE.md`](GODADDY_DEPLOYMENT_GUIDE.md)
 
-### 🔍 **Option 3: Compare First**
+### 🔍 **Option 4: Compare First**
 **What:** Compare Netlify vs GitHub Pages vs GoDaddy Hosting
 **Time:** 5 minutes
 **File:** [`DEPLOYMENT_COMPARISON.md`](DEPLOYMENT_COMPARISON.md)
 
-### 🎨 **Option 4: Visual Guide**
+### 🎨 **Option 5: Visual Guide**
 **What:** Diagrams showing how deployment works
 **Time:** 10 minutes
 **File:** [`DEPLOYMENT_DIAGRAM.md`](DEPLOYMENT_DIAGRAM.md)

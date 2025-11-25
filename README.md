@@ -65,23 +65,25 @@ Modify CSS variables in `styles.css` (`:root` section):
 
 **Ready to publish this site on jdrfarm.com?**
 
-👉 **START HERE:** [`START_HERE.md`](START_HERE.md) - Complete deployment guide
+👉 **DEPLOY NOW:** [`GITHUB_PAGES_SETUP.md`](GITHUB_PAGES_SETUP.md) - GitHub Pages deployment (15 minutes)
 
 ### Quick Links:
-- ⚡ **Quick Setup (15 min):** [`QUICK_GODADDY_SETUP.md`](QUICK_GODADDY_SETUP.md) - Deploy to Netlify + GoDaddy domain
-- 📖 **Complete Guide:** [`GODADDY_DEPLOYMENT_GUIDE.md`](GODADDY_DEPLOYMENT_GUIDE.md) - All deployment options
-- 🔍 **Compare Options:** [`DEPLOYMENT_COMPARISON.md`](DEPLOYMENT_COMPARISON.md) - Netlify vs GitHub Pages vs GoDaddy
+- 🎯 **GitHub Pages Setup:** [`GITHUB_PAGES_SETUP.md`](GITHUB_PAGES_SETUP.md) - Step-by-step guide (100% FREE)
+- 📋 **DNS Reference:** [`GITHUB_PAGES_DNS_REFERENCE.md`](GITHUB_PAGES_DNS_REFERENCE.md) - Quick copy-paste DNS values
+- 📖 **All Options:** [`START_HERE.md`](START_HERE.md) - Compare Netlify, GitHub Pages, GoDaddy
+- 🔍 **Comparison:** [`DEPLOYMENT_COMPARISON.md`](DEPLOYMENT_COMPARISON.md) - Feature comparison
 
-**Included:**
-- ✅ Netlify configuration files (automatic setup)
-- ✅ GitHub Actions workflow for automated deployment
-- ✅ Step-by-step guides with screenshots explanations
-- ✅ DNS configuration instructions
+**What's Included:**
+- ✅ Complete GitHub Pages setup guide
+- ✅ Quick DNS reference for copy-paste
+- ✅ Alternative options (Netlify, GoDaddy hosting)
+- ✅ Automated deployment workflows
 - ✅ Troubleshooting guides
+- ✅ Visual architecture diagrams
 
 ## Next Steps for Production
 
-1. **Deploy to Domain**: Follow [`QUICK_GODADDY_SETUP.md`](QUICK_GODADDY_SETUP.md) to get live on jdrfarm.com
+1. **Deploy to Domain**: Follow [`GITHUB_PAGES_SETUP.md`](GITHUB_PAGES_SETUP.md) to get live on jdrfarm.com
 2. **Backend Integration**: Connect the order form to a server/email service
 3. **Payment Processing**: Integrate payment gateway (Stripe, PayPal, Razorpay)
 4. **Product Images**: Continue adding high-quality product photos
