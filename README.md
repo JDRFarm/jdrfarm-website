@@ -61,14 +61,33 @@ Modify CSS variables in `styles.css` (`:root` section):
 - Modify contact/order form fields
 - Change footer information
 
+## 🚀 Deployment to Your Domain
+
+**Ready to publish this site on jdrfarm.com?**
+
+👉 **START HERE:** [`START_HERE.md`](START_HERE.md) - Complete deployment guide
+
+### Quick Links:
+- ⚡ **Quick Setup (15 min):** [`QUICK_GODADDY_SETUP.md`](QUICK_GODADDY_SETUP.md) - Deploy to Netlify + GoDaddy domain
+- 📖 **Complete Guide:** [`GODADDY_DEPLOYMENT_GUIDE.md`](GODADDY_DEPLOYMENT_GUIDE.md) - All deployment options
+- 🔍 **Compare Options:** [`DEPLOYMENT_COMPARISON.md`](DEPLOYMENT_COMPARISON.md) - Netlify vs GitHub Pages vs GoDaddy
+
+**Included:**
+- ✅ Netlify configuration files (automatic setup)
+- ✅ GitHub Actions workflow for automated deployment
+- ✅ Step-by-step guides with screenshots explanations
+- ✅ DNS configuration instructions
+- ✅ Troubleshooting guides
+
 ## Next Steps for Production
 
-1. **Backend Integration**: Connect the order form to a server/email service
-2. **Payment Processing**: Integrate payment gateway (Stripe, PayPal, etc.)
-3. **Product Images**: Replace emojis with actual product photos
-4. **Inventory Management**: Add product quantities and stock tracking
-5. **User Accounts**: Add login/registration for returning customers
-6. **Order Tracking**: Implement order status and tracking system
+1. **Deploy to Domain**: Follow [`QUICK_GODADDY_SETUP.md`](QUICK_GODADDY_SETUP.md) to get live on jdrfarm.com
+2. **Backend Integration**: Connect the order form to a server/email service
+3. **Payment Processing**: Integrate payment gateway (Stripe, PayPal, Razorpay)
+4. **Product Images**: Continue adding high-quality product photos
+5. **Inventory Management**: Add product quantities and stock tracking
+6. **User Accounts**: Add login/registration for returning customers
+7. **Order Tracking**: Implement order status and tracking system
 
 ## Browser Support
 
