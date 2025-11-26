@@ -4,7 +4,8 @@ A beautiful, responsive e-commerce website for JDR Farm (jdrfarm.com) to sell fr
 
 ## 🚀 Deployment Guides
 
-- **[New]** [Publish to GoDaddy Guide](GODADDY_SETUP.md) - **Read this for GoDaddy setup!**
+- **[⭐ START HERE]** [Deploy to GoDaddy - Quick Start](DEPLOY_TO_GODADDY.md) - **Deploy your site to GoDaddy now!**
+- [Detailed GoDaddy Setup Guide](GODADDY_SETUP.md) - Complete GoDaddy deployment options
 - [Auto-Deploy Setup](AUTO_DEPLOY_SETUP.md) - For automatic GitHub syncing
 - [Verify Netlify](verify-netlify-connection.md) - If using Netlify
 

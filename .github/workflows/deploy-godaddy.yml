@@ -1,0 +1,41 @@
+name: Deploy to GoDaddy
+
+on:
+  push:
+    branches:
+      - main
+      - master
+  workflow_dispatch: # Allows manual triggering
+
+jobs:
+  deploy:
+    name: 🚀 Deploy to GoDaddy
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: 📥 Checkout code
+      uses: actions/checkout@v4
+      
+    - name: 📤 Deploy via FTP
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+      with:
+        server: ${{ secrets.FTP_SERVER }}
+        username: ${{ secrets.FTP_USERNAME }}
+        password: ${{ secrets.FTP_PASSWORD }}
+        server-dir: /public_html/ # GoDaddy's default public directory
+        exclude: |
+          **/.git*
+          **/.git*/**
+          **/node_modules/**
+          **/.github/**
+          **/.DS_Store
+          **/README.md
+          **/AUTO_DEPLOY_SETUP.md
+          **/GODADDY_SETUP.md
+          **/verify-netlify-connection.md
+          **/DEPLOY_IMAGE_NOW.md
+          **/LANGUAGE_SWITCHER_SETUP.md
+          **/*.bat
+          **/*.ps1
+          **/.gitignore
+          **/.gitattributes
