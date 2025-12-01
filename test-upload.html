@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Upload - JDR Farm</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .test-box {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .success { color: green; }
+        .error { color: red; }
+        h1 { color: #333; }
+    </style>
+</head>
+<body>
+    <h1>🔍 Website Upload Test</h1>
+    
+    <div class="test-box">
+        <h2>File Check</h2>
+        <p id="index-check">Checking index.html...</p>
+        <p id="script-check">Checking script.js...</p>
+        <p id="css-check">Checking styles.css...</p>
+    </div>
+    
+    <div class="test-box">
+        <h2>Image Check</h2>
+        <p id="logo-check">Checking logo...</p>
+        <p id="image-check">Checking images...</p>
+    </div>
+    
+    <div class="test-box">
+        <h2>JavaScript Test</h2>
+        <p id="js-test">Testing JavaScript...</p>
+    </div>
+    
+    <script>
+        // Test if files exist
+        function checkFile(url, elementId, name) {
+            fetch(url)
+                .then(response => {
+                    if (response.ok) {
+                        document.getElementById(elementId).innerHTML = 
+                            `<span class="success">✅ ${name} - Found!</span>`;
+                    } else {
+                        document.getElementById(elementId).innerHTML = 
+                            `<span class="error">❌ ${name} - Not found (${response.status})</span>`;
+                    }
+                })
+                .catch(error => {
+                    document.getElementById(elementId).innerHTML = 
+                        `<span class="error">❌ ${name} - Error: ${error.message}</span>`;
+                });
+        }
+        
+        // Test images
+        function checkImage(url, elementId, name) {
+            const img = new Image();
+            img.onload = () => {
+                document.getElementById(elementId).innerHTML = 
+                    `<span class="success">✅ ${name} - Loaded!</span>`;
+            };
+            img.onerror = () => {
+                document.getElementById(elementId).innerHTML = 
+                    `<span class="error">❌ ${name} - Not found</span>`;
+            };
+            img.src = url;
+        }
+        
+        // Run checks
+        checkFile('index.html', 'index-check', 'index.html');
+        checkFile('script.js', 'script-check', 'script.js');
+        checkFile('styles.css', 'css-check', 'styles.css');
+        checkImage('logo/Logo.jpeg', 'logo-check', 'Logo');
+        checkImage('image/download (1).jpg', 'image-check', 'Product Image');
+        
+        // Test JavaScript
+        document.getElementById('js-test').innerHTML = 
+            '<span class="success">✅ JavaScript is working!</span>';
+    </script>
+</body>
+</html>
+
