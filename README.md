@@ -61,14 +61,35 @@ Modify CSS variables in `styles.css` (`:root` section):
 - Modify contact/order form fields
 - Change footer information
 
+## 🚀 Deployment to Your Domain
+
+**Ready to publish this site on jdrfarm.com?**
+
+👉 **DEPLOY NOW:** [`GITHUB_PAGES_SETUP.md`](GITHUB_PAGES_SETUP.md) - GitHub Pages deployment (15 minutes)
+
+### Quick Links:
+- 🎯 **GitHub Pages Setup:** [`GITHUB_PAGES_SETUP.md`](GITHUB_PAGES_SETUP.md) - Step-by-step guide (100% FREE)
+- 📋 **DNS Reference:** [`GITHUB_PAGES_DNS_REFERENCE.md`](GITHUB_PAGES_DNS_REFERENCE.md) - Quick copy-paste DNS values
+- 📖 **All Options:** [`START_HERE.md`](START_HERE.md) - Compare Netlify, GitHub Pages, GoDaddy
+- 🔍 **Comparison:** [`DEPLOYMENT_COMPARISON.md`](DEPLOYMENT_COMPARISON.md) - Feature comparison
+
+**What's Included:**
+- ✅ Complete GitHub Pages setup guide
+- ✅ Quick DNS reference for copy-paste
+- ✅ Alternative options (Netlify, GoDaddy hosting)
+- ✅ Automated deployment workflows
+- ✅ Troubleshooting guides
+- ✅ Visual architecture diagrams
+
 ## Next Steps for Production
 
-1. **Backend Integration**: Connect the order form to a server/email service
-2. **Payment Processing**: Integrate payment gateway (Stripe, PayPal, etc.)
-3. **Product Images**: Replace emojis with actual product photos
-4. **Inventory Management**: Add product quantities and stock tracking
-5. **User Accounts**: Add login/registration for returning customers
-6. **Order Tracking**: Implement order status and tracking system
+1. **Deploy to Domain**: Follow [`GITHUB_PAGES_SETUP.md`](GITHUB_PAGES_SETUP.md) to get live on jdrfarm.com
+2. **Backend Integration**: Connect the order form to a server/email service
+3. **Payment Processing**: Integrate payment gateway (Stripe, PayPal, Razorpay)
+4. **Product Images**: Continue adding high-quality product photos
+5. **Inventory Management**: Add product quantities and stock tracking
+6. **User Accounts**: Add login/registration for returning customers
+7. **Order Tracking**: Implement order status and tracking system
 
 ## Browser Support
 

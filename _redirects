@@ -1,0 +1,9 @@
+# Netlify Redirects File
+# https://docs.netlify.com/routing/redirects/
+
+# Redirect www to non-www
+https://www.jdrfarm.com/* https://jdrfarm.com/:splat 301!
+
+# Force HTTPS
+http://jdrfarm.com/* https://jdrfarm.com/:splat 301!
+http://www.jdrfarm.com/* https://jdrfarm.com/:splat 301!

@@ -1,0 +1,113 @@
+# GitHub Actions Workflow: Auto-Deploy to GoDaddy via FTP
+# 
+# This workflow automatically deploys your site to GoDaddy hosting
+# whenever you push to the main branch.
+#
+# ⚠️ ONLY USE THIS IF YOU HAVE GODADDY WEB HOSTING
+# If using Netlify or GitHub Pages, you don't need this file!
+#
+# Setup Instructions:
+# 1. Go to your GitHub repository → Settings → Secrets and variables → Actions
+# 2. Add these secrets (click "New repository secret"):
+#    - FTP_SERVER: Your FTP server (e.g., ftp.jdrfarm.com or IP address)
+#    - FTP_USERNAME: Your FTP username (e.g., username@jdrfarm.com)
+#    - FTP_PASSWORD: Your FTP password
+# 3. Save this file and push to GitHub
+# 4. The workflow will run automatically on every push to main branch
+
+name: Deploy to GoDaddy FTP
+
+# Trigger: Run on every push to main branch
+on:
+  push:
+    branches:
+      - main
+  # You can also manually trigger this workflow from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    name: Deploy to GoDaddy via FTP
+    runs-on: ubuntu-latest
+    
+    steps:
+      # Step 1: Check out the repository code
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 2  # Fetch the last 2 commits to show what changed
+
+      # Step 2: Display what will be deployed
+      - name: Show deployment info
+        run: |
+          echo "🚀 Deploying to GoDaddy FTP..."
+          echo "📦 Repository: ${{ github.repository }}"
+          echo "🔖 Branch: ${{ github.ref_name }}"
+          echo "✍️  Commit: ${{ github.sha }}"
+          echo "👤 Author: ${{ github.actor }}"
+          echo ""
+          echo "📝 Recent commit message:"
+          git log -1 --pretty=format:"%s"
+
+      # Step 3: Deploy via FTP
+      - name: Deploy to FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        with:
+          # FTP server (from GitHub Secrets)
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          
+          # Server directory (adjust if needed)
+          # Most GoDaddy hosting uses /public_html/ or /htdocs/
+          server-dir: /public_html/
+          
+          # Local directory to upload (. means root of repo)
+          local-dir: ./
+          
+          # Files/folders to exclude from upload
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/node_modules/**
+            **/.vscode/**
+            **/.idea/**
+            **/README.md
+            **/GODADDY_DEPLOYMENT_GUIDE.md
+            **/QUICK_GODADDY_SETUP.md
+            **/DEPLOYMENT_COMPARISON.md
+            **/AUTO_DEPLOY_SETUP.md
+            **/DEPLOY_IMAGE_NOW.md
+            **/LANGUAGE_SWITCHER_SETUP.md
+            **/verify-netlify-connection.md
+            **/*.bat
+            **/*.ps1
+            **/*.md
+            .github/**
+            netlify.toml
+            _redirects
+          
+          # Security: Verify SSL certificate
+          security: strict
+          
+          # Timeout (5 minutes)
+          timeout: 300000
+
+      # Step 4: Success notification
+      - name: Deployment complete
+        if: success()
+        run: |
+          echo "✅ Deployment successful!"
+          echo "🌐 Your site should be live at: https://jdrfarm.com"
+          echo "⏰ Deployed at: $(date)"
+
+      # Step 5: Failure notification
+      - name: Deployment failed
+        if: failure()
+        run: |
+          echo "❌ Deployment failed!"
+          echo "Please check your FTP credentials in GitHub Secrets"
+          echo "Verify: FTP_SERVER, FTP_USERNAME, FTP_PASSWORD"
+
+# Optional: Notify deployment status via email, Slack, etc.
+# You can add notification steps here if needed

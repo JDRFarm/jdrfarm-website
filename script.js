@@ -433,27 +433,44 @@ function updateCart() {
     if (cart.length === 0) {
         const emptyText = translations[currentLang]?.cart?.empty || 'Your cart is empty';
         cartItems.innerHTML = `<div class="empty-cart">${emptyText}</div>`;
-        cartTotal.textContent = '0.00';
+        if (cartTotal) {
+            cartTotal.textContent = '0.00';
+        }
+        // Hide total section when cart is empty
+        const cartTotalSection = document.getElementById('cartTotalSection');
+        if (cartTotalSection) {
+            cartTotalSection.style.display = 'none';
+        }
+        const checkoutButton = document.getElementById('checkoutButton');
+        const checkoutNote = document.getElementById('checkoutNote');
+        if (checkoutButton) checkoutButton.style.display = 'none';
+        if (checkoutNote) checkoutNote.style.display = 'none';
         return;
     }
     
+    // Calculate total sum of all product amounts
     let total = 0;
     cartItems.innerHTML = '';
     
     cart.forEach((item, index) => {
-        total += item.price;
+        // Ensure price is a valid number
+        const itemPrice = parseFloat(item.price) || 0;
+        total += itemPrice;
         const cartItem = document.createElement('div');
         cartItem.className = 'cart-item';
         const quantityDisplay = item.quantity ? ` (${item.quantity})` : '';
         cartItem.innerHTML = `
             <span class="cart-item-name">${item.product}${quantityDisplay}</span>
-            <span class="cart-item-price">₹${item.price.toFixed(2)}</span>
+            <span class="cart-item-price">₹${itemPrice.toFixed(2)}</span>
             <button class="remove-item" data-index="${index}">${currentLang === 'ta' ? 'நீக்கு' : 'Remove'}</button>
         `;
         cartItems.appendChild(cartItem);
     });
     
-    cartTotal.textContent = total.toFixed(2);
+    // Display the total sum
+    if (cartTotal) {
+        cartTotal.textContent = total.toFixed(2);
+    }
     
     // Show/hide checkout button and total based on cart items
     const checkoutButton = document.getElementById('checkoutButton');
