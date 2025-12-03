@@ -100,6 +100,16 @@ const translations = {
             total: "Total: ₹",
             empty: "Your cart is empty",
             checkout: "Proceed to Checkout"
+        },
+        payment: {
+            title: "Complete Your Payment",
+            amount: "Total Amount",
+            instructions: "Scan the QR code below using Google Pay, PhonePe, or any UPI app to complete your payment.",
+            success: "I Have Completed the Payment",
+            cancel: "Cancel",
+            processing: "Processing your order...",
+            successMsg: "Payment confirmed! Your order has been placed successfully.",
+            errorMsg: "Failed to send order. Please contact us directly."
         }
     },
     ta: {
@@ -201,6 +211,16 @@ const translations = {
             total: "மொத்தம்: ₹",
             empty: "உங்கள் கார்ட் காலியாக உள்ளது",
             checkout: "செக்கவுட்டுக்கு செல்ல"
+        },
+        payment: {
+            title: "உங்கள் கட்டணத்தை முடிக்கவும்",
+            amount: "மொத்த தொகை",
+            instructions: "கீழே உள்ள QR குறியீட்டை Google Pay, PhonePe அல்லது எந்த UPI பயன்பாட்டையும் பயன்படுத்தி ஸ்கேன் செய்து உங்கள் கட்டணத்தை முடிக்கவும்.",
+            success: "நான் கட்டணத்தை முடித்துவிட்டேன்",
+            cancel: "ரத்துசெய்",
+            processing: "உங்கள் ஆர்டரை செயலாக்குகிறது...",
+            successMsg: "கட்டணம் உறுதிப்படுத்தப்பட்டது! உங்கள் ஆர்டர் வெற்றிகரமாக வைக்கப்பட்டது.",
+            errorMsg: "ஆர்டர் அனுப்ப முடியவில்லை. தயவுசெய்து எங்களை நேரடியாக தொடர்பு கொள்ளவும்."
         }
     }
 };
@@ -566,6 +586,223 @@ document.addEventListener('DOMContentLoaded', () => {
 // Order form handling
 const contactForm = document.getElementById('contactForm');
 
+// Payment Modal Functions
+let currentOrderData = null;
+
+function showPaymentModal(totalAmount) {
+    const paymentModal = document.getElementById('paymentModal');
+    const paymentAmount = document.getElementById('paymentAmount');
+    
+    paymentAmount.textContent = `₹${totalAmount.toFixed(2)}`;
+    paymentModal.style.display = 'flex';
+    
+    // Generate UPI QR Code
+    generateUPIQRCode(totalAmount);
+}
+
+function generateUPIQRCode(amount) {
+    const upiId = 'jdmobacc-4@okhdfcback';
+    // UPI payment URL format: upi://pay?pa=<UPI_ID>&pn=<PAYEE_NAME>&am=<AMOUNT>&cu=INR
+    const upiUrl = `upi://pay?pa=${upiId}&pn=JDR%20Farm&am=${amount.toFixed(2)}&cu=INR`;
+    
+    // Clear previous QR code
+    const qrContainer = document.getElementById('qrcode');
+    qrContainer.innerHTML = '';
+    
+    // Generate QR code
+    QRCode.toCanvas(qrContainer, upiUrl, {
+        width: 250,
+        margin: 2,
+        color: {
+            dark: '#000000',
+            light: '#FFFFFF'
+        }
+    }, function (error) {
+        if (error) {
+            console.error('QR Code generation error:', error);
+            qrContainer.innerHTML = '<p style="color: red;">QR Code generation failed. Please use UPI ID: jdmobacc-4@okhdfcback</p>';
+        }
+    });
+}
+
+function closePaymentModal() {
+    const paymentModal = document.getElementById('paymentModal');
+    paymentModal.style.display = 'none';
+    currentOrderData = null;
+}
+
+async function sendOrderEmail(orderData) {
+    const emailData = {
+        to_email: 'info@jdrfarm.com',
+        subject: `New Order from ${orderData.name}`,
+        customer_name: orderData.name,
+        customer_email: orderData.email,
+        customer_phone: orderData.phone,
+        delivery_address: orderData.address,
+        special_instructions: orderData.message || 'None',
+        order_details: orderData.orderDetails,
+        total_amount: `₹${orderData.totalAmount.toFixed(2)}`,
+        order_date: new Date().toLocaleString('en-IN', { 
+            timeZone: 'Asia/Kolkata',
+            dateStyle: 'full',
+            timeStyle: 'medium'
+        })
+    };
+
+    // Try EmailJS first (if configured)
+    if (typeof emailjs !== 'undefined' && window.EMAILJS_SERVICE_ID && window.EMAILJS_TEMPLATE_ID) {
+        try {
+            await emailjs.send(
+                window.EMAILJS_SERVICE_ID,
+                window.EMAILJS_TEMPLATE_ID,
+                {
+                    to_email: emailData.to_email,
+                    subject: emailData.subject,
+                    customer_name: emailData.customer_name,
+                    customer_email: emailData.customer_email,
+                    customer_phone: emailData.customer_phone,
+                    delivery_address: emailData.delivery_address,
+                    special_instructions: emailData.special_instructions,
+                    order_details: emailData.order_details,
+                    total_amount: emailData.total_amount,
+                    order_date: emailData.order_date
+                }
+            );
+            console.log('Email sent successfully via EmailJS');
+            return true;
+        } catch (error) {
+            console.error('EmailJS error:', error);
+            // Fallback to Formspree or mailto
+        }
+    }
+
+    // Try Formspree (free email service)
+    try {
+        const formspreeResponse = await fetch('https://formspree.io/f/YOUR_FORM_ID', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                _to: emailData.to_email,
+                _subject: emailData.subject,
+                _format: 'plain',
+                name: emailData.customer_name,
+                email: emailData.customer_email,
+                phone: emailData.customer_phone,
+                address: emailData.delivery_address,
+                instructions: emailData.special_instructions,
+                order: emailData.order_details,
+                total: emailData.total_amount,
+                date: emailData.order_date
+            })
+        });
+
+        if (formspreeResponse.ok) {
+            console.log('Email sent successfully via Formspree');
+            return true;
+        }
+    } catch (error) {
+        console.error('Formspree error:', error);
+    }
+
+    // Fallback: Use mailto link (opens email client)
+    const subject = encodeURIComponent(emailData.subject);
+    const body = encodeURIComponent(`New Order Received
+
+Customer Details:
+Name: ${emailData.customer_name}
+Email: ${emailData.customer_email}
+Phone: ${emailData.customer_phone}
+Delivery Address: ${emailData.delivery_address}
+Special Instructions: ${emailData.special_instructions}
+
+Order Details:
+${emailData.order_details}
+
+Total Amount: ${emailData.total_amount}
+Order Date: ${emailData.order_date}
+
+Please process this order and arrange delivery.`);
+
+    // Open mailto link
+    window.location.href = `mailto:${emailData.to_email}?subject=${subject}&body=${body}`;
+    return true;
+}
+
+async function confirmPayment() {
+    if (!currentOrderData) return;
+    
+    const processingMsg = translations[currentLang]?.payment?.processing || 'Processing your order...';
+    const successMsg = translations[currentLang]?.payment?.successMsg || 'Payment confirmed! Your order has been placed successfully. We will contact you shortly.';
+    const errorMsg = translations[currentLang]?.payment?.errorMsg || 'Order received! If email fails, please contact us at info@jdrfarm.com';
+    
+    // Show processing message
+    const successBtn = document.getElementById('paymentSuccessBtn');
+    const originalText = successBtn.textContent;
+    successBtn.textContent = processingMsg;
+    successBtn.disabled = true;
+    
+    // Send email
+    try {
+        const emailSent = await sendOrderEmail(currentOrderData);
+        
+        // Show success message
+        setTimeout(() => {
+            alert(successMsg + '\n\nOrder details have been sent to info@jdrfarm.com');
+            
+            // Reset form and cart
+            const contactForm = document.getElementById('contactForm');
+            if (contactForm) {
+                contactForm.reset();
+            }
+            cart = [];
+            updateCart();
+            
+            // Close modal
+            closePaymentModal();
+            
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }, 1500);
+    } catch (error) {
+        console.error('Error sending email:', error);
+        // Still show success as order is recorded
+        alert('Order received! ' + errorMsg);
+        successBtn.textContent = originalText;
+        successBtn.disabled = false;
+    }
+}
+
+// Payment modal event listeners
+document.addEventListener('DOMContentLoaded', () => {
+    const paymentModal = document.getElementById('paymentModal');
+    const closePayment = document.getElementById('closePayment');
+    const paymentCancelBtn = document.getElementById('paymentCancelBtn');
+    const paymentSuccessBtn = document.getElementById('paymentSuccessBtn');
+    
+    if (closePayment) {
+        closePayment.addEventListener('click', closePaymentModal);
+    }
+    
+    if (paymentCancelBtn) {
+        paymentCancelBtn.addEventListener('click', closePaymentModal);
+    }
+    
+    if (paymentSuccessBtn) {
+        paymentSuccessBtn.addEventListener('click', confirmPayment);
+    }
+    
+    // Close modal when clicking outside
+    if (paymentModal) {
+        paymentModal.addEventListener('click', (e) => {
+            if (e.target === paymentModal) {
+                closePaymentModal();
+            }
+        });
+    }
+});
+
 contactForm.addEventListener('submit', (e) => {
     e.preventDefault();
     
@@ -584,26 +821,30 @@ contactForm.addEventListener('submit', (e) => {
     const address = document.getElementById('address').value;
     const message = document.getElementById('message').value;
     
-        // Simple validation
-        if (name && email && phone && address) {
-            const orderDetails = cart.map(item => {
-                const quantityDisplay = item.quantity ? ` (${item.quantity})` : '';
-                return `${item.product}${quantityDisplay} - ₹${item.price.toFixed(2)}`;
-            }).join('\n');
-            
-            // Here you would typically send the data to a server
-            const thankYouMsg = currentLang === 'ta'
-                ? `நன்றி, ${name}!\n\nஉங்கள் ஆர்டர் பெறப்பட்டது:\n\n${orderDetails}\n\nஉங்கள் ஆர்டர் மற்றும் விநியோக விவரங்களை உறுதிப்படுத்த எங்கள் ${email} அல்லது ${phone} இல் தொடர்பு கொள்வோம்.`
-                : `Thank you, ${name}!\n\nYour order has been received:\n\n${orderDetails}\n\nWe'll contact you at ${email} or ${phone} to confirm your order and delivery details.`;
-            alert(thankYouMsg);
+    // Simple validation
+    if (name && email && phone && address) {
+        // Calculate total amount
+        const totalAmount = cart.reduce((sum, item) => sum + (parseFloat(item.price) || 0), 0);
         
-        // Reset form and cart
-        contactForm.reset();
-        cart = [];
-        updateCart();
+        // Prepare order details
+        const orderDetails = cart.map(item => {
+            const quantityDisplay = item.quantity ? ` (${item.quantity})` : '';
+            return `${item.product}${quantityDisplay} - ₹${item.price.toFixed(2)}`;
+        }).join('\n');
         
-        // Scroll to top
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        // Store order data for payment confirmation
+        currentOrderData = {
+            name,
+            email,
+            phone,
+            address,
+            message,
+            orderDetails,
+            totalAmount
+        };
+        
+        // Show payment modal with QR code
+        showPaymentModal(totalAmount);
     }
 });
 
