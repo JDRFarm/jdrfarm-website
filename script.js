@@ -428,19 +428,10 @@ document.querySelectorAll('.add-to-cart:not([disabled])').forEach(button => {
 // Update cart display
 function updateCart() {
     const cartItems = document.getElementById('cartItems');
-    const cartTotal = document.getElementById('cartTotal');
     
     if (cart.length === 0) {
         const emptyText = translations[currentLang]?.cart?.empty || 'Your cart is empty';
         cartItems.innerHTML = `<div class="empty-cart">${emptyText}</div>`;
-        if (cartTotal) {
-            cartTotal.textContent = '0.00';
-        }
-        // Hide total section when cart is empty
-        const cartTotalSection = document.getElementById('cartTotalSection');
-        if (cartTotalSection) {
-            cartTotalSection.style.display = 'none';
-        }
         const checkoutButton = document.getElementById('checkoutButton');
         const checkoutNote = document.getElementById('checkoutNote');
         if (checkoutButton) checkoutButton.style.display = 'none';
@@ -448,14 +439,11 @@ function updateCart() {
         return;
     }
     
-    // Calculate total sum of all product amounts
-    let total = 0;
     cartItems.innerHTML = '';
     
     cart.forEach((item, index) => {
         // Ensure price is a valid number
         const itemPrice = parseFloat(item.price) || 0;
-        total += itemPrice;
         const cartItem = document.createElement('div');
         cartItem.className = 'cart-item';
         const quantityDisplay = item.quantity ? ` (${item.quantity})` : '';
@@ -467,26 +455,18 @@ function updateCart() {
         cartItems.appendChild(cartItem);
     });
     
-    // Display the total sum
-    if (cartTotal) {
-        cartTotal.textContent = total.toFixed(2);
-    }
-    
-    // Show/hide checkout button and total based on cart items
+    // Show/hide checkout button based on cart items
     const checkoutButton = document.getElementById('checkoutButton');
-    const cartTotalSection = document.getElementById('cartTotalSection');
     const checkoutNote = document.getElementById('checkoutNote');
     
-    if (checkoutButton && cartTotalSection) {
+    if (checkoutButton) {
         if (cart.length > 0) {
             checkoutButton.style.display = 'block';
-            cartTotalSection.style.display = 'block';
             if (checkoutNote) checkoutNote.style.display = 'block';
             // Check if form fields are filled to enable checkout
             checkFormCompletion();
         } else {
             checkoutButton.style.display = 'none';
-            cartTotalSection.style.display = 'none';
             if (checkoutNote) checkoutNote.style.display = 'none';
         }
     }
@@ -604,19 +584,18 @@ contactForm.addEventListener('submit', (e) => {
     const address = document.getElementById('address').value;
     const message = document.getElementById('message').value;
     
-    // Simple validation
-    if (name && email && phone && address) {
-        const total = cart.reduce((sum, item) => sum + item.price, 0);
-        const orderDetails = cart.map(item => {
-            const quantityDisplay = item.quantity ? ` (${item.quantity})` : '';
-            return `${item.product}${quantityDisplay} - ₹${item.price.toFixed(2)}`;
-        }).join('\n');
-        
-        // Here you would typically send the data to a server
-        const thankYouMsg = currentLang === 'ta'
-            ? `நன்றி, ${name}!\n\nஉங்கள் ஆர்டர் பெறப்பட்டது:\n\n${orderDetails}\n\nமொத்தம்: ₹${total.toFixed(2)}\n\nஉங்கள் ஆர்டர் மற்றும் விநியோக விவரங்களை உறுதிப்படுத்த எங்கள் ${email} அல்லது ${phone} இல் தொடர்பு கொள்வோம்.`
-            : `Thank you, ${name}!\n\nYour order has been received:\n\n${orderDetails}\n\nTotal: ₹${total.toFixed(2)}\n\nWe'll contact you at ${email} or ${phone} to confirm your order and delivery details.`;
-        alert(thankYouMsg);
+        // Simple validation
+        if (name && email && phone && address) {
+            const orderDetails = cart.map(item => {
+                const quantityDisplay = item.quantity ? ` (${item.quantity})` : '';
+                return `${item.product}${quantityDisplay} - ₹${item.price.toFixed(2)}`;
+            }).join('\n');
+            
+            // Here you would typically send the data to a server
+            const thankYouMsg = currentLang === 'ta'
+                ? `நன்றி, ${name}!\n\nஉங்கள் ஆர்டர் பெறப்பட்டது:\n\n${orderDetails}\n\nஉங்கள் ஆர்டர் மற்றும் விநியோக விவரங்களை உறுதிப்படுத்த எங்கள் ${email} அல்லது ${phone} இல் தொடர்பு கொள்வோம்.`
+                : `Thank you, ${name}!\n\nYour order has been received:\n\n${orderDetails}\n\nWe'll contact you at ${email} or ${phone} to confirm your order and delivery details.`;
+            alert(thankYouMsg);
         
         // Reset form and cart
         contactForm.reset();
