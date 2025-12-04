@@ -484,9 +484,6 @@ function updateCart() {
 
 
 // Order form handling
-const contactForm = document.getElementById('contactForm');
-
-
 async function sendOrderEmail(orderData) {
     const emailData = {
         to_email: 'info@jdrfarm.com',
@@ -586,89 +583,113 @@ Please process this order and arrange delivery.`);
     return true;
 }
 
+// Initialize contact form handler (with DOMContentLoaded fallback)
+let contactFormInitialized = false;
 
-contactForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
+function initializeContactForm() {
+    // Prevent duplicate initialization
+    if (contactFormInitialized) return;
     
-    if (cart.length === 0) {
-        const alertMsg = currentLang === 'ta' 
-            ? 'தயவுசெய்து ஆர்டர் செய்வதற்கு முன் உங்கள் கார்ட்டில் பொருட்களைச் சேர்க்கவும்.'
-            : 'Please add items to your cart before placing an order.';
-        alert(alertMsg);
-        return;
-    }
+    const contactForm = document.getElementById('contactForm');
     
-    // Get form values
-    const name = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
-    const phone = document.getElementById('phone').value;
-    const address = document.getElementById('address').value;
-    const message = document.getElementById('message').value;
-    
-    // Simple validation
-    if (name && email && phone && address) {
-        // Calculate total amount
-        const totalAmount = cart.reduce((sum, item) => sum + (parseFloat(item.price) || 0), 0);
+    if (contactForm) {
+        contactFormInitialized = true;
+        contactForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
         
-        // Prepare order details
-        const orderDetails = cart.map(item => {
-            const quantityDisplay = item.quantity ? ` (${item.quantity})` : '';
-            return `${item.product}${quantityDisplay} - ₹${item.price.toFixed(2)}`;
-        }).join('\n');
-        
-        // Prepare order data
-        const orderData = {
-            name,
-            email,
-            phone,
-            address,
-            message: message || 'None',
-            orderDetails,
-            totalAmount,
-            orderDate: new Date().toLocaleString('en-IN', { 
-                timeZone: 'Asia/Kolkata',
-                dateStyle: 'full',
-                timeStyle: 'medium'
-            })
-        };
-        
-        // Show processing message
-        const submitButton = e.target.querySelector('button[type="submit"]');
-        const originalText = submitButton.textContent;
-        submitButton.textContent = 'Processing Order...';
-        submitButton.disabled = true;
-        
-        // Send email to info@jdrfarm.com
-        try {
-            await sendOrderEmail(orderData);
-            
-            // Show success message with correct contact info
-            const contactPhone = '9150150932';
-            const contactEmail = 'info@jdrfarm.com';
-            const successMsg = `Thank you, ${name}!\n\nYour order has been received:\n\n${orderDetails}\n\nTotal: ₹${totalAmount.toFixed(2)}\n\nWe'll contact you at ${contactEmail} or ${contactPhone} to confirm your order and delivery details.`;
-            alert(successMsg);
-            
-            // Reset form and cart
-            contactForm.reset();
-            cart = [];
-            updateCart();
-            
-            // Scroll to top
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        } catch (error) {
-            console.error('Error sending email:', error);
-            alert('Order received! We will contact you shortly at ' + email + ' or ' + phone + '.');
-            
-            // Still reset form
-            contactForm.reset();
-            cart = [];
-            updateCart();
-        } finally {
-            submitButton.textContent = originalText;
-            submitButton.disabled = false;
+        if (cart.length === 0) {
+            const alertMsg = currentLang === 'ta' 
+                ? 'தயவுசெய்து ஆர்டர் செய்வதற்கு முன் உங்கள் கார்ட்டில் பொருட்களைச் சேர்க்கவும்.'
+                : 'Please add items to your cart before placing an order.';
+            alert(alertMsg);
+            return;
         }
+        
+        // Get form values
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const phone = document.getElementById('phone').value;
+        const address = document.getElementById('address').value;
+        const message = document.getElementById('message').value;
+        
+        // Simple validation
+        if (name && email && phone && address) {
+            // Calculate total amount
+            const totalAmount = cart.reduce((sum, item) => sum + (parseFloat(item.price) || 0), 0);
+            
+            // Prepare order details
+            const orderDetails = cart.map(item => {
+                const quantityDisplay = item.quantity ? ` (${item.quantity})` : '';
+                return `${item.product}${quantityDisplay} - ₹${item.price.toFixed(2)}`;
+            }).join('\n');
+            
+            // Prepare order data
+            const orderData = {
+                name,
+                email,
+                phone,
+                address,
+                message: message || 'None',
+                orderDetails,
+                totalAmount,
+                orderDate: new Date().toLocaleString('en-IN', { 
+                    timeZone: 'Asia/Kolkata',
+                    dateStyle: 'full',
+                    timeStyle: 'medium'
+                })
+            };
+            
+            // Show processing message
+            const submitButton = e.target.querySelector('button[type="submit"]');
+            const originalText = submitButton.textContent;
+            submitButton.textContent = 'Processing Order...';
+            submitButton.disabled = true;
+            
+            // Send email to info@jdrfarm.com
+            try {
+                await sendOrderEmail(orderData);
+                
+                // Show success message with correct contact info
+                const contactPhone = '9150150932';
+                const contactEmail = 'info@jdrfarm.com';
+                const successMsg = `Thank you, ${name}!\n\nYour order has been received:\n\n${orderDetails}\n\nTotal: ₹${totalAmount.toFixed(2)}\n\nWe'll contact you at ${contactEmail} or ${contactPhone} to confirm your order and delivery details.`;
+                alert(successMsg);
+            
+                // Reset form and cart
+                contactForm.reset();
+                cart = [];
+                updateCart();
+                
+                // Scroll to top
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            } catch (error) {
+                console.error('Error sending email:', error);
+                alert('Order received! We will contact you shortly at ' + email + ' or ' + phone + '.');
+                
+                // Still reset form
+                contactForm.reset();
+                cart = [];
+                updateCart();
+            } finally {
+                submitButton.textContent = originalText;
+                submitButton.disabled = false;
+            }
+        } else {
+            // Show validation error
+            const validationMsg = currentLang === 'ta'
+                ? 'தயவுசெய்து அனைத்து தேவையான புலங்களையும் நிரப்பவும்.'
+                : 'Please fill in all required fields.';
+            alert(validationMsg);
+        }
+    });
     }
-});
+}
+
+// Try to initialize immediately (if DOM is ready)
+initializeContactForm();
+
+// Also initialize on DOMContentLoaded (fallback)
+document.addEventListener('DOMContentLoaded', initializeContactForm);
 
 // CTA button click handler
 const ctaButton = document.querySelector('.cta-button');
