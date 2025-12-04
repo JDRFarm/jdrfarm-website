@@ -730,11 +730,20 @@ Please process this order and arrange delivery.`);
     return true;
 }
 
+// Function to send WhatsApp message
+function sendWhatsAppMessage(orderData) {
+    const whatsappNumber = '9150150932';
+    const orderSummary = orderData.orderDetails.split('\n').join('%0A');
+    const message = `New Order Received%0A%0ACustomer: ${encodeURIComponent(orderData.name)}%0AEmail: ${encodeURIComponent(orderData.email)}%0APhone: ${encodeURIComponent(orderData.phone)}%0A%0ADelivery Address:%0A${encodeURIComponent(orderData.address)}%0A%0AOrder Details:%0A${orderSummary}%0A%0ATotal: ₹${orderData.totalAmount.toFixed(2)}%0A%0A${orderData.message ? 'Special Instructions: ' + encodeURIComponent(orderData.message) + '%0A' : ''}Please process this order.`;
+    
+    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${message}`;
+    window.open(whatsappUrl, '_blank');
+}
+
 async function confirmPayment() {
     if (!currentOrderData) return;
     
     const processingMsg = translations[currentLang]?.payment?.processing || 'Processing your order...';
-    const successMsg = translations[currentLang]?.payment?.successMsg || 'Payment confirmed! Your order has been placed successfully. We will contact you shortly.';
     const errorMsg = translations[currentLang]?.payment?.errorMsg || 'Order received! If email fails, please contact us at info@jdrfarm.com';
     
     // Show processing message
@@ -747,9 +756,20 @@ async function confirmPayment() {
     try {
         const emailSent = await sendOrderEmail(currentOrderData);
         
+        // Prepare order confirmation message with correct contact info
+        const orderDetails = currentOrderData.orderDetails;
+        const totalAmount = currentOrderData.totalAmount.toFixed(2);
+        const contactPhone = '9150150932';
+        const contactEmail = 'info@jdrfarm.com';
+        
+        const successMsg = `Thank you, ${currentOrderData.name}!\n\nYour order has been received:\n\n${orderDetails}\n\nTotal: ₹${totalAmount}\n\nWe'll contact you at ${contactEmail} or ${contactPhone} to confirm your order and delivery details.`;
+        
         // Show success message
         setTimeout(() => {
-            alert(successMsg + '\n\nOrder details have been sent to info@jdrfarm.com');
+            alert(successMsg);
+            
+            // Send WhatsApp message
+            sendWhatsAppMessage(currentOrderData);
             
             // Reset form and cart
             const contactForm = document.getElementById('contactForm');
