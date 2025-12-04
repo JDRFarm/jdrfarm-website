@@ -452,10 +452,6 @@ function updateCart() {
     if (cart.length === 0) {
         const emptyText = translations[currentLang]?.cart?.empty || 'Your cart is empty';
         cartItems.innerHTML = `<div class="empty-cart">${emptyText}</div>`;
-        const checkoutButton = document.getElementById('checkoutButton');
-        const checkoutNote = document.getElementById('checkoutNote');
-        if (checkoutButton) checkoutButton.style.display = 'none';
-        if (checkoutNote) checkoutNote.style.display = 'none';
         return;
     }
     
@@ -475,21 +471,6 @@ function updateCart() {
         cartItems.appendChild(cartItem);
     });
     
-    // Show/hide checkout button based on cart items
-    const checkoutButton = document.getElementById('checkoutButton');
-    const checkoutNote = document.getElementById('checkoutNote');
-    
-    if (checkoutButton) {
-        if (cart.length > 0) {
-            checkoutButton.style.display = 'block';
-            if (checkoutNote) checkoutNote.style.display = 'block';
-            // Check if form fields are filled to enable checkout
-            checkFormCompletion();
-        } else {
-            checkoutButton.style.display = 'none';
-            if (checkoutNote) checkoutNote.style.display = 'none';
-        }
-    }
     
     // Add remove functionality
     document.querySelectorAll('.remove-item').forEach(button => {
@@ -501,135 +482,10 @@ function updateCart() {
     });
 }
 
-// Function to check if all required form fields are filled
-function checkFormCompletion() {
-    const checkoutButton = document.getElementById('checkoutButton');
-    if (!checkoutButton) return;
-    
-    // Get form field values
-    const name = document.getElementById('name')?.value.trim() || '';
-    const email = document.getElementById('email')?.value.trim() || '';
-    const phone = document.getElementById('phone')?.value.trim() || '';
-    const address = document.getElementById('address')?.value.trim() || '';
-    
-    // Check if all required fields are filled
-    const allFieldsFilled = name && email && phone && address;
-    
-    // Enable/disable checkout button
-    if (allFieldsFilled && cart.length > 0) {
-        checkoutButton.disabled = false;
-        checkoutButton.style.opacity = '1';
-        checkoutButton.style.cursor = 'pointer';
-        checkoutButton.title = '';
-    } else {
-        checkoutButton.disabled = true;
-        checkoutButton.style.opacity = '0.5';
-        checkoutButton.style.cursor = 'not-allowed';
-        const missingFields = [];
-        if (!name) missingFields.push('Full Name');
-        if (!email) missingFields.push('Email');
-        if (!phone) missingFields.push('Phone');
-        if (!address) missingFields.push('Delivery Address');
-        checkoutButton.title = `Please fill: ${missingFields.join(', ')}`;
-    }
-}
-
-// Checkout button functionality
-document.addEventListener('DOMContentLoaded', () => {
-    const checkoutButton = document.getElementById('checkoutButton');
-    if (checkoutButton) {
-        checkoutButton.addEventListener('click', () => {
-            // Only proceed if button is enabled
-            if (checkoutButton.disabled) {
-                // Scroll to form to show what's missing
-                const contactSection = document.getElementById('contact');
-                if (contactSection) {
-                    contactSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-                return;
-            }
-            
-            // Scroll to contact form
-            const contactSection = document.getElementById('contact');
-            if (contactSection) {
-                contactSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                // Focus on first empty field after a short delay
-                setTimeout(() => {
-                    const name = document.getElementById('name');
-                    const email = document.getElementById('email');
-                    const phone = document.getElementById('phone');
-                    const address = document.getElementById('address');
-                    
-                    if (!name.value.trim()) name.focus();
-                    else if (!email.value.trim()) email.focus();
-                    else if (!phone.value.trim()) phone.focus();
-                    else if (!address.value.trim()) address.focus();
-                }, 500);
-            }
-        });
-    }
-    
-    // Add event listeners to form fields for real-time validation
-    const formFields = ['name', 'email', 'phone', 'address'];
-    formFields.forEach(fieldId => {
-        const field = document.getElementById(fieldId);
-        if (field) {
-            field.addEventListener('input', checkFormCompletion);
-            field.addEventListener('blur', checkFormCompletion);
-        }
-    });
-    
-    // Initial check
-    checkFormCompletion();
-});
 
 // Order form handling
 const contactForm = document.getElementById('contactForm');
 
-// Payment Modal Functions
-let currentOrderData = null;
-
-function showPaymentModal(totalAmount) {
-    const paymentModal = document.getElementById('paymentModal');
-    const paymentAmount = document.getElementById('paymentAmount');
-    
-    paymentAmount.textContent = `₹${totalAmount.toFixed(2)}`;
-    paymentModal.style.display = 'flex';
-    
-    // Generate UPI QR Code
-    generateUPIQRCode(totalAmount);
-}
-
-function generateUPIQRCode(amount) {
-    const upiId = 'jdmobacc-4@okhdfcback';
-    // UPI payment URL format: upi://pay?pa=<UPI_ID>&pn=<PAYEE_NAME>&am=<AMOUNT>&cu=INR
-    const upiUrl = `upi://pay?pa=${upiId}&pn=JDR%20Farm&am=${amount.toFixed(2)}&cu=INR`;
-    
-    // Clear previous QR code
-    const qrContainer = document.getElementById('qrcode');
-    qrContainer.innerHTML = '';
-    
-    // Generate QR code
-    QRCode.toCanvas(qrContainer, upiUrl, {
-        width: 250,
-        margin: 2,
-        color: {
-            dark: '#000000',
-            light: '#FFFFFF'
-        }
-    }, function (error) {
-        if (error) {
-            console.error('QR Code generation error:', error);
-            qrContainer.innerHTML = '<p style="color: red;">QR Code generation failed. Please use UPI ID: jdmobacc-4@okhdfcback</p>';
-        }
-    });
-}
-
-function closePaymentModal() {
-    const paymentModal = document.getElementById('paymentModal');
-    paymentModal.style.display = 'none';
-    currentOrderData = null;
-}
 
 async function sendOrderEmail(orderData) {
     const emailData = {
@@ -730,100 +586,8 @@ Please process this order and arrange delivery.`);
     return true;
 }
 
-// Function to send WhatsApp message
-function sendWhatsAppMessage(orderData) {
-    const whatsappNumber = '9150150932';
-    const orderSummary = orderData.orderDetails.split('\n').join('%0A');
-    const message = `New Order Received%0A%0ACustomer: ${encodeURIComponent(orderData.name)}%0AEmail: ${encodeURIComponent(orderData.email)}%0APhone: ${encodeURIComponent(orderData.phone)}%0A%0ADelivery Address:%0A${encodeURIComponent(orderData.address)}%0A%0AOrder Details:%0A${orderSummary}%0A%0ATotal: ₹${orderData.totalAmount.toFixed(2)}%0A%0A${orderData.message ? 'Special Instructions: ' + encodeURIComponent(orderData.message) + '%0A' : ''}Please process this order.`;
-    
-    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${message}`;
-    window.open(whatsappUrl, '_blank');
-}
 
-async function confirmPayment() {
-    if (!currentOrderData) return;
-    
-    const processingMsg = translations[currentLang]?.payment?.processing || 'Processing your order...';
-    const errorMsg = translations[currentLang]?.payment?.errorMsg || 'Order received! If email fails, please contact us at info@jdrfarm.com';
-    
-    // Show processing message
-    const successBtn = document.getElementById('paymentSuccessBtn');
-    const originalText = successBtn.textContent;
-    successBtn.textContent = processingMsg;
-    successBtn.disabled = true;
-    
-    // Send email
-    try {
-        const emailSent = await sendOrderEmail(currentOrderData);
-        
-        // Prepare order confirmation message with correct contact info
-        const orderDetails = currentOrderData.orderDetails;
-        const totalAmount = currentOrderData.totalAmount.toFixed(2);
-        const contactPhone = '9150150932';
-        const contactEmail = 'info@jdrfarm.com';
-        
-        const successMsg = `Thank you, ${currentOrderData.name}!\n\nYour order has been received:\n\n${orderDetails}\n\nTotal: ₹${totalAmount}\n\nWe'll contact you at ${contactEmail} or ${contactPhone} to confirm your order and delivery details.`;
-        
-        // Show success message
-        setTimeout(() => {
-            alert(successMsg);
-            
-            // Send WhatsApp message
-            sendWhatsAppMessage(currentOrderData);
-            
-            // Reset form and cart
-            const contactForm = document.getElementById('contactForm');
-            if (contactForm) {
-                contactForm.reset();
-            }
-            cart = [];
-            updateCart();
-            
-            // Close modal
-            closePaymentModal();
-            
-            // Scroll to top
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }, 1500);
-    } catch (error) {
-        console.error('Error sending email:', error);
-        // Still show success as order is recorded
-        alert('Order received! ' + errorMsg);
-        successBtn.textContent = originalText;
-        successBtn.disabled = false;
-    }
-}
-
-// Payment modal event listeners
-document.addEventListener('DOMContentLoaded', () => {
-    const paymentModal = document.getElementById('paymentModal');
-    const closePayment = document.getElementById('closePayment');
-    const paymentCancelBtn = document.getElementById('paymentCancelBtn');
-    const paymentSuccessBtn = document.getElementById('paymentSuccessBtn');
-    
-    if (closePayment) {
-        closePayment.addEventListener('click', closePaymentModal);
-    }
-    
-    if (paymentCancelBtn) {
-        paymentCancelBtn.addEventListener('click', closePaymentModal);
-    }
-    
-    if (paymentSuccessBtn) {
-        paymentSuccessBtn.addEventListener('click', confirmPayment);
-    }
-    
-    // Close modal when clicking outside
-    if (paymentModal) {
-        paymentModal.addEventListener('click', (e) => {
-            if (e.target === paymentModal) {
-                closePaymentModal();
-            }
-        });
-    }
-});
-
-contactForm.addEventListener('submit', (e) => {
+contactForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     
     if (cart.length === 0) {
@@ -852,19 +616,57 @@ contactForm.addEventListener('submit', (e) => {
             return `${item.product}${quantityDisplay} - ₹${item.price.toFixed(2)}`;
         }).join('\n');
         
-        // Store order data for payment confirmation
-        currentOrderData = {
+        // Prepare order data
+        const orderData = {
             name,
             email,
             phone,
             address,
-            message,
+            message: message || 'None',
             orderDetails,
-            totalAmount
+            totalAmount,
+            orderDate: new Date().toLocaleString('en-IN', { 
+                timeZone: 'Asia/Kolkata',
+                dateStyle: 'full',
+                timeStyle: 'medium'
+            })
         };
         
-        // Show payment modal with QR code
-        showPaymentModal(totalAmount);
+        // Show processing message
+        const submitButton = e.target.querySelector('button[type="submit"]');
+        const originalText = submitButton.textContent;
+        submitButton.textContent = 'Processing Order...';
+        submitButton.disabled = true;
+        
+        // Send email to info@jdrfarm.com
+        try {
+            await sendOrderEmail(orderData);
+            
+            // Show success message with correct contact info
+            const contactPhone = '9150150932';
+            const contactEmail = 'info@jdrfarm.com';
+            const successMsg = `Thank you, ${name}!\n\nYour order has been received:\n\n${orderDetails}\n\nTotal: ₹${totalAmount.toFixed(2)}\n\nWe'll contact you at ${contactEmail} or ${contactPhone} to confirm your order and delivery details.`;
+            alert(successMsg);
+            
+            // Reset form and cart
+            contactForm.reset();
+            cart = [];
+            updateCart();
+            
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        } catch (error) {
+            console.error('Error sending email:', error);
+            alert('Order received! We will contact you shortly at ' + email + ' or ' + phone + '.');
+            
+            // Still reset form
+            contactForm.reset();
+            cart = [];
+            updateCart();
+        } finally {
+            submitButton.textContent = originalText;
+            submitButton.disabled = false;
+        }
     }
 });
 

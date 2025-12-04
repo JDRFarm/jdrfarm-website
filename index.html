@@ -200,8 +200,6 @@
                     <div class="cart-summary" id="cartSummary">
                         <h3 data-translate="cart.title">Your Cart</h3>
                         <div id="cartItems"></div>
-                        <button class="checkout-button" id="checkoutButton" style="display: none; opacity: 0.5; cursor: not-allowed;" disabled data-translate="cart.checkout">Proceed to Checkout</button>
-                        <p class="checkout-note" id="checkoutNote" style="display: none; font-size: 0.875rem; color: var(--text-light); margin-top: 0.5rem; text-align: center;">Please fill all required fields below to enable checkout</p>
                     </div>
                     <form class="contact-form" id="contactForm">
                         <h3 data-translate="contact.orderInfo">Order Information</h3>
@@ -254,37 +252,6 @@
         </svg>
     </a>
 
-    <!-- Payment Modal -->
-    <div id="paymentModal" class="payment-modal" style="display: none;">
-        <div class="payment-modal-content">
-            <div class="payment-header">
-                <h2 data-translate="payment.title">Complete Your Payment</h2>
-                <button class="close-payment" id="closePayment">&times;</button>
-            </div>
-            <div class="payment-body">
-                <div class="payment-amount-section">
-                    <h3 data-translate="payment.amount">Total Amount</h3>
-                    <div class="amount-display" id="paymentAmount">₹0.00</div>
-                </div>
-                <div class="payment-instructions">
-                    <p data-translate="payment.instructions">Scan the QR code below using Google Pay, PhonePe, or any UPI app to complete your payment.</p>
-                </div>
-                <div class="qr-code-container">
-                    <div id="qrcode"></div>
-                    <p class="upi-id">UPI ID: <strong>jdmobacc-4@okhdfcback</strong></p>
-                </div>
-                <div class="payment-actions">
-                    <button class="payment-success-btn" id="paymentSuccessBtn" data-translate="payment.success">I Have Completed the Payment</button>
-                    <button class="payment-cancel-btn" id="paymentCancelBtn" data-translate="payment.cancel">Cancel</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- QR Code Library -->
-    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
-    <!-- EmailJS Library -->
-    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
