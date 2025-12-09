@@ -111,7 +111,7 @@ Have ready:
 
 ## 🎉 That's It!
 
-Your JDR Farm website is now:
+Your JDR website is now:
 - ✅ Live at https://jdrfarm.com
 - ✅ Hosted for FREE on GitHub Pages
 - ✅ Auto-deploying when you push to GitHub

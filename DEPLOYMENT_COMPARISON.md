@@ -29,7 +29,7 @@ Quick comparison to help you choose the best deployment method for jdrfarm.com
 
 ## 🎯 Best For Your Use Case
 
-### Your Website: JDR Farm E-commerce (Static HTML)
+### Your Website: JDR E-commerce (Static HTML)
 
 **Recommended: Netlify** 🏆
 
@@ -216,7 +216,7 @@ Average page load times for jdrfarm.com:
 
 ## 📝 Final Recommendation
 
-### For JDR Farm Website: Use Netlify! 🎉
+### For JDR Website: Use Netlify! 🎉
 
 **Why:**
 1. Your site is **pure HTML/CSS/JS** (no server-side code needed)

@@ -1,6 +1,6 @@
 # 🔧 Troubleshooting Guide
 
-Common issues and solutions when deploying JDR Farm to jdrfarm.com
+Common issues and solutions when deploying JDR to jdrfarm.com
 
 ---
 

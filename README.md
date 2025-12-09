@@ -1,6 +1,6 @@
-# JDR Farm - Food Products E-Commerce Website
+# JDR - Food Products E-Commerce Website
 
-A beautiful, responsive e-commerce website for JDR Farm (jdrfarm.com) to sell fresh organic food products.
+A beautiful, responsive e-commerce website for JDR (jdrfarm.com) to sell fresh organic food products.
 
 ## Features
 

@@ -22,7 +22,7 @@ When customers complete payment, order details are automatically sent to **info@
 2. **Sign up** (free account)
 3. **Create new form:**
    - Click "New Form"
-   - Form name: "JDR Farm Orders"
+   - Form name: "JDR Orders"
 4. **Get your form ID:**
    - Copy the form endpoint (e.g., `https://formspree.io/f/YOUR_FORM_ID`)
    - Extract the form ID (the part after `/f/`)

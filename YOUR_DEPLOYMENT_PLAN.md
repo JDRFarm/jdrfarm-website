@@ -15,7 +15,7 @@ This document is your personalized action plan.
 - ✅ **Free SSL** - HTTPS included
 - ✅ **Simple** - No external accounts needed
 
-**Perfect for your JDR Farm website because:**
+**Perfect for your JDR website because:**
 - Your site is static HTML/CSS/JS ✅
 - You already use GitHub ✅
 - You want automatic deployments ✅
@@ -440,4 +440,4 @@ The guide is clear, step-by-step, and thousands of people do this successfully e
 
 ---
 
-**Good luck! Your JDR Farm website will be live soon! 🌾**
+**Good luck! Your JDR website will be live soon! 🌾**
