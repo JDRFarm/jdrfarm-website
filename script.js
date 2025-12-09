@@ -56,7 +56,7 @@ const translations = {
             }
         },
         about: {
-            title: "About JDR Farm",
+            title: "About JDR",
             organic: {
                 title: "100% Organic",
                 desc: "All our products are certified organic, grown without harmful pesticides or chemicals."
@@ -69,8 +69,8 @@ const translations = {
                 title: "Sustainable",
                 desc: "We practice sustainable farming methods that protect the environment for future generations."
             },
-            text1: "At JDR Farm, we're dedicated to promoting health through sustainable farming practices. Our mission is to provide healthy food products and farming services while emphasizing eco-friendly initiatives and empowerment. We believe in the power of real food - food that's grown with care, harvested with respect, and delivered with pride.",
-            text2: "Every product you purchase from us supports sustainable agriculture and helps us continue our mission of providing healthy, organic food to our community. Together, we're building a healthier future through sustainable farming practices. Thank you for choosing JDR Farm!"
+            text1: "At JDR, we're dedicated to promoting health through sustainable farming practices. Our mission is to provide healthy food products and farming services while emphasizing eco-friendly initiatives and empowerment. We believe in the power of real food - food that's grown with care, harvested with respect, and delivered with pride.",
+            text2: "Every product you purchase from us supports sustainable agriculture and helps us continue our mission of providing healthy, organic food to our community. Together, we're building a healthier future through sustainable farming practices. Thank you for choosing JDR!"
         },
         contact: {
             title: "Contact Us & Place Your Order",

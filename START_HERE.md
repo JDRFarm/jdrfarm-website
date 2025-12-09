@@ -1,6 +1,6 @@
-# 🚀 Deploy JDR Farm to jdrfarm.com - START HERE
+# 🚀 Deploy JDR to jdrfarm.com - START HERE
 
-Welcome! This guide will help you deploy your JDR Farm website from GitHub to your GoDaddy domain.
+Welcome! This guide will help you deploy your JDR website from GitHub to your GoDaddy domain.
 
 ---
 
@@ -312,7 +312,7 @@ After completing this setup, you'll have:
 
 👉 **Start here:** [`QUICK_GODADDY_SETUP.md`](QUICK_GODADDY_SETUP.md)
 
-**Or choose your path above and let's get your JDR Farm online! 🌾**
+**Or choose your path above and let's get your JDR online! 🌾**
 
 ---
 

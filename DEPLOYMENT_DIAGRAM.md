@@ -490,7 +490,7 @@ Savings with Netlify: $72-440 per year! 💰
 
 ```
 ┌────────────────────────────────────────────────────────┐
-│  Perfect for Your JDR Farm Website Because:            │
+│  Perfect for Your JDR Website Because:            │
 │                                                         │
 │  ✅ Static HTML/CSS/JS (no server needed)             │
 │  ✅ Free hosting (save money)                          │

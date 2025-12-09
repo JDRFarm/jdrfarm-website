@@ -89,7 +89,7 @@
 ### UPI Configuration:
 
 - **UPI ID:** jdmobacc-4@okhdfcback
-- **Payee Name:** JDR Farm
+- **Payee Name:** JDR
 - **Currency:** INR (₹)
 
 ### QR Code Format:

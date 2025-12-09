@@ -1,6 +1,6 @@
 # 🚀 How to Publish GitHub Repo to GoDaddy Domain
 
-This guide shows you how to deploy your JDR Farm website from GitHub to your GoDaddy domain (jdrfarm.com).
+This guide shows you how to deploy your JDR website from GitHub to your GoDaddy domain (jdrfarm.com).
 
 ## 📋 Overview of Options
 
@@ -343,7 +343,7 @@ Then add FTP credentials as GitHub secrets:
 
 ## 📝 Quick Start Recommendations
 
-For your JDR Farm website, I recommend **Option 1: Netlify + GoDaddy Domain**
+For your JDR website, I recommend **Option 1: Netlify + GoDaddy Domain**
 
 ### Why?
 1. ✅ **Automatic deployments** - Your auto-deploy scripts already work with GitHub
@@ -386,4 +386,4 @@ For your JDR Farm website, I recommend **Option 1: Netlify + GoDaddy Domain**
 
 **Good luck with your deployment! 🚀**
 
-Your JDR Farm website will be live on jdrfarm.com soon!
+Your JDR website will be live on jdrfarm.com soon!

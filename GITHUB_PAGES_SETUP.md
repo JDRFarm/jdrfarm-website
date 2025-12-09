@@ -1,6 +1,6 @@
 # ⚡ GitHub Pages + GoDaddy Domain Setup
 
-**Deploy your JDR Farm website using GitHub Pages (100% Free!)**
+**Deploy your JDR website using GitHub Pages (100% Free!)**
 
 ---
 
@@ -33,7 +33,7 @@ Before starting, make sure you have:
 1. Open your browser
 2. Go to: https://github.com
 3. Sign in to your account
-4. Navigate to your repository (the one with JDR Farm website)
+4. Navigate to your repository (the one with JDR website)
 
 ### 1.2 Open Repository Settings
 
@@ -532,7 +532,7 @@ TTL: 600 seconds for all records
 - ✅ Custom domains
 - ✅ Free HTTPS
 
-**For your JDR Farm site:** ✅ Perfect! It's static HTML.
+**For your JDR site:** ✅ Perfect! It's static HTML.
 
 ---
 
@@ -672,7 +672,7 @@ Mark off as you complete:
 
 ## 🎉 Congratulations!
 
-Your JDR Farm website is now:
+Your JDR website is now:
 - ✅ Live at https://jdrfarm.com
 - ✅ Secure with HTTPS
 - ✅ Auto-deploying from GitHub
