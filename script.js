@@ -649,10 +649,8 @@ function initializeContactForm() {
             try {
                 await sendOrderEmail(orderData);
                 
-                // Show success message with correct contact info
-                const contactPhone = '9150150932';
-                const contactEmail = 'info@jdrfarm.com';
-                const successMsg = `Thank you, ${name}!\n\nYour order has been received:\n\n${orderDetails}\n\nTotal: ₹${totalAmount.toFixed(2)}\n\nWe'll contact you at ${contactEmail} or ${contactPhone} to confirm your order and delivery details.`;
+                // Show success message with customer's contact info
+                const successMsg = `Thank you, ${name}!\n\nYour order has been received:\n\n${orderDetails}\n\nTotal: ₹${totalAmount.toFixed(2)}\n\nWe'll contact you at ${email} or ${phone} to confirm your order and delivery details.`;
                 alert(successMsg);
             
                 // Reset form and cart
