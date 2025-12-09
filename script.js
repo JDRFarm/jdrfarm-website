@@ -483,6 +483,31 @@ function updateCart() {
 }
 
 
+// Function to send WhatsApp message with order details
+function sendWhatsAppOrderNotification(orderData) {
+    const whatsappNumber = '9150830025';
+    
+    // Format order details for WhatsApp
+    const orderItems = orderData.orderDetails.split('\n').map(item => `• ${item}`).join('%0A');
+    
+    // Create WhatsApp message
+    const message = `🛒 *New Order Received*%0A%0A` +
+        `👤 *Customer Details:*%0A` +
+        `Name: ${encodeURIComponent(orderData.name)}%0A` +
+        `Email: ${encodeURIComponent(orderData.email)}%0A` +
+        `Phone: ${encodeURIComponent(orderData.phone)}%0A%0A` +
+        `📍 *Delivery Address:*%0A${encodeURIComponent(orderData.address)}%0A%0A` +
+        `📦 *Order Details:*%0A${orderItems}%0A%0A` +
+        `💰 *Total Amount: ₹${orderData.totalAmount.toFixed(2)}*%0A%0A` +
+        (orderData.message && orderData.message !== 'None' ? `📝 *Special Instructions:*%0A${encodeURIComponent(orderData.message)}%0A%0A` : '') +
+        `📅 Order Date: ${encodeURIComponent(orderData.orderDate)}%0A%0A` +
+        `Please process this order and arrange delivery.`;
+    
+    // Open WhatsApp with pre-filled message
+    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${message}`;
+    window.open(whatsappUrl, '_blank');
+}
+
 // Order form handling
 async function sendOrderEmail(orderData) {
     const emailData = {
@@ -649,10 +674,13 @@ function initializeContactForm() {
             try {
                 await sendOrderEmail(orderData);
                 
+                // Automatically send WhatsApp notification with order details
+                sendWhatsAppOrderNotification(orderData);
+                
                 // Show success message with correct contact info
-                const contactPhone = '9150150932';
+                const contactPhone = '9150830025';
                 const contactEmail = 'info@jdrfarm.com';
-                const successMsg = `Thank you, ${name}!\n\nYour order has been received:\n\n${orderDetails}\n\nTotal: ₹${totalAmount.toFixed(2)}\n\nWe'll contact you at ${contactEmail} or ${contactPhone} to confirm your order and delivery details.`;
+                const successMsg = `Thank you, ${name}!\n\nYour order has been received:\n\n${orderDetails}\n\nTotal: ₹${totalAmount.toFixed(2)}\n\nWe'll contact you at ${contactEmail} or ${contactPhone} to confirm your order and delivery details.\n\nWhatsApp notification has been sent automatically.`;
                 alert(successMsg);
             
                 // Reset form and cart
