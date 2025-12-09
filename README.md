@@ -81,6 +81,13 @@ Modify CSS variables in `styles.css` (`:root` section):
 - ✅ Troubleshooting guides
 - ✅ Visual architecture diagrams
 
+## Netlify Deployment Workflow
+
+- Pushes to `main` automatically run `.github/workflows/netlify-deploy.yml`, which executes `netlify deploy --prod --dir=.` with the configured `NETLIFY_AUTH_TOKEN` and `NETLIFY_SITE_ID` secrets.
+- The latest commit `5be2bbc` ("Trigger Netlify deployment") kicked off a deploy at 2025-12-09 10:55 UTC, so the site is currently publishing to Netlify—track it in GitHub → Actions → "Deploy to Netlify".
+- To redeploy manually, push to `main` or run `gh workflow run netlify-deploy.yml --ref main` (requires workflow-dispatch access).
+- Live domain: https://jdrfarm.com (custom domain mapped inside Netlify Site settings).
+
 ## Next Steps for Production
 
 1. **Deploy to Domain**: Follow [`GITHUB_PAGES_SETUP.md`](GITHUB_PAGES_SETUP.md) to get live on jdrfarm.com
