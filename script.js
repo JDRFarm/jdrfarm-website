@@ -56,7 +56,7 @@ const translations = {
             }
         },
         about: {
-            title: "About JDR Farm",
+            title: "About JDR",
             organic: {
                 title: "100% Organic",
                 desc: "All our products are certified organic, grown without harmful pesticides or chemicals."
@@ -69,8 +69,8 @@ const translations = {
                 title: "Sustainable",
                 desc: "We practice sustainable farming methods that protect the environment for future generations."
             },
-            text1: "At JDR Farm, we're dedicated to promoting health through sustainable farming practices. Our mission is to provide healthy food products and farming services while emphasizing eco-friendly initiatives and empowerment. We believe in the power of real food - food that's grown with care, harvested with respect, and delivered with pride.",
-            text2: "Every product you purchase from us supports sustainable agriculture and helps us continue our mission of providing healthy, organic food to our community. Together, we're building a healthier future through sustainable farming practices. Thank you for choosing JDR Farm!"
+            text1: "At JDR, we're dedicated to promoting health through sustainable farming practices. Our mission is to provide healthy food products and farming services while emphasizing eco-friendly initiatives and empowerment. We believe in the power of real food - food that's grown with care, harvested with respect, and delivered with pride.",
+            text2: "Every product you purchase from us supports sustainable agriculture and helps us continue our mission of providing healthy, organic food to our community. Together, we're building a healthier future through sustainable farming practices. Thank you for choosing JDR!"
         },
         contact: {
             title: "Contact Us & Place Your Order",
@@ -167,7 +167,7 @@ const translations = {
             }
         },
         about: {
-            title: "JDR பண்ணை பற்றி",
+            title: "JDR பற்றி",
             organic: {
                 title: "100% கரிம",
                 desc: "எங்கள் அனைத்து தயாரிப்புகளும் சான்றளிக்கப்பட்ட கரிம, தீங்கு விளைவிக்கும் பூச்சிக்கொல்லிகள் அல்லது இரசாயனங்கள் இல்லாமல் வளர்க்கப்படுகின்றன."
@@ -180,8 +180,8 @@ const translations = {
                 title: "நிலையான",
                 desc: "எதிர்கால தலைமுறைகளுக்காக சுற்றுச்சூழலைப் பாதுகாக்கும் நிலையான விவசாய முறைகளை நாங்கள் பின்பற்றுகிறோம்."
             },
-            text1: "JDR பண்ணையில், நிலையான விவசாய நடைமுறைகள் மூலம் ஆரோக்கியத்தை ஊக்குவிப்பதில் நாங்கள் அர்ப்பணிக்கப்பட்டுள்ளோம். சுற்றுச்சூழல் நட்பு முன்முயற்சிகள் மற்றும் அதிகாரமளிப்பதை வலியுறுத்தும் போது ஆரோக்கியமான உணவு பொருட்கள் மற்றும் விவசாய சேவைகளை வழங்குவதே எங்கள் பணி. உண்மையான உணவின் சக்தியில் நாங்கள் நம்புகிறோம் - அக்கறையுடன் வளர்க்கப்பட்ட, மரியாதையுடன் அறுவடை செய்யப்பட்ட மற்றும் பெருமையுடன் வழங்கப்படும் உணவு.",
-            text2: "எங்களிடமிருந்து நீங்கள் வாங்கும் ஒவ்வொரு தயாரிப்பும் நிலையான விவசாயத்தை ஆதரிக்கிறது மற்றும் எங்கள் சமூகத்திற்கு ஆரோக்கியமான, கரிம உணவை வழங்கும் எங்கள் பணியைத் தொடர உதவுகிறது. ஒன்றாக, நிலையான விவசாய நடைமுறைகள் மூலம் நாங்கள் ஒரு ஆரோக்கியமான எதிர்காலத்தை உருவாக்குகிறோம். JDR பண்ணையைத் தேர்ந்தெடுத்ததற்கு நன்றி!"
+            text1: "JDR இல், நிலையான விவசாய நடைமுறைகள் மூலம் ஆரோக்கியத்தை ஊக்குவிப்பதில் நாங்கள் அர்ப்பணிக்கப்பட்டுள்ளோம். சுற்றுச்சூழல் நட்பு முன்முயற்சிகள் மற்றும் அதிகாரமளிப்பதை வலியுறுத்தும் போது ஆரோக்கியமான உணவு பொருட்கள் மற்றும் விவசாய சேவைகளை வழங்குவதே எங்கள் பணி. உண்மையான உணவின் சக்தியில் நாங்கள் நம்புகிறோம் - அக்கறையுடன் வளர்க்கப்பட்ட, மரியாதையுடன் அறுவடை செய்யப்பட்ட மற்றும் பெருமையுடன் வழங்கப்படும் உணவு.",
+            text2: "எங்களிடமிருந்து நீங்கள் வாங்கும் ஒவ்வொரு தயாரிப்பும் நிலையான விவசாயத்தை ஆதரிக்கிறது மற்றும் எங்கள் சமூகத்திற்கு ஆரோக்கியமான, கரிம உணவை வழங்கும் எங்கள் பணியைத் தொடர உதவுகிறது. ஒன்றாக, நிலையான விவசாய நடைமுறைகள் மூலம் நாங்கள் ஒரு ஆரோக்கியமான எதிர்காலத்தை உருவாக்குகிறோம். JDR-ஐத் தேர்ந்தெடுத்ததற்கு நன்றி!"
         },
         contact: {
             title: "எங்களைத் தொடர்பு கொள்ளவும் & உங்கள் ஆர்டரை வைக்கவும்",
