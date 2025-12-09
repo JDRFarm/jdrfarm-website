@@ -2,6 +2,13 @@
 
 A beautiful, responsive e-commerce website for JDR Farm (jdrfarm.com) to sell fresh organic food products.
 
+## 🚀 Deployment Guides
+
+- **[⭐ START HERE]** [Deploy to GoDaddy - Quick Start](DEPLOY_TO_GODADDY.md) - **Deploy your site to GoDaddy now!**
+- [Detailed GoDaddy Setup Guide](GODADDY_SETUP.md) - Complete GoDaddy deployment options
+- [Auto-Deploy Setup](AUTO_DEPLOY_SETUP.md) - For automatic GitHub syncing
+- [Verify Netlify](verify-netlify-connection.md) - If using Netlify
+
 ## Features
 
 - 🛒 **Shopping Cart System** - Add products to cart and manage orders
