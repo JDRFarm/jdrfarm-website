@@ -650,7 +650,9 @@ function initializeContactForm() {
                 await sendOrderEmail(orderData);
                 
                 // Show success message with customer's contact info
-                const successMsg = `Thank you, ${name}!\n\nYour order has been received:\n\n${orderDetails}\n\nTotal: ₹${totalAmount.toFixed(2)}\n\nWe'll contact you at ${email} or ${phone} to confirm your order and delivery details.`;
+                const successMsg = currentLang === 'ta'
+                    ? `நன்றி, ${name}!\n\nஉங்கள் ஆர்டர் பெறப்பட்டது:\n\n${orderDetails}\n\nமொத்தம்: ₹${totalAmount.toFixed(2)}\n\nஉங்கள் ஆர்டர் மற்றும் விநியோக விவரங்களை உறுதிப்படுத்த எங்கள் ${email} அல்லது ${phone} இல் தொடர்பு கொள்வோம்.`
+                    : `Thank you, ${name}!\n\nYour order has been received:\n\n${orderDetails}\n\nTotal: ₹${totalAmount.toFixed(2)}\n\nWe'll contact you at ${email} or ${phone} to confirm your order and delivery details.`;
                 alert(successMsg);
             
                 // Reset form and cart
@@ -662,7 +664,10 @@ function initializeContactForm() {
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             } catch (error) {
                 console.error('Error sending email:', error);
-                alert('Order received! We will contact you shortly at ' + email + ' or ' + phone + '.');
+                const errorMsg = currentLang === 'ta'
+                    ? `ஆர்டர் பெறப்பட்டது! ${email} அல்லது ${phone} இல் விரைவில் தொடர்பு கொள்வோம்.`
+                    : `Order received! We will contact you shortly at ${email} or ${phone}.`;
+                alert(errorMsg);
                 
                 // Still reset form
                 contactForm.reset();
