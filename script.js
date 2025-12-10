@@ -1,118 +1,4 @@
-// Language Translations
-const translations = {
-    en: {
-        nav: {
-            home: "Home",
-            products: "Products",
-            about: "About",
-            contact: "Contact"
-        },
-        hero: {
-            title: "Promoting Health Through Sustainable Farming",
-            subtitle: "Healthy food products and farming services with eco-friendly initiatives",
-            shopNow: "Shop Now"
-        },
-        products: {
-            title: "Explore Our Range of Products",
-            addToCart: "Add to Cart",
-            reviews: "reviews",
-            quantity: "Quantity:",
-            outOfStock: "Out of Stock",
-            coconut: {
-                name: "Coconut Oil",
-                subtitle: "Cold-Pressed | Organic | Pure",
-                description: "Pure, cold-pressed organic coconut oil. Rich in healthy fats and nutrients, perfect for cooking and skincare. Supports heart health and natural beauty.",
-                benefit1: "Heart Health",
-                benefit2: "Skin Care"
-            },
-            moringa: {
-                name: "Moringa Leaf Powder",
-                subtitle: "Premium Organic | Daily Nutrition",
-                description: "Premium organic moringa leaf powder. Packed with vitamins, minerals, and antioxidants for optimal health. Natural protein and iron source.",
-                benefit1: "Immunity Booster",
-                benefit2: "Iron Rich"
-            },
-            mudavatangilangu: {
-                name: "Mudavatangilangu",
-                subtitle: "Natural Root | Traditional Medicine",
-                description: "Traditional medicinal root, naturally grown and carefully processed. Known for its therapeutic properties and traditional healing benefits.",
-                benefit1: "Medicinal",
-                benefit2: "Therapeutic"
-            },
-            quantity: "Quantity:"
-        },
-        features: {
-            shipping: {
-                title: "Free Shipping",
-                desc: "On orders above ₹599"
-            },
-            value: {
-                title: "Value for Money",
-                desc: "Only Healthy. No Chemicals"
-            },
-            preservatives: {
-                title: "Zero Preservatives",
-                desc: "Naturally Processed"
-            }
-        },
-        about: {
-            title: "About JDR",
-            organic: {
-                title: "100% Organic",
-                desc: "All our products are certified organic, grown without harmful pesticides or chemicals."
-            },
-            fresh: {
-                title: "Farm Fresh",
-                desc: "Harvested at peak ripeness and delivered fresh to ensure maximum flavor and nutrition."
-            },
-            sustainable: {
-                title: "Sustainable",
-                desc: "We practice sustainable farming methods that protect the environment for future generations."
-            },
-            text1: "At JDR, we're dedicated to promoting health through sustainable farming practices. Our mission is to provide healthy food products and farming services while emphasizing eco-friendly initiatives and empowerment. We believe in the power of real food - food that's grown with care, harvested with respect, and delivered with pride.",
-            text2: "Every product you purchase from us supports sustainable agriculture and helps us continue our mission of providing healthy, organic food to our community. Together, we're building a healthier future through sustainable farming practices. Thank you for choosing JDR!"
-        },
-        contact: {
-            title: "Contact Us & Place Your Order",
-            getInTouch: "Get In Touch",
-            subscribe: {
-                title: "Subscribe for Healthy Updates",
-                placeholder: "Enter your email address",
-                button: "Subscribe"
-            },
-            orderInfo: "Order Information",
-            form: {
-                name: "Full Name",
-                namePlaceholder: "Enter your full name",
-                email: "Email Address",
-                emailPlaceholder: "Enter your email address",
-                phone: "Phone Number",
-                phonePlaceholder: "Enter your phone number",
-                address: "Delivery Address",
-                addressPlaceholder: "Enter your delivery address",
-                message: "Special Instructions (Optional)",
-                messagePlaceholder: "Any special instructions",
-                submit: "Place Order"
-            }
-        },
-        cart: {
-            title: "Your Cart",
-            total: "Total: ₹",
-            empty: "Your cart is empty",
-            checkout: "Proceed to Checkout"
-        },
-        payment: {
-            title: "Complete Your Payment",
-            amount: "Total Amount",
-            instructions: "Scan the QR code below using Google Pay, PhonePe, or any UPI app to complete your payment.",
-            success: "I Have Completed the Payment",
-            cancel: "Cancel",
-            processing: "Processing your order...",
-            successMsg: "Payment confirmed! Your order has been placed successfully.",
-            errorMsg: "Failed to send order. Please contact us directly."
-        }
-    }
-};
+// Shopping Cart
 
 // Shopping Cart
 let cart = [];
@@ -205,6 +91,10 @@ function updateCart() {
     
     if (cart.length === 0) {
         cartItems.innerHTML = `<div class="empty-cart">Your cart is empty</div>`;
+        const checkoutButton = document.getElementById('checkoutButton');
+        const checkoutNote = document.getElementById('checkoutNote');
+        if (checkoutButton) checkoutButton.style.display = 'none';
+        if (checkoutNote) checkoutNote.style.display = 'none';
         return;
     }
     
@@ -224,6 +114,21 @@ function updateCart() {
         cartItems.appendChild(cartItem);
     });
     
+    // Show/hide checkout button based on cart items
+    const checkoutButton = document.getElementById('checkoutButton');
+    const checkoutNote = document.getElementById('checkoutNote');
+    
+    if (checkoutButton) {
+        if (cart.length > 0) {
+            checkoutButton.style.display = 'block';
+            if (checkoutNote) checkoutNote.style.display = 'block';
+            // Check if form fields are filled to enable checkout
+            checkFormCompletion();
+        } else {
+            checkoutButton.style.display = 'none';
+            if (checkoutNote) checkoutNote.style.display = 'none';
+        }
+    }
     
     // Add remove functionality
     document.querySelectorAll('.remove-item').forEach(button => {
@@ -235,206 +140,129 @@ function updateCart() {
     });
 }
 
-
-// Order form handling
-async function sendOrderEmail(orderData) {
-    const emailData = {
-        to_email: 'info@jdrfarm.com',
-        subject: `New Order from ${orderData.name}`,
-        customer_name: orderData.name,
-        customer_email: orderData.email,
-        customer_phone: orderData.phone,
-        delivery_address: orderData.address,
-        special_instructions: orderData.message || 'None',
-        order_details: orderData.orderDetails,
-        total_amount: `₹${orderData.totalAmount.toFixed(2)}`,
-        order_date: new Date().toLocaleString('en-IN', { 
-            timeZone: 'Asia/Kolkata',
-            dateStyle: 'full',
-            timeStyle: 'medium'
-        })
-    };
-
-    // Try EmailJS first (if configured)
-    if (typeof emailjs !== 'undefined' && window.EMAILJS_SERVICE_ID && window.EMAILJS_TEMPLATE_ID) {
-        try {
-            await emailjs.send(
-                window.EMAILJS_SERVICE_ID,
-                window.EMAILJS_TEMPLATE_ID,
-                {
-                    to_email: emailData.to_email,
-                    subject: emailData.subject,
-                    customer_name: emailData.customer_name,
-                    customer_email: emailData.customer_email,
-                    customer_phone: emailData.customer_phone,
-                    delivery_address: emailData.delivery_address,
-                    special_instructions: emailData.special_instructions,
-                    order_details: emailData.order_details,
-                    total_amount: emailData.total_amount,
-                    order_date: emailData.order_date
-                }
-            );
-            console.log('Email sent successfully via EmailJS');
-            return true;
-        } catch (error) {
-            console.error('EmailJS error:', error);
-            // Fallback to Formspree or mailto
-        }
+// Function to check if all required form fields are filled
+function checkFormCompletion() {
+    const checkoutButton = document.getElementById('checkoutButton');
+    if (!checkoutButton) return;
+    
+    // Get form field values
+    const name = document.getElementById('name')?.value.trim() || '';
+    const email = document.getElementById('email')?.value.trim() || '';
+    const phone = document.getElementById('phone')?.value.trim() || '';
+    const address = document.getElementById('address')?.value.trim() || '';
+    
+    // Check if all required fields are filled
+    const allFieldsFilled = name && email && phone && address;
+    
+    // Enable/disable checkout button
+    if (allFieldsFilled && cart.length > 0) {
+        checkoutButton.disabled = false;
+        checkoutButton.style.opacity = '1';
+        checkoutButton.style.cursor = 'pointer';
+        checkoutButton.title = '';
+    } else {
+        checkoutButton.disabled = true;
+        checkoutButton.style.opacity = '0.5';
+        checkoutButton.style.cursor = 'not-allowed';
+        const missingFields = [];
+        if (!name) missingFields.push('Full Name');
+        if (!email) missingFields.push('Email');
+        if (!phone) missingFields.push('Phone');
+        if (!address) missingFields.push('Delivery Address');
+        checkoutButton.title = `Please fill: ${missingFields.join(', ')}`;
     }
-
-    // Try Formspree (free email service)
-    try {
-        const formspreeResponse = await fetch('https://formspree.io/f/YOUR_FORM_ID', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                _to: emailData.to_email,
-                _subject: emailData.subject,
-                _format: 'plain',
-                name: emailData.customer_name,
-                email: emailData.customer_email,
-                phone: emailData.customer_phone,
-                address: emailData.delivery_address,
-                instructions: emailData.special_instructions,
-                order: emailData.order_details,
-                total: emailData.total_amount,
-                date: emailData.order_date
-            })
-        });
-
-        if (formspreeResponse.ok) {
-            console.log('Email sent successfully via Formspree');
-            return true;
-        }
-    } catch (error) {
-        console.error('Formspree error:', error);
-    }
-
-    // Fallback: Use mailto link (opens email client)
-    const subject = encodeURIComponent(emailData.subject);
-    const body = encodeURIComponent(`New Order Received
-
-Customer Details:
-Name: ${emailData.customer_name}
-Email: ${emailData.customer_email}
-Phone: ${emailData.customer_phone}
-Delivery Address: ${emailData.delivery_address}
-Special Instructions: ${emailData.special_instructions}
-
-Order Details:
-${emailData.order_details}
-
-Total Amount: ${emailData.total_amount}
-Order Date: ${emailData.order_date}
-
-Please process this order and arrange delivery.`);
-
-    // Open mailto link
-    window.location.href = `mailto:${emailData.to_email}?subject=${subject}&body=${body}`;
-    return true;
 }
 
-// Initialize contact form handler (with DOMContentLoaded fallback)
-let contactFormInitialized = false;
-
-function initializeContactForm() {
-    // Prevent duplicate initialization
-    if (contactFormInitialized) return;
-    
-    const contactForm = document.getElementById('contactForm');
-    
-    if (contactForm) {
-        contactFormInitialized = true;
-        contactForm.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        
-        if (cart.length === 0) {
-            alert('Please add items to your cart before placing an order.');
-            return;
-        }
-        
-        // Get form values
-        const name = document.getElementById('name').value;
-        const email = document.getElementById('email').value;
-        const phone = document.getElementById('phone').value;
-        const address = document.getElementById('address').value;
-        const message = document.getElementById('message').value;
-        
-        // Simple validation
-        if (name && email && phone && address) {
-            // Calculate total amount
-            const totalAmount = cart.reduce((sum, item) => sum + (parseFloat(item.price) || 0), 0);
-            
-            // Prepare order details
-            const orderDetails = cart.map(item => {
-                const quantityDisplay = item.quantity ? ` (${item.quantity})` : '';
-                return `${item.product}${quantityDisplay} - ₹${item.price.toFixed(2)}`;
-            }).join('\n');
-            
-            // Prepare order data
-            const orderData = {
-                name,
-                email,
-                phone,
-                address,
-                message: message || 'None',
-                orderDetails,
-                totalAmount,
-                orderDate: new Date().toLocaleString('en-IN', { 
-                    timeZone: 'Asia/Kolkata',
-                    dateStyle: 'full',
-                    timeStyle: 'medium'
-                })
-            };
-            
-            // Show processing message
-            const submitButton = e.target.querySelector('button[type="submit"]');
-            const originalText = submitButton.textContent;
-            submitButton.textContent = 'Processing Order...';
-            submitButton.disabled = true;
-            
-            // Send email to info@jdrfarm.com
-            try {
-                await sendOrderEmail(orderData);
-                
-                // Show success message with customer's contact info
-                const successMsg = `Thank you, ${name}!\n\nYour order has been received:\n\n${orderDetails}\n\nTotal: ₹${totalAmount.toFixed(2)}\n\nWe'll contact you at ${email} or ${phone} to confirm your order and delivery details.`;
-                alert(successMsg);
-            
-                // Reset form and cart
-                contactForm.reset();
-                cart = [];
-                updateCart();
-                
-                // Scroll to top
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            } catch (error) {
-                console.error('Error sending email:', error);
-                alert(`Order received! We will contact you shortly at ${email} or ${phone}.`);
-                
-                // Still reset form
-                contactForm.reset();
-                cart = [];
-                updateCart();
-            } finally {
-                submitButton.textContent = originalText;
-                submitButton.disabled = false;
+// Checkout button functionality
+document.addEventListener('DOMContentLoaded', () => {
+    const checkoutButton = document.getElementById('checkoutButton');
+    if (checkoutButton) {
+        checkoutButton.addEventListener('click', () => {
+            // Only proceed if button is enabled
+            if (checkoutButton.disabled) {
+                // Scroll to form to show what's missing
+                const contactSection = document.getElementById('contact');
+                if (contactSection) {
+                    contactSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+                return;
             }
-        } else {
-            // Show validation error
-            alert('Please fill in all required fields.');
+            
+            // Scroll to contact form
+            const contactSection = document.getElementById('contact');
+            if (contactSection) {
+                contactSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                // Focus on first empty field after a short delay
+                setTimeout(() => {
+                    const name = document.getElementById('name');
+                    const email = document.getElementById('email');
+                    const phone = document.getElementById('phone');
+                    const address = document.getElementById('address');
+                    
+                    if (!name.value.trim()) name.focus();
+                    else if (!email.value.trim()) email.focus();
+                    else if (!phone.value.trim()) phone.focus();
+                    else if (!address.value.trim()) address.focus();
+                }, 500);
+            }
+        });
+    }
+    
+    // Add event listeners to form fields for real-time validation
+    const formFields = ['name', 'email', 'phone', 'address'];
+    formFields.forEach(fieldId => {
+        const field = document.getElementById(fieldId);
+        if (field) {
+            field.addEventListener('input', checkFormCompletion);
+            field.addEventListener('blur', checkFormCompletion);
         }
     });
+    
+    // Initial check
+    checkFormCompletion();
+});
+
+// Order form handling
+const contactForm = document.getElementById('contactForm');
+
+contactForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    
+    if (cart.length === 0) {
+        alert('Please add items to your cart before placing an order.');
+        return;
     }
-}
-
-// Try to initialize immediately (if DOM is ready)
-initializeContactForm();
-
-// Also initialize on DOMContentLoaded (fallback)
-document.addEventListener('DOMContentLoaded', initializeContactForm);
+    
+    // Get form values
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const phone = document.getElementById('phone').value;
+    const address = document.getElementById('address').value;
+    const message = document.getElementById('message').value;
+    
+    // Simple validation
+    if (name && email && phone && address) {
+        // Calculate total amount
+        const totalAmount = cart.reduce((sum, item) => sum + (parseFloat(item.price) || 0), 0);
+        
+        const orderDetails = cart.map(item => {
+            const quantityDisplay = item.quantity ? ` (${item.quantity})` : '';
+            return `${item.product}${quantityDisplay} - ₹${item.price.toFixed(2)}`;
+        }).join('\n');
+        
+        // Here you would typically send the data to a server
+        const thankYouMsg = `Thank you, ${name}!\n\nYour order has been received:\n\n${orderDetails}\n\nTotal: ₹${totalAmount.toFixed(2)}\n\nWe'll contact you at ${email} or ${phone} to confirm your order and delivery details.`;
+        alert(thankYouMsg);
+        
+        // Reset form and cart
+        contactForm.reset();
+        cart = [];
+        updateCart();
+        
+        // Scroll to top
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+});
 
 // CTA button click handler
 const ctaButton = document.querySelector('.cta-button');
