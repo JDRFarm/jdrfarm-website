@@ -1516,3 +1516,140 @@ html {
     }
 }
 
+/* MSME Certification Section Styles */
+.msme-certification-section {
+    margin-top: 3rem;
+    padding: 2rem;
+    background: linear-gradient(135deg, rgba(107, 114, 128, 0.05) 0%, rgba(156, 163, 175, 0.1) 100%);
+    border-radius: 16px;
+    text-align: center;
+    border: 2px solid rgba(107, 114, 128, 0.15);
+}
+
+.msme-title {
+    font-size: 1.5rem;
+    color: var(--text-dark);
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+}
+
+.msme-badge-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+}
+
+.msme-badge {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: var(--bg-white);
+    padding: 1.25rem 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    border: 2px solid var(--primary-color);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.msme-badge:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(107, 114, 128, 0.15);
+}
+
+.msme-icon {
+    font-size: 2.5rem;
+    line-height: 1;
+}
+
+.msme-details {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+}
+
+.msme-label {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    letter-spacing: 0.5px;
+}
+
+.msme-status {
+    font-size: 0.9rem;
+    color: #059669;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.msme-description {
+    max-width: 700px;
+    margin: 0 auto;
+    color: var(--text-light);
+    line-height: 1.8;
+    font-size: 0.95rem;
+}
+
+/* Footer MSME Badge */
+.footer-msme-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.footer-msme-icon {
+    font-size: 1.25rem;
+}
+
+.footer-msme-text {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.9);
+    letter-spacing: 0.5px;
+}
+
+/* Responsive MSME Styles */
+@media (max-width: 768px) {
+    .msme-certification-section {
+        padding: 1.5rem;
+        margin-top: 2rem;
+    }
+
+    .msme-title {
+        font-size: 1.25rem;
+    }
+
+    .msme-badge {
+        padding: 1rem 1.5rem;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .msme-details {
+        align-items: center;
+    }
+
+    .msme-icon {
+        font-size: 2rem;
+    }
+
+    .msme-label {
+        font-size: 1rem;
+    }
+
+    .footer-msme-badge {
+        padding: 0.4rem 0.75rem;
+    }
+
+    .footer-msme-text {
+        font-size: 0.75rem;
+    }
+}
+
