@@ -1,0 +1,86 @@
+REQUEST TO DOWNGRADE TEAM TO FREE PLAN
+========================================
+
+FORM FIELDS TO FILL:
+
+1. What kind of help do you need?
+   → Select: "Billing Issue"
+
+2. Your name:
+   → Enter: JDRFarm
+
+3. The email associated with your Netlify account:
+   → Enter: drmsjana@yahoo.in
+   (Already filled in)
+
+4. What's the name of the site you need help with?
+   → Enter: jdrfarm-website
+
+5. Subject:
+   → Enter: Request to downgrade team to Free Plan and remove payment requirement
+
+6. How can we help you? (Description):
+   → Copy and paste the message below:
+
+========================================
+COPY THIS MESSAGE:
+========================================
+
+Hello Netlify Support,
+
+I am requesting to downgrade my team "JDRFarm" to the Free Plan.
+
+Team Details:
+- Team Name: JDRFarm
+- Email: drmsjana@yahoo.in
+- Current Plan: Restricted Team plan
+
+Issue:
+My team has been suspended due to an overdue invoice ($8.42). I would like to switch to the Free Plan as my website is a static site and doesn't require paid features.
+
+Request:
+1. Please downgrade the "JDRFarm" team to the Free Plan
+2. Remove the payment requirement
+3. Reactivate the team and restore my sites
+4. If possible, waive the overdue invoice ($8.42) as part of the downgrade
+
+My website is a static HTML/CSS/JavaScript site (jdrfarm.com) which is perfect for the Free Plan. The Free Plan's 100 GB bandwidth and 300 build minutes per month are more than sufficient for my needs.
+
+I understand the Free Plan includes:
+- 100 GB bandwidth/month
+- 300 build minutes/month
+- Unlimited sites
+- Free SSL certificates
+- Custom domains
+- Form submissions (100/month)
+
+Please process this downgrade request and reactivate my team. All my sites should come back online automatically after the downgrade.
+
+Thank you for your assistance!
+
+Best regards,
+JDRFarm Team
+
+========================================
+END OF MESSAGE
+========================================
+
+SHORTER VERSION (If character limit):
+========================================
+
+Hello,
+
+I would like to downgrade my team "JDRFarm" to the Free Plan.
+
+Team: JDRFarm
+Email: drmsjana@yahoo.in
+Current Status: Suspended due to overdue invoice ($8.42)
+
+My website is a static site (jdrfarm.com) which is perfect for the Free Plan. Please:
+1. Downgrade team to Free Plan
+2. Remove payment requirement
+3. Reactivate team and restore sites
+4. If possible, waive the overdue invoice
+
+Thank you!
+
