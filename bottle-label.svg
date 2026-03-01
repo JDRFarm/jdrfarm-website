@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 420" width="280" height="420">
+  <defs>
+    <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#d4af37"/>
+      <stop offset="100%" style="stop-color:#b8860b"/>
+    </linearGradient>
+  </defs>
+
+  <!-- White top section -->
+  <rect width="280" height="250" fill="#ffffff"/>
+  <!-- Dark teal bottom section -->
+  <rect y="250" width="280" height="170" fill="#1a4d45"/>
+
+  <!-- Logo: circular, dark blue with gold border -->
+  <circle cx="140" cy="52" r="30" fill="none" stroke="url(#gold)" stroke-width="2"/>
+  <circle cx="140" cy="52" r="27" fill="#1e3a5f"/>
+  <text x="140" y="50" text-anchor="middle" font-family="Georgia, serif" font-weight="bold" font-size="18" fill="url(#gold)">JDR</text>
+  <text x="140" y="64" text-anchor="middle" font-family="Arial, sans-serif" font-size="6" font-weight="bold" fill="url(#gold)">FARMS</text>
+  <text x="140" y="74" text-anchor="middle" font-family="Arial, sans-serif" font-size="5" fill="url(#gold)">QUALITY &amp; TRUST</text>
+
+  <!-- 100% ORGANIC badge -->
+  <rect x="198" y="12" width="74" height="34" rx="5" fill="#2d6a4f"/>
+  <path d="M232 18 L236 14 L240 18 L237 24 L227 24 Z" fill="#ffffff"/>
+  <text x="235" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#ffffff">100%</text>
+  <text x="235" y="42" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#ffffff">ORGANIC</text>
+
+  <!-- Brand name -->
+  <text x="140" y="108" text-anchor="middle" font-family="Georgia, serif" font-size="18" fill="#1a4d45">JDR FARM PRODUCT'S</text>
+
+  <!-- Decorative coconuts right side (simple shapes) -->
+  <ellipse cx="238" cy="115" rx="7" ry="5" fill="#8b6914"/>
+  <ellipse cx="252" cy="118" rx="6" ry="5" fill="#8b6914"/>
+  <path d="M232 95 L236 78 L240 95 L238 98 L234 82 L230 98 Z" fill="#2d6a4f"/>
+  <path d="M248 98 L252 82 L256 98 L254 100 L250 85 L246 100 Z" fill="#2d6a4f"/>
+
+  <!-- Decorative coconuts left side -->
+  <ellipse cx="55" cy="152" rx="11" ry="8" fill="#8b6914"/>
+  <ellipse cx="48" cy="162" rx="9" ry="6" fill="#8b6914"/>
+  <ellipse cx="62" cy="165" rx="8" ry="6" fill="#8b6914"/>
+  <path d="M42 172 L52 168 L62 172 L58 178 L46 178 Z" fill="#2d6a4f"/>
+
+  <!-- Ingredient box: two dark lines, content between -->
+  <line x1="20" y1="182" x2="260" y2="182" stroke="#1a4d45" stroke-width="1"/>
+  <text x="20" y="198" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#1a4d45">Full Ingredient List:</text>
+  <text x="20" y="212" font-family="Arial, sans-serif" font-size="11" fill="#2a2a2a">100% Pure coconut oil.</text>
+  <text x="20" y="226" font-family="Arial, sans-serif" font-size="11" fill="#2a2a2a">Chemical Free oil</text>
+  <text x="20" y="240" font-family="Arial, sans-serif" font-size="11" fill="#2a2a2a">Suitable for cooking, Skin &amp; Hair care.</text>
+  <line x1="20" y1="248" x2="260" y2="248" stroke="#1a4d45" stroke-width="1"/>
+
+  <!-- Bottom section: white text on teal -->
+  <text x="140" y="268" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#ffffff">FSSAI Certified | FSSAI No.: 22426048000012</text>
+  <text x="20" y="286" font-family="Arial, sans-serif" font-size="9" fill="#ffffff">Best Before: 6 months from Mfg.</text>
+  <text x="20" y="300" font-family="Arial, sans-serif" font-size="9" fill="#ffffff">Date: _______________</text>
+  <text x="20" y="318" font-family="Arial, sans-serif" font-size="9" fill="#ffffff">Manufactured &amp; Packed by:</text>
+  <text x="20" y="334" font-family="Arial, sans-serif" font-size="9" fill="#ffffff">JDR Farm, Ponnapuram, Palani.</text>
+  <text x="260" y="286" text-anchor="end" font-family="Arial, sans-serif" font-size="9" fill="#ffffff">Net Qty: ___________</text>
+  <text x="260" y="300" text-anchor="end" font-family="Arial, sans-serif" font-size="9" fill="#ffffff">Packed on: _________</text>
+  <text x="260" y="314" text-anchor="end" font-family="Arial, sans-serif" font-size="9" fill="#ffffff">MRP Rs: ____________</text>
+  <rect x="198" y="306" width="54" height="14" rx="2" fill="#ffffff"/>
+  <text x="260" y="332" text-anchor="end" font-family="Arial, sans-serif" font-size="9" fill="#ffffff">9150830025</text>
+  <text x="260" y="348" text-anchor="end" font-family="Arial, sans-serif" font-size="9" fill="#ffffff">info@jdrfarm.com</text>
+</svg>

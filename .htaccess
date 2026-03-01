@@ -1,0 +1,20 @@
+# JDR Farm - jdrfarm.com
+# Force HTTPS and canonical domain (use one canonical URL)
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+
+    # Force HTTPS
+    RewriteCond %{HTTPS} off
+    RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+    # Optional: force www to non-www (use https://jdrfarm.com as canonical)
+    RewriteCond %{HTTP_HOST} ^www\.jdrfarm\.com [NC]
+    RewriteRule ^ https://jdrfarm.com%{REQUEST_URI} [L,R=301]
+</IfModule>
+
+# Security headers (optional, helps with HTTPS)
+<IfModule mod_headers.c>
+    Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains" env=HTTPS
+</IfModule>

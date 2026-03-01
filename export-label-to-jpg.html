@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Export label to JPG</title>
+</head>
+<body>
+  <p>Same background and layout as reference; text updated only. Click to save <strong>bottle-label.jpg</strong>.</p>
+  <button id="btn">Save as JPG</button>
+  <br><br>
+  <img id="label" src="bottle-label.svg" alt="JDR Farm Label" width="280" height="420" crossorigin="anonymous" />
+  <script>
+    document.getElementById('btn').onclick = function() {
+      var img = document.getElementById('label');
+      var c = document.createElement('canvas');
+      c.width = 280;
+      c.height = 420;
+      var ctx = c.getContext('2d');
+      ctx.fillStyle = '#fff';
+      ctx.fillRect(0, 0, 280, 420);
+      ctx.drawImage(img, 0, 0);
+      var a = document.createElement('a');
+      a.download = 'bottle-label.jpg';
+      a.href = c.toDataURL('image/jpeg', 0.95);
+      a.click();
+    };
+  </script>
+</body>
+</html>

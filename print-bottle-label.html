@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JDR Farm – Bottle Label (Print)</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { padding: 20px; background: #eee; }
+    .label-wrap {
+      width: 280px;
+      height: 420px;
+      margin: 0 auto 20px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.2);
+    }
+    .label-wrap img { display: block; width: 100%; height: 100%; object-fit: contain; }
+    @media print {
+      body { background: #fff; padding: 0; }
+      .label-wrap { box-shadow: none; margin: 0; }
+      .no-print { display: none !important; }
+      /* Print at ~74mm x 111mm (typical bottle label) at 96dpi */
+      .label-wrap { width: 280px; height: 420px; }
+    }
+    .no-print { text-align: center; margin-bottom: 12px; color: #666; font-family: sans-serif; font-size: 14px; }
+  </style>
+</head>
+<body>
+  <p class="no-print">JDR Farm bottle label — Print this page (Ctrl+P) or save as PDF. For best results, print at 100% scale on label paper.</p>
+  <div class="label-wrap">
+    <img src="bottle-label.svg" alt="JDR Farm Product Label" />
+  </div>
+</body>
+</html>
