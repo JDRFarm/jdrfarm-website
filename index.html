@@ -115,11 +115,10 @@
                     </div>
                     <button class="add-to-cart" disabled style="opacity: 0.5; cursor: not-allowed;" data-translate="products.outOfStock">Out of Stock</button>
                 </div>
-                <div class="product-card out-of-stock">
+                <div class="product-card">
                     <div class="product-badge">Cold-Pressed</div>
-                    <div class="out-of-stock-badge">Out of Stock</div>
                     <div class="product-image">
-                        <img src="image/download (1).jpg" alt="Groundnut Oil" class="product-img">
+                        <img src="image/groundnut-oil.png" alt="Groundnut Oil" class="product-img">
                     </div>
                     <div class="product-benefits">
                         <span class="benefit-tag" data-translate="products.groundnut.benefit1">Heart Healthy</span>
@@ -128,14 +127,15 @@
                     <h3 data-translate="products.groundnut.name">Groundnut Oil</h3>
                     <p class="product-subtitle" data-translate="products.groundnut.subtitle">Cold-Pressed | Pure | Aromatic</p>
                     <p class="product-description" data-translate="products.groundnut.description">Cold-pressed groundnut oil with rich aroma and natural nutrients. Ideal for traditional Indian cooking.</p>
-                    <div class="quantity-selector" style="opacity: 0.5;">
+                    <div class="quantity-selector">
                         <label for="groundnut-quantity" data-translate="products.quantity">Quantity:</label>
-                        <select id="groundnut-quantity" class="product-quantity" data-product-type="oil" disabled>
-                            <option value="500ml">500ml</option>
-                            <option value="1lt">1lt</option>
+                        <select id="groundnut-quantity" class="product-quantity" data-product-type="oil" data-base-price="325">
+                            <option value="500ml" data-price="170">500ml - ₹170</option>
+                            <option value="1lt" data-price="325">1lt - ₹325</option>
+                            <option value="5lt" data-price="1600">5lt - ₹1600</option>
                         </select>
                     </div>
-                    <button class="add-to-cart" disabled style="opacity: 0.5; cursor: not-allowed;" data-translate="products.outOfStock">Out of Stock</button>
+                    <button class="add-to-cart" data-product="Groundnut Oil" data-product-type="oil" data-translate="products.addToCart">Add to Cart</button>
                 </div>
                 <div class="product-card out-of-stock">
                     <div class="out-of-stock-badge">Out of Stock</div>
