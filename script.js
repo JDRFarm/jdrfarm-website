@@ -56,10 +56,11 @@ document.querySelectorAll('.add-to-cart:not([disabled])').forEach(button => {
         const selectedOption = quantitySelector.options[quantitySelector.selectedIndex];
         const quantity = quantitySelector.value;
         
-        // Get price from selected option for oil products, or from data attribute
+        // Prefer per-option price (oils, powders with tiers); else button data-price
         let price;
-        if (productType === 'oil') {
-            price = parseFloat(selectedOption.getAttribute('data-price'));
+        const optionPrice = selectedOption.getAttribute('data-price');
+        if (optionPrice !== null && optionPrice !== '') {
+            price = parseFloat(optionPrice);
         } else {
             price = parseFloat(e.target.getAttribute('data-price')) || 0;
         }
