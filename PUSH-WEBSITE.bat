@@ -1,15 +1,23 @@
 @echo off
 cd /d "%~dp0"
-echo Pushing jdrfarm-website to GitHub (Netlify will deploy to your domain)...
+echo ========================================
+echo Deploy to jdrfarm.com
+echo ========================================
+echo This pushes to GitHub. Netlify then builds
+echo and publishes to your custom domain.
+echo ========================================
 echo.
 git add -A
 git status
 echo.
-git commit -m "Website updates: products, prices, Pana-kizhangu Powder"
+git commit -m "Deploy website to jdrfarm.com"
 if errorlevel 1 (
   echo Nothing to commit, or commit failed. Trying push anyway...
 )
-git push
+git push origin main
+if errorlevel 1 (
+  git push
+)
 if errorlevel 1 (
   echo.
   echo FAILED: Install Git from https://git-scm.com/download/win or use GitHub Desktop.
@@ -17,5 +25,6 @@ if errorlevel 1 (
   exit /b 1
 )
 echo.
-echo Done. Open Netlify to confirm deploy in 1-2 minutes, then check https://jdrfarm.com
+echo Done. In 1-2 minutes check: https://jdrfarm.com
+echo Netlify: https://app.netlify.com
 pause

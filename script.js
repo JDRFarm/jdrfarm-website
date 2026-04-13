@@ -249,14 +249,16 @@ Special Instructions: ${orderData.message || 'None'}
 Order Date: ${orderDate}`;
 
     const encodedMessage = encodeURIComponent(whatsappText);
-    const whatsappUrl = `https://wa.me/919150830025?text=${encodedMessage}`;
-    window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+    // api.whatsapp.com works on phone (app), tablet, and desktop (WhatsApp Web / desktop app)
+    const whatsappUrl = `https://api.whatsapp.com/send?phone=919150830025&text=${encodedMessage}`;
+    // Same-tab navigation opens reliably (popup blockers often block window.open after async work)
+    window.location.assign(whatsappUrl);
 }
 
 // Order form handling
 const contactForm = document.getElementById('contactForm');
 
-contactForm.addEventListener('submit', async (e) => {
+contactForm.addEventListener('submit', (e) => {
     e.preventDefault();
     
     if (cart.length === 0) {
@@ -292,30 +294,11 @@ contactForm.addEventListener('submit', async (e) => {
             totalAmount
         };
         
-        // Show processing message
         const submitButton = e.target.querySelector('button[type="submit"]');
-        const originalText = submitButton.textContent;
-        submitButton.textContent = 'Processing Order...';
+        submitButton.textContent = 'Opening WhatsApp...';
         submitButton.disabled = true;
-        
-        // Open WhatsApp order message
-        try {
-            sendWhatsAppOrder(orderData);
 
-            const thankYouMsg = `Thank you, ${name}!\n\nYour order message is ready on WhatsApp with your selected products, total amount, and delivery address.\n\nPlease tap send in WhatsApp to complete your order.`;
-            alert(thankYouMsg);
-
-            contactForm.reset();
-            cart = [];
-            updateCart();
-        } catch (error) {
-            console.error('Error opening WhatsApp:', error);
-            alert('Could not open WhatsApp automatically. Please try again.');
-        } finally {
-            // Restore button
-            submitButton.textContent = originalText;
-            submitButton.disabled = false;
-        }
+        sendWhatsAppOrder(orderData);
     }
 });
 
