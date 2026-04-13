@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JDR Farm – Panankilangu Sprouts Powder (Back Label)</title>
+  <script>
+    (function () {
+      try {
+        if (/[?&]screenshot=1(?:&|$)/.test(location.search)) {
+          document.documentElement.classList.add('screenshot-mode');
+        }
+      } catch (e) {}
+    })();
+  </script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      padding: 20px;
+      background: #e8e8e8;
+      font-family: "Segoe UI", "Noto Sans Tamil", Latha, "Arial Unicode MS", Tahoma, sans-serif;
+      font-size: 11px;
+      line-height: 1.35;
+      color: #111;
+    }
+    .export-bar { margin-bottom: 12px; text-align: center; }
+    .export-bar button {
+      font: inherit;
+      font-size: 14px;
+      padding: 8px 14px;
+      cursor: pointer;
+      background: #1e3a5f;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      margin: 0 4px;
+    }
+    .export-bar button:disabled { opacity: 0.6; cursor: wait; }
+    .export-msg { font-size: 12px; color: #555; margin-top: 8px; }
+    .no-print-hint {
+      text-align: center;
+      color: #666;
+      margin-bottom: 12px;
+      font-size: 13px;
+    }
+
+    .label-sheet {
+      max-width: 820px;
+      margin: 0 auto;
+      background: #fff;
+      border: 2px solid #1e3a5f;
+      border-radius: 6px;
+      padding: 16px 18px 18px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+      position: relative;
+      overflow: hidden;
+    }
+    .label-inner { position: relative; z-index: 1; }
+
+    .brand-head {
+      text-align: center;
+      margin-bottom: 12px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid rgba(30, 58, 95, 0.25);
+    }
+    .brand-head .brand-logo {
+      display: block;
+      margin: 0 auto 10px;
+      width: 104px;
+      height: auto;
+      max-width: 100%;
+      object-fit: contain;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+    }
+    .brand-head .name {
+      font-size: 20px;
+      font-weight: 800;
+      color: #1e3a5f;
+      letter-spacing: 0.04em;
+      text-shadow: 0 1px 0 rgba(255,255,255,0.8);
+    }
+    .brand-head .product {
+      font-size: 13px;
+      font-weight: 700;
+      color: #152238;
+      margin-top: 4px;
+    }
+    .brand-head .sub {
+      font-size: 11px;
+      color: #2a2a2a;
+      margin-top: 2px;
+    }
+
+    .cols {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px 20px;
+      align-items: start;
+    }
+    @media (max-width: 720px) {
+      .cols { grid-template-columns: 1fr; }
+    }
+
+    .pill {
+      display: inline-block;
+      background: linear-gradient(180deg, #254a73 0%, #1e3a5f 100%);
+      color: #fff;
+      font-weight: 700;
+      font-size: 10px;
+      letter-spacing: 0.06em;
+      padding: 5px 12px;
+      border-radius: 999px;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      border: 1px solid rgba(212, 175, 55, 0.45);
+      box-shadow: 0 1px 2px rgba(0,0,0,0.12);
+    }
+    .block { margin-bottom: 12px; }
+    .block p, .block li { font-size: 11px; }
+    ul.dash {
+      list-style: none;
+      padding-left: 0;
+    }
+    ul.dash li {
+      padding-left: 1em;
+      text-indent: -0.6em;
+      margin-bottom: 3px;
+    }
+    ul.dash li::before {
+      content: "• ";
+      font-weight: bold;
+      color: #1e3a5f;
+    }
+
+    .boxed {
+      border: 1px solid rgba(30, 58, 95, 0.45);
+      border-radius: 8px;
+      padding: 10px 12px;
+      background: rgba(255, 255, 255, 0.94);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    }
+    .boxed h3 {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 6px;
+      color: #1e3a5f;
+    }
+    .boxed .co {
+      font-weight: 700;
+      font-size: 12px;
+      color: #1e3a5f;
+      margin-bottom: 4px;
+    }
+
+    .purity ul {
+      list-style: disc;
+      padding-left: 1.2em;
+      font-size: 10px;
+      margin-top: 4px;
+    }
+    .purity li { margin-bottom: 2px; }
+
+    /* Official-style FSSAI wordmark (image may include sample LIC; bottom is clipped) + your licence line */
+    .fssai-block {
+      text-align: center;
+      margin: 10px 0 12px;
+    }
+    .fssai-wordmark {
+      display: inline-block;
+      max-width: 100%;
+      line-height: 0;
+    }
+    .fssai-wordmark img {
+      display: block;
+      margin: 0 auto 4px;
+      max-width: 240px;
+      width: 100%;
+      height: auto;
+      /* Hide baked-in licence line in reference asset; we print your number below */
+      clip-path: inset(0 0 23% 0);
+    }
+    .fssai-lic {
+      font-family: Arial, Helvetica, sans-serif;
+      font-weight: 700;
+      font-size: 11px;
+      color: #111;
+      letter-spacing: 0.03em;
+      margin: 0;
+    }
+
+    .mission {
+      background: linear-gradient(180deg, #254a73 0%, #1e3a5f 100%);
+      color: #fff;
+      padding: 10px 12px;
+      border-radius: 4px;
+      font-size: 10px;
+      line-height: 1.45;
+      text-align: center;
+      border: 1px solid rgba(212, 175, 55, 0.35);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    }
+    .mission strong { font-size: 11px; display: block; margin-bottom: 0; }
+
+    .best-pill {
+      display: block;
+      text-align: center;
+      margin: 8px 0;
+    }
+    .best-pill span {
+      display: inline-block;
+      background: linear-gradient(180deg, #254a73 0%, #1e3a5f 100%);
+      color: #fff;
+      font-weight: 700;
+      font-size: 9px;
+      letter-spacing: 0.04em;
+      padding: 6px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(212, 175, 55, 0.35);
+    }
+
+    .fields p {
+      font-size: 11px;
+      margin-bottom: 4px;
+      border-bottom: 1px dotted #999;
+      min-height: 1.4em;
+    }
+    .contact-feedback { text-align: center; }
+    @media print {
+      body { background: #fff; padding: 0; }
+      .no-print, .export-bar, .no-print-hint { display: none !important; }
+      .label-sheet { box-shadow: none; max-width: none; }
+    }
+    html.screenshot-mode body { padding: 0; background: #fff; }
+    html.screenshot-mode .no-print,
+    html.screenshot-mode .export-bar,
+    html.screenshot-mode .no-print-hint { display: none !important; }
+    html.screenshot-mode .label-sheet { box-shadow: none; margin: 0; border-radius: 0; }
+  </style>
+</head>
+<body>
+  <div class="no-print export-bar">
+    <button type="button" id="btn-png">Download PNG</button>
+    <button type="button" id="btn-jpg">Download JPG</button>
+    <p class="export-msg" id="export-status"></p>
+  </div>
+  <p class="no-print-hint">Panankilangu sprouts powder — back label. Print or save as PNG/JPG/PDF.</p>
+
+  <div class="label-sheet" id="jdr-panankilangu-back-label">
+    <div class="label-inner">
+      <header class="brand-head">
+        <img class="brand-logo" src="assets/jdr-jpr-logo.png" width="104" alt="JDR Farm" />
+        <div class="name">JDR FARM PRODUCT'S</div>
+        <div class="product">Panankilangu (Palmyra Sprout) Sprouts Powder</div>
+        <div class="sub">பனங்கிழங்கு பொடி</div>
+      </header>
+
+      <div class="cols">
+        <div class="col-left">
+          <div class="block">
+            <span class="pill">Ingredients</span>
+            <p><strong>100% Boiled &amp; Ground Panankilangu Sprouts</strong></p>
+            <p>(100% பனங்கிழங்கு பொடி)</p>
+          </div>
+
+          <div class="block">
+            <span class="pill">Storage instructions</span>
+            <ul class="dash">
+              <li>Store in a cool, dry place</li>
+              <li>Keep the packet tightly closed after use</li>
+              <li>Use a dry spoon</li>
+            </ul>
+          </div>
+
+          <div class="block">
+            <span class="pill">Note</span>
+            <ul class="dash">
+              <li>Colour variations are natural in herbal products</li>
+              <li>No added preservatives, flavours, or colours</li>
+            </ul>
+          </div>
+
+          <div class="block">
+            <span class="pill">Warning</span>
+            <ul class="dash">
+              <li>Pregnant or nursing women should consult a doctor before use</li>
+            </ul>
+          </div>
+
+          <div class="boxed">
+            <h3>Manufactured &amp; packed by</h3>
+            <p class="co">JDR Farm</p>
+            <p>Palani, Tamil Nadu, India</p>
+            <p style="margin-top:8px;">Phone: +91 9150830025</p>
+            <p>Email: info@jdrfarm.com</p>
+            <p>Web: jdrfarm.com</p>
+          </div>
+        </div>
+
+        <div class="col-right">
+          <div class="block purity">
+            <span class="pill">Product purity</span>
+            <ul>
+              <li>No added preservatives</li>
+              <li>No added flavours</li>
+              <li>No added chemicals</li>
+              <li>No added colours</li>
+            </ul>
+          </div>
+
+          <div class="fssai-block">
+            <div class="fssai-wordmark">
+              <img src="assets/fssai-logo.png" width="240" alt="FSSAI — Food Safety and Standards Authority of India" />
+            </div>
+            <p class="fssai-lic">LIC NO. 22426048000012</p>
+          </div>
+
+          <div class="mission">
+            <strong>100% Natural | Traditional | No Artificial Additives</strong>
+          </div>
+
+          <div class="best-pill"><span>BEST BEFORE: 12 MONTHS FROM MANUFACTURE</span></div>
+
+          <div class="block">
+            <span class="pill">Other details</span>
+            <div class="fields">
+              <p>Net Weight: </p>
+              <p>Batch No: </p>
+              <p>Mfg Date: </p>
+              <p>MRP: </p>
+            </div>
+          </div>
+
+          <div class="boxed contact-feedback" style="margin-top:8px;font-size:10px;line-height:1.45;">
+            For product inquiries or feedback, contact on <strong>WhatsApp / call</strong>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/html-to-image@1.11.11/dist/html-to-image.min.js"></script>
+  <script>
+    (function () {
+      var el = document.getElementById('jdr-panankilangu-back-label');
+      var statusEl = document.getElementById('export-status');
+      function setStatus(t) { if (statusEl) statusEl.textContent = t || ''; }
+      function download(dataUrl, name) {
+        var a = document.createElement('a');
+        a.download = name;
+        a.href = dataUrl;
+        a.click();
+      }
+      function run(kind) {
+        if (!el || typeof htmlToImage === 'undefined') {
+          setStatus('Could not load html-to-image. Check your network and reload.');
+          return;
+        }
+        var btnPng = document.getElementById('btn-png');
+        var btnJpg = document.getElementById('btn-jpg');
+        [btnPng, btnJpg].forEach(function (b) { if (b) b.disabled = true; });
+        setStatus('Rendering…');
+        document.fonts.ready.then(function () {
+          var base = { pixelRatio: 2, cacheBust: true, style: { margin: '0' } };
+          if (kind === 'jpg') {
+            return htmlToImage.toJpeg(el, Object.assign({ quality: 0.92, backgroundColor: '#ffffff' }, base));
+          }
+          return htmlToImage.toPng(el, base);
+        }).then(function (dataUrl) {
+          download(dataUrl, kind === 'jpg' ? 'jdr-panankilangu-sprouts-back-label.jpg' : 'jdr-panankilangu-sprouts-back-label.png');
+          setStatus('Saved.');
+        }).catch(function (err) {
+          setStatus('Export failed: ' + (err && err.message ? err.message : String(err)));
+        }).finally(function () {
+          [btnPng, btnJpg].forEach(function (b) { if (b) b.disabled = false; });
+        });
+      }
+      var bp = document.getElementById('btn-png');
+      var bj = document.getElementById('btn-jpg');
+      if (bp) bp.addEventListener('click', function () { run('png'); });
+      if (bj) bj.addEventListener('click', function () { run('jpg'); });
+    })();
+  </script>
+</body>
+</html>

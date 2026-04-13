@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JDR Farm – Panankilangu Sprouts Powder (Back Label)</title>
+  <script>
+    (function () {
+      try {
+        if (/[?&]screenshot=1(?:&|$)/.test(location.search)) {
+          document.documentElement.classList.add('screenshot-mode');
+        }
+      } catch (e) {}
+    })();
+  </script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      padding: 20px;
+      background: #e8e8e8;
+      font-family: "Segoe UI", sans-serif;
+      font-size: 11px;
+      color: #111;
+    }
+    .export-bar { margin-bottom: 12px; text-align: center; }
+    .export-bar button {
+      font: inherit;
+      font-size: 14px;
+      padding: 8px 14px;
+      cursor: pointer;
+      background: #1e3a5f;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      margin: 0 4px;
+    }
+    .export-bar button:disabled { opacity: 0.6; cursor: wait; }
+    .export-msg { font-size: 12px; color: #555; margin-top: 8px; }
+    .no-print-hint {
+      text-align: center;
+      color: #666;
+      margin-bottom: 12px;
+      font-size: 13px;
+    }
+
+    /* Full label artwork — intrinsic pixel size when possible (avoids upscaling blur) */
+    .label-sheet {
+      width: fit-content;
+      max-width: 100%;
+      margin: 0 auto;
+      padding: 0;
+      background: #fff;
+      border-radius: 6px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+      overflow: hidden;
+      line-height: 0;
+    }
+    .label-art {
+      display: block;
+      width: auto;
+      max-width: 100%;
+      height: auto;
+      vertical-align: top;
+      /* Prefer smooth, high-quality scaling in supporting browsers */
+      image-rendering: auto;
+      image-rendering: high-quality;
+      -ms-interpolation-mode: bicubic;
+    }
+
+    @media print {
+      body { background: #fff; padding: 0; }
+      .no-print, .export-bar, .no-print-hint { display: none !important; }
+      .label-sheet { box-shadow: none; max-width: none; border-radius: 0; }
+    }
+    html.screenshot-mode body { padding: 0; background: #fff; }
+    html.screenshot-mode .no-print,
+    html.screenshot-mode .export-bar,
+    html.screenshot-mode .no-print-hint { display: none !important; }
+    html.screenshot-mode .label-sheet { box-shadow: none; margin: 0; border-radius: 0; }
+  </style>
+</head>
+<body>
+  <div class="no-print export-bar">
+    <button type="button" id="btn-png">Download PNG</button>
+    <button type="button" id="btn-jpg">Download JPG</button>
+    <p class="export-msg" id="export-status"></p>
+  </div>
+  <p class="no-print-hint">Label shown at full file resolution (no upscaling). <strong>Download PNG</strong> uses 4× pixel density for a sharper export. For large-format print, replace <code>assets/jdr-panankilangu-sprouts-back-label-hq.png</code> with a wider export (e.g. 2000+ px). Editable HTML: <code>print-panankilangu-sprouts-back-label-editable.html</code>.</p>
+
+  <div class="label-sheet" id="jdr-panankilangu-back-label">
+    <img
+      class="label-art"
+      src="assets/jdr-panankilangu-sprouts-back-label-hq.png"
+      alt="JDR Farm — Panankilangu (Palmyra Sprout) Sprouts Powder — back label"
+      width="542"
+      height="1024"
+      decoding="async"
+      fetchpriority="high"
+    />
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/html-to-image@1.11.11/dist/html-to-image.min.js"></script>
+  <script>
+    (function () {
+      var el = document.getElementById('jdr-panankilangu-back-label');
+      var statusEl = document.getElementById('export-status');
+      function setStatus(t) { if (statusEl) statusEl.textContent = t || ''; }
+      function download(dataUrl, name) {
+        var a = document.createElement('a');
+        a.download = name;
+        a.href = dataUrl;
+        a.click();
+      }
+      function run(kind) {
+        if (!el || typeof htmlToImage === 'undefined') {
+          setStatus('Could not load html-to-image. Check your network and reload.');
+          return;
+        }
+        var btnPng = document.getElementById('btn-png');
+        var btnJpg = document.getElementById('btn-jpg');
+        [btnPng, btnJpg].forEach(function (b) { if (b) b.disabled = true; });
+        setStatus('Rendering…');
+        document.fonts.ready.then(function () {
+          var base = { pixelRatio: 4, cacheBust: true, style: { margin: '0' } };
+          if (kind === 'jpg') {
+            return htmlToImage.toJpeg(el, Object.assign({ quality: 0.97, backgroundColor: '#ffffff' }, base));
+          }
+          return htmlToImage.toPng(el, base);
+        }).then(function (dataUrl) {
+          download(dataUrl, kind === 'jpg' ? 'jdr-panankilangu-sprouts-back-label.jpg' : 'jdr-panankilangu-sprouts-back-label.png');
+          setStatus('Saved.');
+        }).catch(function (err) {
+          setStatus('Export failed: ' + (err && err.message ? err.message : String(err)));
+        }).finally(function () {
+          [btnPng, btnJpg].forEach(function (b) { if (b) b.disabled = false; });
+        });
+      }
+      var bp = document.getElementById('btn-png');
+      var bj = document.getElementById('btn-jpg');
+      if (bp) bp.addEventListener('click', function () { run('png'); });
+      if (bj) bj.addEventListener('click', function () { run('jpg'); });
+    })();
+  </script>
+</body>
+</html>

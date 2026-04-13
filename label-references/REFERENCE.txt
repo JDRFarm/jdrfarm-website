@@ -1,0 +1,14 @@
+JDR Farm — back label design references (keep in repo)
+
+1) reference-back-label-kraft-saara-style.png
+   Kraft/tan pouch, ornate brown border, SAARA-style: intro text, two columns
+   (manufacturer left, storage + nutrition right), FSSAI, icons, barcode.
+
+2) reference-back-label-green-3v-two-column.png
+   3V Palm Sprout style: green header bars, two columns (ingredients, how to use,
+   storage, disclaimer, nutrition table, FSSAI, purity bullets).
+
+3) reference-palm-sprout-3v-two-column.png
+   Same family as (2); use for panankilangu sprouts powder two-column layout.
+
+HTML: print-panankilangu-sprouts-back-label.html (JDR copy + PNG/JPG export).

@@ -223,103 +223,34 @@ document.addEventListener('DOMContentLoaded', () => {
     checkFormCompletion();
 });
 
-// Function to send order email
-async function sendOrderEmail(orderData) {
-    // Format order date
-    const orderDate = new Date().toLocaleString('en-IN', { 
+// Open WhatsApp with full order details (including address)
+function sendWhatsAppOrder(orderData) {
+    const orderDate = new Date().toLocaleString('en-IN', {
         timeZone: 'Asia/Kolkata',
         dateStyle: 'full',
-        timeStyle: 'medium'
+        timeStyle: 'short'
     });
-    
-    // Format email body exactly as requested
-    const emailBody = `Customer Details:
+
+    const whatsappText = `New Order from JDR Farm
+
+Customer Details:
 Name: ${orderData.name}
-Email: ${orderData.email}
 Phone: ${orderData.phone}
+Email: ${orderData.email}
+
 Delivery Address:
 ${orderData.address}
-Special Instructions: ${orderData.message || 'None'}
+
 Order Details:
 ${orderData.orderDetails}
+
 Total Amount: ₹${orderData.totalAmount.toFixed(2)}
+Special Instructions: ${orderData.message || 'None'}
 Order Date: ${orderDate}`;
-    
-    // Option 1: Try Formspree (Configured)
-    // Formspree form ID: xgvgnpzy
-    const FORMSPREE_FORM_ID = 'xgvgnpzy';
-    
-    if (FORMSPREE_FORM_ID !== 'YOUR_FORMSPREE_FORM_ID') {
-        try {
-            const response = await fetch(`https://formspree.io/f/${FORMSPREE_FORM_ID}`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    _to: 'info@jdrfarm.com',
-                    _subject: `New Order from ${orderData.name}`,
-                    _replyto: orderData.email,
-                    customer_name: orderData.name,
-                    customer_email: orderData.email,
-                    customer_phone: orderData.phone,
-                    delivery_address: orderData.address,
-                    special_instructions: orderData.message || 'None',
-                    order_details: orderData.orderDetails,
-                    total_amount: `₹${orderData.totalAmount.toFixed(2)}`,
-                    order_date: orderDate,
-                    email_body: emailBody
-                })
-            });
-            
-            if (response.ok) {
-                console.log('Email sent successfully via Formspree');
-                return true;
-            }
-        } catch (error) {
-            console.error('Formspree error:', error);
-        }
-    }
-    
-    // Option 2: Try EmailJS (if configured)
-    const EMAILJS_SERVICE_ID = 'YOUR_SERVICE_ID';
-    const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';
-    const EMAILJS_PUBLIC_KEY = 'YOUR_PUBLIC_KEY';
-    
-    if (EMAILJS_PUBLIC_KEY !== 'YOUR_PUBLIC_KEY' && typeof emailjs !== 'undefined') {
-        try {
-            emailjs.init(EMAILJS_PUBLIC_KEY);
-            
-            await emailjs.send(
-                EMAILJS_SERVICE_ID,
-                EMAILJS_TEMPLATE_ID,
-                {
-                    to_email: 'info@jdrfarm.com',
-                    subject: `New Order from ${orderData.name}`,
-                    customer_name: orderData.name,
-                    customer_email: orderData.email,
-                    customer_phone: orderData.phone,
-                    delivery_address: orderData.address,
-                    special_instructions: orderData.message || 'None',
-                    order_details: orderData.orderDetails,
-                    total_amount: `₹${orderData.totalAmount.toFixed(2)}`,
-                    order_date: orderDate
-                }
-            );
-            
-            console.log('Email sent successfully via EmailJS');
-            return true;
-        } catch (error) {
-            console.error('EmailJS error:', error);
-        }
-    }
-    
-    // Option 3: Fallback - Use mailto link (opens email client)
-    const subject = encodeURIComponent(`New Order from ${orderData.name}`);
-    const body = encodeURIComponent(emailBody);
-    
-    window.location.href = `mailto:info@jdrfarm.com?subject=${subject}&body=${body}`;
-    return false;
+
+    const encodedMessage = encodeURIComponent(whatsappText);
+    const whatsappUrl = `https://wa.me/919150830025?text=${encodedMessage}`;
+    window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
 }
 
 // Order form handling
@@ -367,31 +298,19 @@ contactForm.addEventListener('submit', async (e) => {
         submitButton.textContent = 'Processing Order...';
         submitButton.disabled = true;
         
-        // Send email
+        // Open WhatsApp order message
         try {
-            const emailSent = await sendOrderEmail(orderData);
-            
-            // Show success message
-            const thankYouMsg = `Thank you, ${name}!\n\nYour order has been received:\n\n${orderDetails}\n\nTotal: ₹${totalAmount.toFixed(2)}\n\nWe'll contact you at ${email} or ${phone} to confirm your order and delivery details.`;
+            sendWhatsAppOrder(orderData);
+
+            const thankYouMsg = `Thank you, ${name}!\n\nYour order message is ready on WhatsApp with your selected products, total amount, and delivery address.\n\nPlease tap send in WhatsApp to complete your order.`;
             alert(thankYouMsg);
-            
-            // Reset form and cart
+
             contactForm.reset();
             cart = [];
             updateCart();
-            
-            // Scroll to top
-            window.scrollTo({ top: 0, behavior: 'smooth' });
         } catch (error) {
-            console.error('Error sending email:', error);
-            // Still show success message even if email fails
-            const thankYouMsg = `Thank you, ${name}!\n\nYour order has been received:\n\n${orderDetails}\n\nTotal: ₹${totalAmount.toFixed(2)}\n\nWe'll contact you at ${email} or ${phone} to confirm your order and delivery details.`;
-            alert(thankYouMsg);
-            
-            // Reset form and cart
-            contactForm.reset();
-            cart = [];
-            updateCart();
+            console.error('Error opening WhatsApp:', error);
+            alert('Could not open WhatsApp automatically. Please try again.');
         } finally {
             // Restore button
             submitButton.textContent = originalText;

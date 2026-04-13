@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JDR Farm – Cassava Powder (Back Label)</title>
+  <script>
+    (function () {
+      try {
+        if (/[?&]screenshot=1(?:&|$)/.test(location.search)) {
+          document.documentElement.classList.add('screenshot-mode');
+        }
+      } catch (e) {}
+    })();
+  </script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { padding: 20px; background: #eee; font-family: "Segoe UI", "Noto Sans Tamil", Latha, "Arial Unicode MS", sans-serif; }
+    .label {
+      width: 280px;
+      height: 420px;
+      margin: 0 auto 20px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.2);
+      background: #fff;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .label-top {
+      flex: 1;
+      padding: 6px 8px 4px;
+      color: #2a2a2a;
+      min-height: 0;
+      overflow: hidden;
+    }
+    .label-footer {
+      flex-shrink: 0;
+      background: #1a4d45;
+      color: #fff;
+      padding: 6px 8px 8px;
+      font-size: 6.5px;
+      line-height: 1.3;
+    }
+    .header-band {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 4px;
+      margin-bottom: 2px;
+    }
+    .logo-row { flex: 1; display: flex; justify-content: center; }
+    .logo-svg { flex-shrink: 0; }
+    .organic-badge {
+      flex-shrink: 0;
+      width: 52px;
+      padding: 3px 4px;
+      border-radius: 4px;
+      background: #2d6a4f;
+      color: #fff;
+      font-size: 7px;
+      font-weight: bold;
+      text-align: center;
+      line-height: 1.15;
+    }
+    .organic-badge small { display: block; font-size: 6px; font-weight: normal; }
+    .product-title {
+      text-align: center;
+      color: #1a4d45;
+      font-weight: bold;
+      font-size: 10px;
+      line-height: 1.2;
+      margin-bottom: 0;
+    }
+    .product-title-en {
+      text-align: center;
+      font-size: 8px;
+      color: #1a4d45;
+      margin-bottom: 4px;
+    }
+    .section-h {
+      font-size: 7px;
+      font-weight: bold;
+      color: #1a4d45;
+      border-bottom: 1px solid #1a4d45;
+      margin-bottom: 3px;
+      padding-bottom: 1px;
+    }
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3px 6px;
+      align-items: start;
+    }
+    .benefit-ta { font-size: 5.5px; line-height: 1.28; color: #1a1a1a; }
+    .benefit-en {
+      font-size: 5px;
+      line-height: 1.28;
+      color: #444;
+      font-style: italic;
+    }
+    .usage-block {
+      margin-top: 3px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px 6px;
+      align-items: start;
+    }
+    .usage-block .ta { font-size: 5.5px; line-height: 1.28; }
+    .usage-block .en { font-size: 5px; color: #444; font-style: italic; line-height: 1.28; }
+    .footer-line { text-align: center; margin-bottom: 3px; }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px 8px;
+      font-size: 6.5px;
+    }
+    .footer-right { text-align: right; }
+    @media print {
+      body { background: #fff; padding: 0; }
+      .label { box-shadow: none; margin: 0; page-break-inside: avoid; }
+      .no-print { display: none !important; }
+    }
+    .no-print { text-align: center; margin-bottom: 12px; color: #666; font-family: sans-serif; font-size: 14px; }
+    html.screenshot-mode body { padding: 0; background: #fff; }
+    html.screenshot-mode .no-print { display: none !important; }
+    html.screenshot-mode .label { margin: 0; box-shadow: none; }
+    .export-bar { margin-bottom: 10px; }
+    .export-bar button {
+      font: inherit;
+      font-size: 14px;
+      padding: 8px 14px;
+      cursor: pointer;
+      background: #1a4d45;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+    }
+    .export-bar button:disabled { opacity: 0.6; cursor: wait; }
+    .export-msg { font-size: 12px; color: #666; margin-top: 8px; }
+  </style>
+</head>
+<body>
+  <div class="no-print export-bar">
+    <button type="button" id="btn-png" title="Save label as PNG">Download PNG</button>
+    <button type="button" id="btn-jpg" title="Save label as JPEG">Download JPG</button>
+    <p class="export-msg" id="export-status"></p>
+  </div>
+  <p class="no-print">Cassava powder back label (Tamil + English) — Print at 100% scale. Matches JDR bottle label colours.</p>
+  <div class="label" id="cassava-back-label">
+    <div class="label-top">
+      <div class="header-band">
+        <div style="width:52px;flex-shrink:0" aria-hidden="true"></div>
+        <div class="logo-row">
+          <svg class="logo-svg" xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 80 80">
+            <defs>
+              <linearGradient id="goldB" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:#d4af37"/>
+                <stop offset="100%" style="stop-color:#b8860b"/>
+              </linearGradient>
+            </defs>
+            <circle cx="40" cy="38" r="28" fill="none" stroke="url(#goldB)" stroke-width="2"/>
+            <circle cx="40" cy="38" r="25" fill="#1e3a5f"/>
+            <text x="40" y="36" text-anchor="middle" font-family="Georgia, serif" font-weight="bold" font-size="16" fill="url(#goldB)">JDR</text>
+            <text x="40" y="48" text-anchor="middle" font-family="Arial, sans-serif" font-size="5.5" font-weight="bold" fill="url(#goldB)">FARMS</text>
+            <text x="40" y="56" text-anchor="middle" font-family="Arial, sans-serif" font-size="4.5" fill="url(#goldB)">QUALITY &amp; TRUST</text>
+          </svg>
+        </div>
+        <div class="organic-badge" title="Organic">100%<small>ORGANIC</small></div>
+      </div>
+      <p class="product-title">பனங்கிழங்கு பொடி</p>
+      <p class="product-title-en">Cassava (Tapioca) Powder</p>
+
+      <div class="section-h">முக்கிய நன்மைகள் · Key benefits</div>
+      <div class="benefits-grid">
+        <div class="benefit-ta"><strong>1. சிறந்த செரிமானம்</strong> — பனங்கிழங்கு மாவில் நார்ச்சத்து அதிகம்; செரிமான மண்டலத்தை சீராக்கி, மலச்சிக்கலைத் தீர்க்க உதவும்.</div>
+        <div class="benefit-en"><strong>1. Better digestion</strong> — High in fibre; supports healthy digestion and may help relieve constipation.</div>
+        <div class="benefit-ta"><strong>2. நீரிழிவு கட்டுப்பாடு</strong> — குறைந்த கிளைசெமிக் குறியீடு; சர்க்கரை அளவை மெதுவாக உயர்த்தி, நீரிழிவு நோயாளிகளுக்கு பொருத்தமான தேர்வு.</div>
+        <div class="benefit-en"><strong>2. Blood sugar control</strong> — Low glycemic index; raises blood sugar more slowly — a safer choice for many managing diabetes.</div>
+        <div class="benefit-ta"><strong>3. ஆற்றல் மற்றும் நோய் எதிர்ப்பு</strong> — காலையில் கஞ்சியாகப் பருக, உடல் வலிமை, சுறுசுறுப்பு மற்றும் நோய் எதிர்ப்பு சக்திக்கு உதவும்.</div>
+        <div class="benefit-en"><strong>3. Energy &amp; immunity</strong> — As morning porridge (kanji), may support strength, vitality, and immune health through the day.</div>
+        <div class="benefit-ta"><strong>4. எடை இழப்பு</strong> — அதிக நார்ச்சத்து பசியைக் கட்டுப்படுத்தி, எடை மேலாண்மைக்கு உதவும்.</div>
+        <div class="benefit-en"><strong>4. Weight management</strong> — Fibre-rich; may help control appetite and support healthy weight goals.</div>
+        <div class="benefit-ta"><strong>5. சிறுநீர் மற்றும் வயிறு ஆரோக்கியம்</strong> — சிறுநீர் தொற்று ஆபத்தைக் குறைக்கவும், வயிற்று மந்தத்தைத் தணிக்கவும் உதவும்.</div>
+        <div class="benefit-en"><strong>5. Urinary &amp; stomach wellness</strong> — May support urinary tract health and ease bloating or sluggish digestion.</div>
+      </div>
+
+      <div class="section-h" style="margin-top:4px;">பயன்படுத்தும் முறை · How to use</div>
+      <div class="usage-block">
+        <div class="ta">உலர்த்தி அரைத்த பொடியை கஞ்சி, கூழ், அடை அல்லது சத்துமாவு கஞ்சியுடன் கலந்து பருகலாம்.</div>
+        <div class="en">Mix dried, ground powder in kanji, porridge, adai, or health-mix (sathumaavu) kanji.</div>
+      </div>
+    </div>
+    <div class="label-footer">
+      <div class="footer-line">FSSAI Certified | FSSAI No.: 22426048000012</div>
+      <div class="footer-grid">
+        <div>Best Before: 6 months from Mfg.<br/>Date: _______________</div>
+        <div class="footer-right">Net Qty: ___________<br/>Packed on: _________<br/>MRP Rs: ____________</div>
+      </div>
+      <div style="margin-top:4px;">Manufactured &amp; Packed by: JDR Farm, Ponnapuram, Palani.</div>
+      <div class="footer-grid" style="margin-top:3px;">
+        <div>9150830025</div>
+        <div class="footer-right">info@jdrfarm.com</div>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/html-to-image@1.11.11/dist/html-to-image.min.js"></script>
+  <script>
+    (function () {
+      var el = document.getElementById('cassava-back-label');
+      var statusEl = document.getElementById('export-status');
+      function setStatus(t) { if (statusEl) statusEl.textContent = t || ''; }
+      function download(dataUrl, name) {
+        var a = document.createElement('a');
+        a.download = name;
+        a.href = dataUrl;
+        a.click();
+      }
+      function run(kind) {
+        if (!el || typeof htmlToImage === 'undefined') {
+          setStatus('Could not load html-to-image. Check your network and reload the page.');
+          return;
+        }
+        var btnPng = document.getElementById('btn-png');
+        var btnJpg = document.getElementById('btn-jpg');
+        [btnPng, btnJpg].forEach(function (b) { if (b) b.disabled = true; });
+        setStatus('Rendering…');
+        document.fonts.ready.then(function () {
+          var base = { pixelRatio: 2, width: 280, height: 420, style: { margin: '0' }, cacheBust: true };
+          if (kind === 'jpg') {
+            return htmlToImage.toJpeg(el, Object.assign({ quality: 0.92, backgroundColor: '#ffffff' }, base));
+          }
+          return htmlToImage.toPng(el, base);
+        }).then(function (dataUrl) {
+          download(dataUrl, kind === 'jpg' ? 'cassava-powder-back-label.jpg' : 'cassava-powder-back-label.png');
+          setStatus('Saved.');
+        }).catch(function (err) {
+          setStatus('Export failed: ' + (err && err.message ? err.message : String(err)));
+        }).finally(function () {
+          [btnPng, btnJpg].forEach(function (b) { if (b) b.disabled = false; });
+        });
+      }
+      var bp = document.getElementById('btn-png');
+      var bj = document.getElementById('btn-jpg');
+      if (bp) bp.addEventListener('click', function () { run('png'); });
+      if (bj) bj.addEventListener('click', function () { run('jpg'); });
+    })();
+  </script>
+</body>
+</html>

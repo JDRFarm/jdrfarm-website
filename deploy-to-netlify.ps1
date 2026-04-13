@@ -56,7 +56,7 @@ if ($gitPath) {
     Write-Host "Pushing to GitHub (this triggers Netlify auto-deploy)..." -ForegroundColor Yellow
     
     & $gitPath add index.html script.js styles.css
-    & $gitPath commit -m "Add GPay/UPI QR code payment feature with email notifications" 2>&1 | Out-Host
+    & $gitPath commit -m "Order on WhatsApp with delivery address and cart details" 2>&1 | Out-Host
     & $gitPath push origin main 2>&1 | Out-Host
     
     if ($LASTEXITCODE -ne 0) {
@@ -89,7 +89,7 @@ Start-Process "https://app.netlify.com"
 
 Write-Host "Instructions:" -ForegroundColor Cyan
 Write-Host "1. In GitHub Desktop: Select jdrfarm-website" -ForegroundColor White
-Write-Host "2. Commit message: 'Add GPay/UPI QR code payment feature with email notifications'" -ForegroundColor White
+Write-Host "2. Commit message: 'Order on WhatsApp with delivery address and cart details'" -ForegroundColor White
 Write-Host "3. Click 'Commit to main' then 'Push origin'" -ForegroundColor White
 Write-Host "4. Netlify will auto-deploy!" -ForegroundColor Green
 Write-Host ""
