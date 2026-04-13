@@ -2,7 +2,7 @@
 cd /d "D:\AI\web\jdrfarm-website"
 echo Pushing Pana-kizhangu and Pana-kizhangu Powder images to GitHub...
 echo.
-git add image/panakizhangu.png image/panakizhangu-powder.png
+git add image/panakizhangu.png image/panakizhangu-powder-packaging.png
 git status
 echo.
 git commit -m "Add Pana-kizhangu and Pana-kizhangu Powder product images"
