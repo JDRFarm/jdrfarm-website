@@ -364,6 +364,15 @@ body {
     gap: 2rem;
 }
 
+/* In-stock first; out-of-stock cards always sort to the end of the grid */
+.products-grid > .product-card:not(.out-of-stock) {
+    order: 0;
+}
+
+.products-grid > .product-card.out-of-stock {
+    order: 1;
+}
+
 .product-card {
     background: var(--bg-white);
     padding: 2rem;
