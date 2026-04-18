@@ -181,16 +181,26 @@ function formatProductNameList(names) {
     return `${names.slice(0, -1).join(', ')}, and ${names[names.length - 1]}`;
 }
 
-/** Hero copy reflects products that are in stock (no .out-of-stock on the card). */
+/** Hero copy lists in-stock items and “coming soon” products from the product grid. */
 function updateHeroFromAvailableProducts() {
     const hero = document.querySelector('.hero');
     const heroSubtitle = document.querySelector('.hero-subtitle');
     if (!heroSubtitle) return;
 
-    const cards = document.querySelectorAll(
+    const inStockCards = document.querySelectorAll(
         '#products .products-grid > .product-card:not(.out-of-stock):not(.coming-soon)'
     );
-    const names = Array.from(cards)
+    const names = Array.from(inStockCards)
+        .map((card) => {
+            const h3 = card.querySelector('h3');
+            return h3 ? h3.textContent.trim() : '';
+        })
+        .filter(Boolean);
+
+    const comingSoonCards = document.querySelectorAll(
+        '#products .products-grid > .product-card.coming-soon'
+    );
+    const comingSoonNames = Array.from(comingSoonCards)
         .map((card) => {
             const h3 = card.querySelector('h3');
             return h3 ? h3.textContent.trim() : '';
@@ -199,15 +209,27 @@ function updateHeroFromAvailableProducts() {
 
     const defaultSubtitle = 'Healthy food products and farming services with eco-friendly initiatives';
 
-    if (names.length === 0) {
-        hero?.classList.remove('hero--has-stock');
+    hero?.classList.toggle('hero--has-stock', names.length > 0);
+    hero?.classList.toggle('hero--has-coming-soon', comingSoonNames.length > 0);
+
+    const availablePart =
+        names.length > 0 ? `Now available: ${formatProductNameList(names)}.` : '';
+    const comingSoonPart =
+        comingSoonNames.length > 0
+            ? ` Coming soon: ${formatProductNameList(comingSoonNames)}.`
+            : '';
+
+    if (names.length === 0 && comingSoonNames.length === 0) {
         heroSubtitle.textContent = `${defaultSubtitle}. Contact us on WhatsApp for availability and restock updates.`;
         return;
     }
 
-    hero?.classList.add('hero--has-stock');
-    const list = formatProductNameList(names);
-    heroSubtitle.textContent = `Now available: ${list}. ${defaultSubtitle}.`;
+    if (names.length === 0 && comingSoonNames.length > 0) {
+        heroSubtitle.textContent = `${comingSoonPart.trim()} ${defaultSubtitle}.`;
+        return;
+    }
+
+    heroSubtitle.textContent = `${availablePart}${comingSoonPart} ${defaultSubtitle}.`.replace(/\s+/g, ' ').trim();
 }
 
 // Checkout button functionality
