@@ -187,7 +187,9 @@ function updateHeroFromAvailableProducts() {
     const heroSubtitle = document.querySelector('.hero-subtitle');
     if (!heroSubtitle) return;
 
-    const cards = document.querySelectorAll('#products .products-grid > .product-card:not(.out-of-stock)');
+    const cards = document.querySelectorAll(
+        '#products .products-grid > .product-card:not(.out-of-stock):not(.coming-soon)'
+    );
     const names = Array.from(cards)
         .map((card) => {
             const h3 = card.querySelector('h3');
