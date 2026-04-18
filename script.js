@@ -3,6 +3,13 @@
 // Shopping Cart
 let cart = [];
 
+/** Orders go to this WhatsApp: +91 9150830025 (E.164 without +, for wa.me / click-to-chat) */
+const WHATSAPP_ORDER_PHONE_E164 = '919150830025';
+
+function sanitizeWhatsAppText(value) {
+    return String(value ?? '').replace(/[*_~`]/g, '');
+}
+
 // Mobile menu toggle
 const menuToggle = document.querySelector('.menu-toggle');
 const navLinks = document.querySelector('.nav-links');
@@ -283,7 +290,7 @@ document.addEventListener('DOMContentLoaded', () => {
     checkFormCompletion();
 });
 
-// Open WhatsApp with full order details (including address)
+// Open WhatsApp to +91 9150830025 with the full order in the message box (user taps Send to deliver)
 function sendWhatsAppOrder(orderData) {
     const orderDate = new Date().toLocaleString('en-IN', {
         timeZone: 'Asia/Kolkata',
@@ -291,27 +298,35 @@ function sendWhatsAppOrder(orderData) {
         timeStyle: 'short'
     });
 
-    const whatsappText = `New Order from JDR Farm
+    const name = sanitizeWhatsAppText(orderData.name);
+    const phone = sanitizeWhatsAppText(orderData.phone);
+    const email = sanitizeWhatsAppText(orderData.email);
+    const address = sanitizeWhatsAppText(orderData.address);
+    const instructions = sanitizeWhatsAppText(orderData.message || 'None');
+    const orderLines = sanitizeWhatsAppText(orderData.orderDetails);
 
-Customer Details:
-Name: ${orderData.name}
-Phone: ${orderData.phone}
-Email: ${orderData.email}
+    const whatsappText = `*New order — JDR Farm*
 
-Delivery Address:
-${orderData.address}
+*Customer*
+Name: ${name}
+Phone: ${phone}
+Email: ${email}
 
-Order Details:
-${orderData.orderDetails}
+*Delivery address*
+${address}
 
-Total Amount: ₹${orderData.totalAmount.toFixed(2)}
-Special Instructions: ${orderData.message || 'None'}
-Order Date: ${orderDate}`;
+*Order*
+${orderLines}
+
+*Total:* ₹${orderData.totalAmount.toFixed(2)}
+*Notes:* ${instructions}
+
+_Order time:_ ${orderDate}
+
+_Tap Send below — message goes to JDR Farm +91 9150830025._`;
 
     const encodedMessage = encodeURIComponent(whatsappText);
-    // api.whatsapp.com works on phone (app), tablet, and desktop (WhatsApp Web / desktop app)
-    const whatsappUrl = `https://api.whatsapp.com/send?phone=919150830025&text=${encodedMessage}`;
-    // Same-tab navigation opens reliably (popup blockers often block window.open after async work)
+    const whatsappUrl = `https://wa.me/${WHATSAPP_ORDER_PHONE_E164}?text=${encodedMessage}`;
     window.location.assign(whatsappUrl);
 }
 
