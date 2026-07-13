@@ -1,10 +1,3 @@
-/** Orders go to this WhatsApp: +91 9150830025 (E.164 without +, for wa.me / click-to-chat) */
-const WHATSAPP_ORDER_PHONE_E164 = '919150830025';
-
-function sanitizeWhatsAppText(value) {
-    return String(value ?? '').replace(/[*_~`]/g, '');
-}
-
 // Mobile menu toggle
 const menuToggle = document.querySelector('.menu-toggle');
 const navLinks = document.querySelector('.nav-links');
@@ -94,70 +87,6 @@ function updateHeroFromAvailableProducts() {
 
 document.addEventListener('DOMContentLoaded', () => {
     updateHeroFromAvailableProducts();
-});
-
-// Open WhatsApp to +91 9150830025 with customer details (user taps Send to deliver)
-function sendWhatsAppOrder(orderData) {
-    const orderDate = new Date().toLocaleString('en-IN', {
-        timeZone: 'Asia/Kolkata',
-        dateStyle: 'full',
-        timeStyle: 'short'
-    });
-
-    const name = sanitizeWhatsAppText(orderData.name);
-    const phone = sanitizeWhatsAppText(orderData.phone);
-    const email = sanitizeWhatsAppText(orderData.email);
-    const address = sanitizeWhatsAppText(orderData.address);
-    const instructions = sanitizeWhatsAppText(orderData.message || 'None');
-
-    const whatsappText = `*New inquiry — JDR Farm*
-
-*Customer*
-Name: ${name}
-Phone: ${phone}
-Email: ${email}
-
-*Delivery address*
-${address}
-
-*Notes:* ${instructions}
-
-_Inquiry time:_ ${orderDate}
-
-_Tap Send below — message goes to JDR Farm +91 9150830025._`;
-
-    const encodedMessage = encodeURIComponent(whatsappText);
-    const whatsappUrl = `https://wa.me/${WHATSAPP_ORDER_PHONE_E164}?text=${encodedMessage}`;
-    window.location.assign(whatsappUrl);
-}
-
-// Order form handling
-const contactForm = document.getElementById('contactForm');
-
-contactForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-
-    const name = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
-    const phone = document.getElementById('phone').value;
-    const address = document.getElementById('address').value;
-    const message = document.getElementById('message').value;
-
-    if (name && email && phone && address) {
-        const orderData = {
-            name,
-            email,
-            phone,
-            address,
-            message: message || 'None'
-        };
-
-        const submitButton = e.target.querySelector('button[type="submit"]');
-        submitButton.textContent = 'Opening WhatsApp...';
-        submitButton.disabled = true;
-
-        sendWhatsAppOrder(orderData);
-    }
 });
 
 // CTA button click handler
