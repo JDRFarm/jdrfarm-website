@@ -137,19 +137,3 @@ window.addEventListener('scroll', () => {
 
     lastScroll = currentScroll;
 });
-
-// Subscribe form handling
-const subscribeForm = document.getElementById('subscribeForm');
-
-if (subscribeForm) {
-    subscribeForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-
-        const email = document.getElementById('subscribeEmail').value;
-
-        if (email) {
-            alert(`Thank you for subscribing! We'll send healthy updates to ${email}.`);
-            subscribeForm.reset();
-        }
-    });
-}
