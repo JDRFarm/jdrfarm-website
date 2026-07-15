@@ -836,9 +836,8 @@ body {
 
 /* Contact Section */
 .contact-info-section {
-    display: grid;
-    grid-template-columns: 1fr 1.5fr;
-    gap: 2rem;
+    display: flex;
+    justify-content: center;
     max-width: 1200px;
     margin: 0 auto;
 }
@@ -849,6 +848,9 @@ body {
     border-radius: 12px;
     box-shadow: var(--shadow);
     height: fit-content;
+    width: 100%;
+    max-width: 480px;
+    text-align: center;
 }
 
 .contact-details h3 {
@@ -856,6 +858,7 @@ body {
     color: var(--text-dark);
     border-bottom: 2px solid var(--primary-color);
     padding-bottom: 0.5rem;
+    text-align: center;
 }
 
 .contact-item {
@@ -1349,7 +1352,7 @@ html {
     }
 
     .contact-info-section {
-        grid-template-columns: 1fr;
+        justify-content: center;
     }
 
     .contact-wrapper-inner {
