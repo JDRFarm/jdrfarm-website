@@ -89,16 +89,6 @@ document.addEventListener('DOMContentLoaded', () => {
     updateHeroFromAvailableProducts();
 });
 
-// CTA button click handler
-const ctaButton = document.querySelector('.cta-button');
-
-ctaButton.addEventListener('click', () => {
-    document.querySelector('#products').scrollIntoView({
-        behavior: 'smooth',
-        block: 'start'
-    });
-});
-
 // Add scroll animation for cards
 const observerOptions = {
     threshold: 0.1,
