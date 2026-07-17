@@ -1,11 +1,13 @@
 # Netlify Configuration for JDR Farm Website
+# Auto-deploy: link this repo in Netlify once; every push to main redeploys jdrfarm.com
 # https://docs.netlify.com/configure-builds/file-based-configuration/
 
 [build]
-  # No build command needed - static HTML site
   command = ""
-  # Publish the root directory
   publish = "."
+
+[build.environment]
+  NODE_VERSION = "20"
 
 # Redirect rules
 [[redirects]]
