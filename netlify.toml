@@ -1,5 +1,5 @@
 # Netlify Configuration for JDR Farm Website
-# Auto-deploy: link this repo in Netlify once; every push to main redeploys jdrfarm.com
+# Auto-deploy: pushes to main publish the jdrproducts Netlify site.
 # https://docs.netlify.com/configure-builds/file-based-configuration/
 
 [build]

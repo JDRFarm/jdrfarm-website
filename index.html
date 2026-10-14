@@ -9,27 +9,28 @@
     <link rel="canonical" href="https://jdrfarm.com/">
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <title>JDR Farm - Premium Organic Food Products | Sustainable Farming</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="apple-touch-icon" href="favicon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Righteous&family=Fredoka+One&family=Bebas+Neue&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css?v=20261011">
+    <link rel="stylesheet" href="refresh.css?v=20261014d">
 </head>
 <body>
     <nav class="navbar">
         <div class="container">
-            <a href="#home" class="logo-image-link">
-                <img src="logo/Logo.jpeg" alt="JDR Farm Logo" class="logo-img">
-            </a>
-            <a href="#home" class="logo-text-link logo-centered">
+            <a href="#home" class="brand">
+                <img src="logo/Logo.jpeg" alt="" class="logo-img">
                 <span class="logo-text">JDR Farm</span>
             </a>
-            <ul class="nav-links">
+            <ul class="nav-links" id="main-navigation">
                 <li><a href="#home" data-translate="nav.home">Home</a></li>
                 <li><a href="#products" data-translate="nav.products">Products</a></li>
                 <li><a href="#about" data-translate="nav.about">About</a></li>
                 <li><a href="#contact" data-translate="nav.contact">Contact</a></li>
             </ul>
-            <button class="menu-toggle" aria-label="Toggle menu">
+            <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="main-navigation">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -38,91 +39,128 @@
     </nav>
 
     <section id="home" class="hero">
-        <div class="container">
-            <h1 class="hero-title" data-translate="hero.title">Promoting Health Through Sustainable Farming</h1>
-            <p class="hero-subtitle" id="heroSubtitle" data-translate="hero.subtitle" aria-live="polite">Healthy food products and farming services with eco-friendly initiatives</p>
+        <div class="container hero-layout">
+            <div class="hero-copy">
+                <span class="eyebrow">FROM OUR FARM TO YOUR HOME</span>
+                <h1 class="hero-title">Good food begins <em>with nature.</em></h1>
+                <p class="hero-subtitle">Explore thoughtfully prepared oils, palm sprout powder and traditional ingredients. Organically sourced and crafted with care. Farm-fresh and full of flavor.</p>
+                <a class="hero-button" href="#products">Explore Our Products <span aria-hidden="true">↗</span></a>
+            </div>
+            <div class="hero-feature">
+                <div class="hero-stage">
+                    <img class="hero-slide hero-slide--cover is-active" src="image/Coconut_Tree_Farm.jpg" alt="JDR Farm Coconut Tree" data-kicker="FARM FRESH" data-caption="Coconut Trees" data-fit="cover">
+                    <img class="hero-slide hero-slide--cover is-active" src="image/panakizhangu-powder-packaging.png" alt="JDR Farm palm sprout powder packaging" data-kicker="ROOTED IN TRADITION" data-caption="Palm sprout powder" data-fit="cover">
+                    <img class="hero-slide hero-slide--cover" src="image/groundnut-oil-1.png" alt="Cold-pressed groundnut oil" data-kicker="COLD-PRESSED" data-caption="Groundnut oil" data-fit="cover" aria-hidden="true">
+                    <img class="hero-slide hero-slide--cover" src="image/Coconut-Oil-banner.jpg" alt="Cold-pressed coconut oil" data-kicker="EVERYDAY COOKING" data-caption="Coconut oil" data-fit="cover" aria-hidden="true">
+                    <img class="hero-slide hero-slide--cover" src="assets/label/jdr-farm-label-with-products.png" alt="Palmyra grove" data-kicker="OUR GROVE" data-caption="Palmyra country" data-fit="cover" aria-hidden="true">
+                    <img class="hero-slide hero-slide--cover" src="assets/label/moringa-2.jpg" alt="Moringa" data-kicker="MORINGA" data-caption="Moringa Powder" data-fit="cover" aria-hidden="true">
+                </div>
+                <div class="hero-caption"><span class="hero-kicker">ROOTED IN TRADITION</span><strong class="hero-caption-text">Palm sprout powder</strong></div>
+                <div class="hero-dots" role="tablist" aria-label="Featured images">
+                    <button type="button" class="is-active" role="tab" aria-selected="true" aria-label="Palm sprout powder"></button>
+                    <button type="button" role="tab" aria-selected="false" aria-label="Groundnut oil"></button>
+                    <button type="button" role="tab" aria-selected="false" aria-label="Coconut oil"></button>
+                    <button type="button" role="tab" aria-selected="false" aria-label="Palmyra country"></button>
+                    <button type="button" role="tab" aria-selected="false" aria-label="Moringa Powder"></button>
+                </div>
+            </div>
         </div>
     </section>
 
     <section id="products" class="section">
         <div class="container">
-            <h2 class="section-title" data-translate="products.title">Explore Our Range of Products</h2>
+            <span class="eyebrow">THE JDR FARM COLLECTION</span>
+            <h2 class="section-title" data-translate="products.title">Explore our products</h2>
+            <p class="section-lead">Choose a pack size and ask us directly for today's availability and price.</p>
             <div class="products-grid">
-                <div class="product-card">
+                <div class="product-card product-card--feature" data-product="Pana-kizhangu Powder">
+                    <div class="product-image">
+                        <div class="product-badge">Fine Powder</div>
+                        <img src="image/panakizhangu-powder-packaging.png" alt="Pana-kizhangu Powder packaging" class="product-img">
+                    </div>
+                    <div class="product-copy">
+                        <div class="product-benefits">
+                            <span class="benefit-tag" data-translate="products.panakizhanguPowder.benefit1">Easy to Use</span>
+                            <span class="benefit-tag">Traditional ingredient</span>
+                        </div>
+                        <h3 data-translate="products.panakizhanguPowder.name">Palm Seed Sprout(Tuber) Powder</h3>
+                        <p class="product-subtitle" data-translate="products.panakizhanguPowder.subtitle">Fine Powder | Ready to Use</p>
+                        <p class="product-description">Pana-kizhangu powder is made only from palmyra sprouts, known in Tamil as panankilangu. The sprouts are boiled, dried, and ground to a fine powder, with no other ingredient added. Stir it into drinks, porridge, or traditional recipes.</p>
+                        <div class="product-buy">
+                        <div class="quantity-selector">
+                            <label for="panakizhangu-powder-quantity" data-translate="products.quantity">Quantity:</label>
+                            <select id="panakizhangu-powder-quantity" class="product-quantity" data-product-type="powder">
+                                <option value="100gram">100gram</option>
+                                <option value="250gram">250gram</option>
+                                <option value="500gram">500gram</option>
+                                <option value="1kg">1kg</option>
+                            </select>
+                        </div>
+                        <a class="product-enquire" data-enquire href="https://wa.me/919150150932?text=Hello%20JDR%20Farm%2C%20I%20am%20interested%20in%20Pana-kizhangu%20Powder%20%28100gram%29.%20Could%20you%20please%20confirm%20its%20availability%20and%20current%20price%3F%20Thank%20you." target="_blank" rel="noopener noreferrer">Buy Now <span aria-hidden="true">↗</span></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card" data-product="Coconut Oil">
                     <div class="product-badge">Best Seller</div>
                     <div class="product-image">
-                        <img src="image/download (1).jpg" alt="Coconut Oil" class="product-img">
+                        <img src="image/coconut-oil.jpg" alt="Coconut Oil" class="product-img">
                     </div>
                     <div class="product-benefits">
-                        <span class="benefit-tag" data-translate="products.coconut.benefit1">Heart Health</span>
-                        <span class="benefit-tag" data-translate="products.coconut.benefit2">Skin Care</span>
+                        <span class="benefit-tag">Cold-pressed</span>
+                        <span class="benefit-tag">Everyday use</span>
                     </div>
                     <h3 data-translate="products.coconut.name">Coconut Oil</h3>
-                    <p class="product-subtitle" data-translate="products.coconut.subtitle">Cold-Pressed | Organic | Pure</p>
-                    <p class="product-description" data-translate="products.coconut.description">Pure, cold-pressed organic coconut oil. Rich in healthy fats and nutrients, perfect for cooking and skincare. Supports heart health and natural beauty.</p>
+                    <p class="product-subtitle">Cold-pressed | Everyday essential</p>
+                    <p class="product-description">Cold-pressed from mature coconut kernel and bottled as 100% coconut oil. Nothing is blended in, and no chemicals are used in the pressing. Use it for everyday cooking, and also for skin and hair care.</p>
+                    <div class="product-buy">
                     <div class="quantity-selector">
                         <label for="coconut-quantity" data-translate="products.quantity">Quantity:</label>
                         <select id="coconut-quantity" class="product-quantity" data-product-type="oil">
                             <option value="500ml">500ml</option>
-                            <option value="1lt">1lt</option>
+                            <option value="1000ml">1000ml</option>
+                            <option value="5000ml">5 Liters</option>
                         </select>
                     </div>
+                    <a class="product-enquire" data-enquire href="https://wa.me/919150150932?text=Hello%20JDR%20Farm%2C%20I%20am%20interested%20in%20Coconut%20Oil%20%28500ml%29.%20Could%20you%20please%20confirm%20its%20availability%20and%20current%20price%3F%20Thank%20you." target="_blank" rel="noopener noreferrer">Buy Now <span aria-hidden="true">↗</span></a>
+                    </div>
                 </div>
-                <div class="product-card">
+                <div class="product-card" data-product="Groundnut Oil">
                     <div class="product-badge">Cold-Pressed</div>
                     <div class="product-image">
                         <img src="image/groundnut-oil.png" alt="Groundnut Oil" class="product-img">
                     </div>
                     <div class="product-benefits">
-                        <span class="benefit-tag" data-translate="products.groundnut.benefit1">Heart Healthy</span>
+                        <span class="benefit-tag">Aromatic</span>
                         <span class="benefit-tag" data-translate="products.groundnut.benefit2">Cold-Pressed</span>
                     </div>
                     <h3 data-translate="products.groundnut.name">Groundnut Oil</h3>
                     <p class="product-subtitle" data-translate="products.groundnut.subtitle">Cold-Pressed | Pure | Aromatic</p>
-                    <p class="product-description" data-translate="products.groundnut.description">Cold-pressed groundnut oil with rich aroma and natural nutrients. Ideal for traditional Indian cooking.</p>
+                    <p class="product-description">Cold-pressed from groundnut seeds, also called peanuts, and packed as 100% groundnut oil. The natural aroma of the seed is left in the oil, with no other oil or chemical added. It is a traditional choice for everyday cooking.</p>
+                    <div class="product-buy">
                     <div class="quantity-selector">
                         <label for="groundnut-quantity" data-translate="products.quantity">Quantity:</label>
                         <select id="groundnut-quantity" class="product-quantity" data-product-type="oil">
                             <option value="500ml">500ml</option>
-                            <option value="1lt">1lt</option>
-                            <option value="5lt">5lt</option>
+                            <option value="1000ml">1000ml</option>
+                            <option value="5000ml">5 Liters</option>
                         </select>
                     </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-badge">Fine Powder</div>
-                    <div class="product-image">
-                        <img src="image/panakizhangu-powder-packaging.png" alt="Panai Kilangu Maavu — Pana-kizhangu Powder (JDR Farm packaging)" class="product-img">
-                    </div>
-                    <div class="product-benefits">
-                        <span class="benefit-tag" data-translate="products.panakizhanguPowder.benefit1">Easy to Use</span>
-                        <span class="benefit-tag" data-translate="products.panakizhanguPowder.benefit2">Daily Nutrition</span>
-                    </div>
-                    <h3 data-translate="products.panakizhanguPowder.name">Pana-kizhangu Powder</h3>
-                    <p class="product-subtitle" data-translate="products.panakizhanguPowder.subtitle">Fine Powder | Ready to Use</p>
-                    <p class="product-description" data-translate="products.panakizhanguPowder.description">Finely ground pana-kizhangu powder for easy mixing in drinks or recipes, retaining traditional benefits.</p>
-                    <div class="quantity-selector">
-                        <label for="panakizhangu-powder-quantity" data-translate="products.quantity">Quantity:</label>
-                        <select id="panakizhangu-powder-quantity" class="product-quantity" data-product-type="powder">
-                            <option value="100gram">100gram</option>
-                            <option value="250gram">250gram</option>
-                            <option value="500gram">500gram</option>
-                            <option value="1kg">1kg</option>
-                        </select>
+                    <a class="product-enquire" data-enquire href="https://wa.me/919150150932?text=Hello%20JDR%20Farm%2C%20I%20am%20interested%20in%20Groundnut%20Oil%20%28500ml%29.%20Could%20you%20please%20confirm%20its%20availability%20and%20current%20price%3F%20Thank%20you." target="_blank" rel="noopener noreferrer">Buy Now <span aria-hidden="true">↗</span></a>
                     </div>
                 </div>
-                <div class="product-card">
+                <div class="product-card" data-product="Moringa Leaf Powder">
                     <div class="product-badge">Protein Rich</div>
                     <div class="product-image">
-                        <img src="image/download.jpg" alt="Moringa Leaf Powder" class="product-img">
+                        <img src="image/moringa-powder.jpg" alt="Moringa Leaf Powder" class="product-img">
                     </div>
                     <div class="product-benefits">
-                        <span class="benefit-tag" data-translate="products.moringa.benefit1">Immunity Booster</span>
-                        <span class="benefit-tag" data-translate="products.moringa.benefit2">Iron Rich</span>
+                        <span class="benefit-tag">Leaf powder</span>
+                        <span class="benefit-tag">Easy to mix</span>
                     </div>
                     <h3 data-translate="products.moringa.name">Moringa Leaf Powder</h3>
-                    <p class="product-subtitle" data-translate="products.moringa.subtitle">Premium Organic | Daily Nutrition</p>
-                    <p class="product-description" data-translate="products.moringa.description">Premium organic moringa leaf powder. Packed with vitamins, minerals, and antioxidants for optimal health. Natural protein and iron source.</p>
+                    <p class="product-subtitle">Plant-based | Pantry staple</p>
+                    <p class="product-description">Made only from moringa leaves, known in Tamil as murungai ilai. The leaves are dried and ground to a powder, with no additives. A small spoon can be mixed into food and drinks.</p>
+                    <div class="product-buy">
                     <div class="quantity-selector">
                         <label for="moringa-quantity" data-translate="products.quantity">Quantity:</label>
                         <select id="moringa-quantity" class="product-quantity" data-product-type="powder">
@@ -132,18 +170,21 @@
                             <option value="1kg">1kg</option>
                         </select>
                     </div>
+                    <a class="product-enquire" data-enquire href="https://wa.me/919150150932?text=Hello%20JDR%20Farm%2C%20I%20am%20interested%20in%20Moringa%20Leaf%20Powder%20%28100gram%29.%20Could%20you%20please%20confirm%20its%20availability%20and%20current%20price%3F%20Thank%20you." target="_blank" rel="noopener noreferrer">Buy Now <span aria-hidden="true">↗</span></a>
+                    </div>
                 </div>
-                <div class="product-card">
+                <div class="product-card" data-product="Mudavatangilangu">
                     <div class="product-image">
-                        <img src="image/1 (2).webp" alt="Mudavatangilangu" class="product-img">
+                        <img src="image/mudavattukizhangu.webp" alt="Mudavatangilangu" class="product-img">
                     </div>
                     <div class="product-benefits">
-                        <span class="benefit-tag" data-translate="products.mudavatangilangu.benefit1">Medicinal</span>
-                        <span class="benefit-tag" data-translate="products.mudavatangilangu.benefit2">Therapeutic</span>
+                        <span class="benefit-tag">Traditional root</span>
+                        <span class="benefit-tag">Ask us more</span>
                     </div>
                     <h3 data-translate="products.mudavatangilangu.name">Mudavatangilangu</h3>
-                    <p class="product-subtitle" data-translate="products.mudavatangilangu.subtitle">Natural Root | Traditional Medicine</p>
-                    <p class="product-description" data-translate="products.mudavatangilangu.description">Traditional medicinal root, naturally grown and carefully processed. Known for its therapeutic properties and traditional healing benefits.</p>
+                    <p class="product-subtitle">Traditional root | Ask about use</p>
+                    <p class="product-description">Mudavatangilangu is the dried root also known as shatavari. It is powdered on its own, with no other ingredient added, for traditional use at home. Ask us which pack size and preparation suit you.</p>
+                    <div class="product-buy">
                     <div class="quantity-selector">
                         <label for="mudavatangilangu-quantity" data-translate="products.quantity">Quantity:</label>
                         <select id="mudavatangilangu-quantity" class="product-quantity" data-product-type="other">
@@ -152,61 +193,63 @@
                             <option value="1kg">1kg</option>
                         </select>
                     </div>
+                    <a class="product-enquire" data-enquire href="https://wa.me/919150150932?text=Hello%20JDR%20Farm%2C%20I%20am%20interested%20in%20Mudavatangilangu%20%28250gram%29.%20Could%20you%20please%20confirm%20its%20availability%20and%20current%20price%3F%20Thank%20you." target="_blank" rel="noopener noreferrer">Buy Now <span aria-hidden="true">↗</span></a>
+                    </div>
                 </div>
             </div>
+            <p class="product-note">Availability, pack sizes and prices are confirmed directly by JDR Farm. An enquiry does not place an order.</p>
         </div>
     </section>
 
     <section id="about" class="section section-alt">
         <div class="container">
-            <h2 class="section-title" data-translate="about.title">About JDR Farm</h2>
+            <span class="eyebrow">OUR STORY</span>
+            <h2 class="section-title">Rooted in the way good food should be.</h2>
             <div class="content-grid">
                 <div class="card">
                     <div class="card-icon">🌱</div>
-                    <h3 data-translate="about.organic.title">100% Organic</h3>
-                    <p data-translate="about.organic.desc">All our products are certified organic, grown without harmful pesticides or chemicals.</p>
+                    <h3>Familiar ingredients</h3>
+                    <p>Everyday oils, palm sprout powder and traditional ingredients in one considered collection.</p>
                 </div>
                 <div class="card">
                     <div class="card-icon">❤️</div>
-                    <h3 data-translate="about.fresh.title">Farm Fresh</h3>
-                    <p data-translate="about.fresh.desc">Harvested at peak ripeness and delivered fresh to ensure maximum flavor and nutrition.</p>
+                    <h3>Clear information</h3>
+                    <p>Explore the range and ask us for up-to-date product details, availability and prices.</p>
                 </div>
                 <div class="card">
                     <div class="card-icon">🌍</div>
-                    <h3 data-translate="about.sustainable.title">Sustainable</h3>
-                    <p data-translate="about.sustainable.desc">We practice sustainable farming methods that protect the environment for future generations.</p>
+                    <h3>Personal service</h3>
+                    <p>Have a question? Speak directly with JDR Farm before deciding what you need.</p>
                 </div>
             </div>
             <div class="about-text">
-                <p data-translate="about.text1">At JDR Farm, we're dedicated to promoting health through sustainable farming practices. Our mission is to provide healthy food products and farming services while emphasizing eco-friendly initiatives and empowerment. We believe in the power of real food - food that's grown with care, harvested with respect, and delivered with pride.</p>
-                <p data-translate="about.text2">Every product you purchase from us supports sustainable agriculture and helps us continue our mission of providing healthy, organic food to our community. Together, we're building a healthier future through sustainable farming practices. Thank you for choosing JDR Farm!</p>
+                <p>JDR Farm brings together familiar ingredients and thoughtful preparation. We believe in clear product information and a direct, personal connection with the people who enjoy them.</p>
             </div>
         </div>
     </section>
 
-    <section id="contact" class="section">
+    <section id="contact" class="section section-contact">
         <div class="container">
-            <h2 class="section-title" data-translate="contact.title">Contact Us</h2>
-            <div class="contact-info-section">
-                <div class="contact-details">
-                    <h3 data-translate="contact.getInTouch">Get In Touch</h3>
-                    <div class="contact-item">
-                        <strong>📧 Email:</strong>
-                        <a href="mailto:info@jdrfarm.com">info@jdrfarm.com</a>
-                    </div>
-            <div class="contact-item">
-                <strong>📞 Phone:</strong>
-                <a href="tel:+919150150932">+91 9150150932</a>
-            </div>
-            <div class="contact-item">
-                <strong>💬 WhatsApp:</strong>
-                <a href="https://wa.me/919150150932" target="_blank" class="whatsapp-link">Chat with us on WhatsApp</a>
-            </div>
-                    <div class="contact-item">
-                        <strong>🌐 Website:</strong>
-                        <a href="https://jdrfarm.com" target="_blank">jdrfarm.com</a>
-                    </div>
+            <div class="contact-panel">
+                <div class="contact-intro">
+                    <span class="eyebrow">JDR Farm</span>
+                    <h2>Contact Us</h2>
+                    <p>For product details, availability and current prices, please contact us directly. We will respond with the information you need.</p>
                 </div>
+                <dl class="contact-list">
+                    <div>
+                        <dt><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6.5h18v11H3v-11Z" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="m4 7 8 6 8-6" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>Email</dt>
+                        <dd><a href="mailto:info@jdrfarm.com">info@jdrfarm.com</a></dd>
+                    </div>
+                    <div>
+                        <dt><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="2.5" width="10" height="19" rx="2" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M11 18.5h2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>Mobile</dt>
+                        <dd><a href="tel:+919150150932">+91 9150150932</a></dd>
+                    </div>
+                    <div>
+                        <dt><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12.04 3C7.32 3 3.5 6.7 3.5 11.27c0 1.46.4 2.88 1.16 4.13L3.4 21l5.78-1.2a8.7 8.7 0 0 0 2.86.47c4.72 0 8.54-3.7 8.54-8.27C20.58 6.7 16.76 3 12.04 3Zm4.66 11.72c-.2.55-1.15 1.05-1.6 1.12-.41.06-.93.09-1.5-.09-.34-.11-.78-.26-1.34-.5-2.36-1.02-3.9-3.4-4.02-3.56-.12-.16-.98-1.3-.98-2.48 0-1.18.62-1.76.84-2 .22-.24.48-.3.64-.3h.46c.15 0 .34-.05.53.4.2.48.67 1.64.73 1.76.06.12.1.26.02.42-.08.16-.12.26-.24.4-.12.14-.25.31-.36.42-.12.12-.24.24-.1.47.14.23.62 1.02 1.33 1.65.92.82 1.69 1.07 1.93 1.19.24.12.38.1.52-.06.14-.16.6-.7.76-.94.16-.24.32-.2.54-.12.22.08 1.4.66 1.64.78.24.12.4.18.46.28.06.1.06.58-.14 1.13Z"/></svg>WhatsApp</dt>
+                        <dd><a href="https://wa.me/919150150932" target="_blank" rel="noopener noreferrer">+91 9150150932</a></dd>
+                    </div>
+                </dl>
             </div>
         </div>
     </section>
@@ -233,6 +276,6 @@
         </svg>
     </a>
 
-    <script src="script.js"></script>
+    <script src="script.js?v=20261011"></script>
 </body>
 </html>
