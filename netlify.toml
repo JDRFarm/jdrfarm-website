@@ -60,6 +60,22 @@
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
+# Utility and label pages are public files, but should not appear in search results.
+[[headers]]
+  for = "/test-upload.html"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+
+[[headers]]
+  for = "/print-*.html"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+
+[[headers]]
+  for = "/export-label-to-jpg.html"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+
 # Custom 404 page (optional - create 404.html if needed)
 # [[redirects]]
 #   from = "/*"

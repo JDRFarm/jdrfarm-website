@@ -680,6 +680,48 @@ body {
 }
 
 /* About, contact, footer */
+.section-faq {
+    background: #fff;
+}
+
+.faq-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+    margin-top: 30px;
+}
+
+.faq-item {
+    padding: 26px 28px;
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    background: var(--mist);
+}
+
+.faq-item h3 {
+    margin: 0 0 10px;
+    color: var(--palm);
+    font-family: Manrope, sans-serif;
+    font-size: 1.1rem;
+    line-height: 1.35;
+}
+
+.faq-item p {
+    margin: 0;
+    color: #3e5648;
+    line-height: 1.7;
+}
+
+@media (max-width: 700px) {
+    .faq-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .faq-item {
+        padding: 22px;
+    }
+}
+
 .section-alt {
     background: var(--mist);
 }
@@ -806,6 +848,19 @@ body {
     margin: 0;
 }
 
+.contact-list .contact-address {
+    align-items: start;
+}
+
+.contact-list address {
+    color: var(--palm);
+    font-family: Manrope, sans-serif;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 1.6;
+}
+
 .contact-list a {
     color: var(--palm);
     font-family: Manrope, sans-serif;
@@ -824,6 +879,75 @@ body {
 .contact-list a:focus-visible {
     outline: 2px solid var(--leaf);
     outline-offset: 3px;
+}
+
+.contact-map {
+    margin-top: 24px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    background: #fff;
+}
+
+.contact-map-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 24px 32px;
+}
+
+.contact-map-header .eyebrow {
+    color: var(--leaf);
+}
+
+.contact-map-header h3 {
+    margin: 4px 0 6px;
+    color: var(--palm);
+    font-family: Manrope, sans-serif;
+    font-size: 1.4rem;
+}
+
+.contact-map-header p {
+    margin: 0;
+    color: var(--palm);
+    line-height: 1.5;
+}
+
+.contact-map-link {
+    flex: 0 0 auto;
+    padding: 12px 18px;
+    border-radius: 4px;
+    background: var(--palm);
+    color: #fff;
+    font-family: Manrope, sans-serif;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.contact-map-link:hover,
+.contact-map-link:focus-visible {
+    background: var(--leaf);
+    color: #fff;
+}
+
+.contact-map iframe {
+    display: block;
+    width: 100%;
+    height: 340px;
+    border: 0;
+}
+
+@media (max-width: 700px) {
+    .contact-map-header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 24px;
+    }
+
+    .contact-map iframe {
+        height: 300px;
+    }
 }
 
 .footer {
